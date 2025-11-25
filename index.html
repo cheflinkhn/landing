@@ -1,109 +1,114 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Cheflink – QR ordering & real-time restaurant dashboards</title>
+  <title>Cheflink - Pedidos por QR para restaurantes y bares</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Tailwind CDN for quick prototyping. In production use your compiled CSS -->
+  <meta
+    name="description"
+    content="Cheflink conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real."
+  />
+
+  <!-- TODO: Use Tailwind CSS build for production -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-full bg-slate-950 text-slate-100">
-<div class="relative overflow-hidden">
-  <!-- Background accents -->
-  <div class="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl">
-    <div class="relative left-1/2 aspect-[1108/632] w-[72rem] -translate-x-1/2 bg-gradient-to-tr from-orange-500 via-amber-400 to-pink-500 opacity-30"></div>
-  </div>
 
+<body class="bg-slate-50 text-slate-900">
+<div class="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100">
   <!-- NAVBAR -->
-  <header class="relative z-20">
+  <header class="border-b border-slate-200 bg-white/80 backdrop-blur">
     <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <!-- Logo / Brand -->
+      <!-- Logo / Marca -->
       <div class="flex items-center gap-3">
-        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-orange-500 shadow-lg shadow-orange-500/40">
+        <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-orange-500 shadow-md shadow-orange-500/30">
           <span class="text-lg font-black tracking-tight text-white">CL</span>
         </div>
         <div class="flex flex-col">
           <span class="text-sm font-semibold tracking-tight sm:text-base">Cheflink</span>
-          <span class="hidden text-xs text-slate-300 sm:block">QR orders. Happier staff. Faster tables.</span>
+          <span class="hidden text-xs text-slate-500 sm:block">Pedidos por QR · Cuentas por mesa</span>
         </div>
       </div>
 
-      <!-- Desktop nav links -->
-      <div class="hidden items-center gap-8 text-sm text-slate-200 md:flex">
-        <a href="#features" class="hover:text-white">Features</a>
-        <a href="#how-it-works" class="hover:text-white">How it works</a>
-        <a href="#pricing" class="hover:text-white">Pricing</a>
-        <a href="#faq" class="hover:text-white">FAQ</a>
+      <!-- Enlaces desktop -->
+      <div class="hidden items-center gap-8 text-sm text-slate-600 md:flex">
+        <a href="#features" class="hover:text-slate-900">Características</a>
+        <a href="#how-it-works" class="hover:text-slate-900">Cómo funciona</a>
+        <a href="#pricing" class="hover:text-slate-900">Precios</a>
+        <a href="#faq" class="hover:text-slate-900">Preguntas frecuentes</a>
       </div>
 
       <!-- CTAs -->
       <div class="hidden items-center gap-3 md:flex">
-        <a href="#demo" class="text-sm font-medium text-slate-200 hover:text-white">Book a demo</a>
+        <a href="#demo" class="text-sm font-medium text-slate-700 hover:text-slate-900">Agendar demo</a>
         <a
           href="#signup"
-          class="inline-flex items-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-orange-500/40 hover:bg-orange-400"
+          class="inline-flex items-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-orange-500/40 hover:bg-orange-400"
         >
-          Start free
+          Empezar gratis
         </a>
       </div>
 
-      <!-- Mobile menu button -->
+      <!-- Botón móvil -->
       <button
         type="button"
-        class="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-slate-100 md:hidden"
-        aria-label="Open navigation"
+        class="inline-flex items-center justify-center rounded-full border border-slate-200 p-2 text-slate-700 md:hidden"
+        aria-label="Abrir navegación"
         data-mobile-toggle
       >
-        <!-- Icon: simple hamburger -->
         <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7">
           <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
         </svg>
       </button>
     </nav>
 
-    <!-- Mobile menu -->
-    <div class="mx-auto hidden max-w-7xl px-4 pb-6 sm:px-6 md:hidden" data-mobile-menu>
-      <div class="rounded-2xl border border-white/10 bg-slate-900/80 p-4 backdrop-blur">
-        <div class="flex flex-col gap-3 text-sm text-slate-50">
-          <a href="#features" class="rounded-lg px-3 py-2 hover:bg-white/5">Features</a>
-          <a href="#how-it-works" class="rounded-lg px-3 py-2 hover:bg-white/5">How it works</a>
-          <a href="#pricing" class="rounded-lg px-3 py-2 hover:bg-white/5">Pricing</a>
-          <a href="#faq" class="rounded-lg px-3 py-2 hover:bg-white/5">FAQ</a>
+    <!-- Menú móvil -->
+    <div class="mx-auto hidden max-w-7xl px-4 pb-4 sm:px-6 md:hidden" data-mobile-menu>
+      <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div class="flex flex-col gap-3 text-sm text-slate-800">
+          <a href="#features" class="rounded-lg px-3 py-2 hover:bg-slate-50">Características</a>
+          <a href="#how-it-works" class="rounded-lg px-3 py-2 hover:bg-slate-50">Cómo funciona</a>
+          <a href="#pricing" class="rounded-lg px-3 py-2 hover:bg-slate-50">Precios</a>
+          <a href="#faq" class="rounded-lg px-3 py-2 hover:bg-slate-50">Preguntas frecuentes</a>
         </div>
         <div class="mt-4 flex flex-col gap-2">
-          <a href="#demo" class="rounded-full bg-slate-800 px-4 py-2 text-center text-sm font-medium text-slate-50 hover:bg-slate-700">
-            Book a demo
+          <a
+            href="#demo"
+            class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-center text-sm font-medium text-slate-800 hover:bg-slate-100"
+          >
+            Agendar demo
           </a>
           <a
             href="#signup"
-            class="rounded-full bg-orange-500 px-4 py-2 text-center text-sm font-semibold text-slate-950 hover:bg-orange-400"
+            class="rounded-full bg-orange-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-orange-400"
           >
-            Start free
+            Empezar gratis
           </a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main class="relative z-10">
+  <!-- MAIN -->
+  <main>
     <!-- HERO -->
-    <section id="hero" class="mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-16 pt-10 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-24 lg:pt-16">
-      <!-- Left: copy -->
+    <section
+      id="hero"
+      class="mx-auto flex max-w-7xl flex-col gap-12 px-4 pb-16 pt-10 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-24 lg:pt-16"
+    >
+      <!-- Texto -->
       <div class="max-w-xl space-y-6 lg:max-w-lg">
-        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/60 px-3 py-1 text-xs text-slate-200 backdrop-blur">
-          <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-          <span>Built for busy restaurants & bars</span>
+        <div class="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-3 py-1 text-xs text-orange-800">
+          <span class="inline-flex h-1.5 w-1.5 rounded-full bg-orange-500"></span>
+          <span>Diseñado para restaurantes, bares y cafeterías</span>
         </div>
         <div class="space-y-4">
           <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-            Turn tables faster with
-            <span class="bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">QR ordering</span>
-            that your staff actually loves.
+            Acelera tus mesas con pedidos por
+            <span class="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">código QR</span>.
           </h1>
-          <p class="text-sm text-slate-200 sm:text-base">
-            Cheflink connects QR orders, kitchen tickets, and table tabs into a single real-time dashboard. Less running
-            around, more revenue, and guests who never have to wave for the check.
+          <p class="text-sm text-slate-600 sm:text-base">
+            Cheflink conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real. Menos vueltas del
+            personal, más consumo por mesa y clientes que ya no tienen que llamar al mesero para pedir o pagar.
           </p>
         </div>
 
@@ -111,359 +116,347 @@
           <a
             id="signup"
             href="#"
-            class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-orange-500/40 hover:bg-orange-400"
+            class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-orange-500/40 hover:bg-orange-400"
           >
-            Start free – no card
+            Empezar gratis – sin tarjeta
           </a>
           <button
             id="demo"
             type="button"
-            class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-2.5 text-sm font-medium text-slate-50 hover:bg-white/10"
+            class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-medium text-slate-800 hover:bg-slate-50"
           >
-            Book a 20-min demo
+            Ver demo de 20 min
             <svg class="ml-2 h-4 w-4" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M5 10h8m0 0L9 6m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-300">
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-600">
           <div class="flex items-center gap-1.5">
-            <svg class="h-4 w-4 text-emerald-400" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <svg class="h-4 w-4 text-emerald-500" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5" />
               <path d="M6 10.5 8.5 13 14 7.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <span>No app required for guests</span>
+            <span>Sin app para el cliente</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <svg class="h-4 w-4 text-emerald-400" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <svg class="h-4 w-4 text-emerald-500" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5" />
               <path d="M6 10.5 8.5 13 14 7.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <span>Works with your existing workflow</span>
+            <span>Funciona con tu flujo actual</span>
           </div>
         </div>
 
-        <!-- Tiny metrics / social proof -->
-        <div class="mt-2 grid gap-4 text-sm text-slate-200 sm:grid-cols-3">
+        <!-- Métricas pequeñas -->
+        <div class="mt-2 grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
           <div>
-            <div class="text-lg font-semibold text-white">30%</div>
-            <div class="text-xs text-slate-400">avg. faster table turns</div>
+            <div class="text-lg font-semibold text-slate-900">+30%</div>
+            <div class="text-xs text-slate-500">mesas más rápidas en horas pico</div>
           </div>
           <div>
-            <div class="text-lg font-semibold text-white">2x</div>
-            <div class="text-xs text-slate-400">more orders during peak</div>
+            <div class="text-lg font-semibold text-slate-900">2×</div>
+            <div class="text-xs text-slate-500">más pedidos cuando el local se llena</div>
           </div>
           <div>
-            <div class="text-lg font-semibold text-white">24/7</div>
-            <div class="text-xs text-slate-400">support via chat & email</div>
+            <div class="text-lg font-semibold text-slate-900">24/7</div>
+            <div class="text-xs text-slate-500">soporte por chat y correo</div>
           </div>
         </div>
       </div>
 
-      <!-- Right: “product preview” card -->
+      <!-- “Preview” del producto -->
       <div class="relative flex-1">
-        <div class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-orange-500/40 blur-3xl"></div>
-        <div class="relative mx-auto mt-4 w-full max-w-md rounded-3xl border border-white/10 bg-slate-900/80 p-4 shadow-2xl shadow-orange-500/20 backdrop-blur">
-          <!-- Top bar -->
+        <div class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-orange-200 blur-3xl"></div>
+        <div class="relative mx-auto mt-4 w-full max-w-md rounded-3xl border border-slate-200 bg-white p-4 shadow-xl">
           <div class="flex items-center justify-between gap-2 pb-3">
             <div class="flex items-center gap-2">
-              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-slate-950">
+              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-white">
                 CL
               </span>
               <div class="text-xs">
-                <div class="font-semibold text-slate-50">Cheflink Dashboard</div>
-                <div class="text-[11px] text-slate-400">Live orders · Table view</div>
+                <div class="font-semibold text-slate-900">Panel Cheflink</div>
+                <div class="text-[11px] text-slate-500">Pedidos en vivo · Vista por mesas</div>
               </div>
             </div>
-            <span class="rounded-full bg-emerald-500/15 px-2 py-1 text-[11px] font-medium text-emerald-300">
-              3 new orders
+            <span class="rounded-full bg-emerald-50 px-2 py-1 text-[11px] font-medium text-emerald-700">
+              3 pedidos nuevos
             </span>
           </div>
 
-          <!-- Fake “kanban” board preview -->
-          <div class="space-y-3 rounded-2xl bg-slate-900/90 p-3">
-            <div class="grid grid-cols-3 gap-3 text-[11px] font-medium text-slate-300">
-              <div class="rounded-xl bg-slate-950/80 p-2">
+          <div class="space-y-3 rounded-2xl bg-slate-50 p-3">
+            <div class="grid grid-cols-3 gap-3 text-[11px] font-medium text-slate-700">
+              <div class="rounded-xl bg-white p-2 shadow-sm">
                 <div class="mb-1 flex items-center justify-between gap-2">
-                  <span class="text-[10px] uppercase tracking-wide text-slate-500">New</span>
-                  <span class="h-1.5 w-10 rounded-full bg-slate-700"></span>
+                  <span class="text-[10px] uppercase tracking-wide text-slate-500">Nuevos</span>
+                  <span class="h-1.5 w-10 rounded-full bg-slate-200"></span>
                 </div>
                 <div class="space-y-1.5">
-                  <div class="rounded-lg bg-slate-800/80 p-1.5">
+                  <div class="rounded-lg bg-orange-50 p-1.5">
                     <div class="flex justify-between">
-                      <span>#148 · T12</span>
-                      <span class="text-[10px] text-amber-300">00:02</span>
+                      <span>#148 · M12</span>
+                      <span class="text-[10px] text-orange-700">00:02</span>
                     </div>
-                    <div class="text-[10px] text-slate-400">3 items · $42.50</div>
+                    <div class="text-[10px] text-slate-600">3 ítems · $42.50</div>
                   </div>
-                  <div class="rounded-lg bg-slate-800/50 p-1.5 text-slate-400">
-                    #147 · T7 · 2 items
+                  <div class="rounded-lg bg-slate-100 p-1.5 text-slate-600">
+                    #147 · M7 · 2 ítems
                   </div>
                 </div>
               </div>
 
-              <div class="rounded-xl bg-slate-950/80 p-2">
+              <div class="rounded-xl bg-white p-2 shadow-sm">
                 <div class="mb-1 flex items-center justify-between gap-2">
-                  <span class="text-[10px] uppercase tracking-wide text-slate-500">In kitchen</span>
-                  <span class="h-1.5 w-10 rounded-full bg-sky-500/50"></span>
+                  <span class="text-[10px] uppercase tracking-wide text-slate-500">En cocina</span>
+                  <span class="h-1.5 w-10 rounded-full bg-sky-200"></span>
                 </div>
                 <div class="space-y-1.5">
-                  <div class="rounded-lg bg-sky-500/15 p-1.5">
+                  <div class="rounded-lg bg-sky-50 p-1.5">
                     <div class="flex justify-between">
-                      <span>#143 · T3</span>
-                      <span class="text-[10px] text-sky-300">00:07</span>
+                      <span>#143 · M3</span>
+                      <span class="text-[10px] text-sky-700">00:07</span>
                     </div>
-                    <div class="text-[10px] text-slate-200">Burger · Fries · Soda</div>
+                    <div class="text-[10px] text-slate-600">Hamburguesa · Papas · Refresco</div>
                   </div>
-                  <div class="rounded-lg bg-slate-800/60 p-1.5 text-slate-300">
-                    #142 · T5 · 4 items
+                  <div class="rounded-lg bg-slate-100 p-1.5 text-slate-600">
+                    #142 · M5 · 4 ítems
                   </div>
                 </div>
               </div>
 
-              <div class="rounded-xl bg-slate-950/80 p-2">
+              <div class="rounded-xl bg-white p-2 shadow-sm">
                 <div class="mb-1 flex items-center justify-between gap-2">
-                  <span class="text-[10px] uppercase tracking-wide text-slate-500">Ready / Tab</span>
-                  <span class="h-1.5 w-10 rounded-full bg-emerald-500/60"></span>
+                  <span class="text-[10px] uppercase tracking-wide text-slate-500">Listo / Cuenta</span>
+                  <span class="h-1.5 w-10 rounded-full bg-emerald-300"></span>
                 </div>
                 <div class="space-y-1.5">
-                  <div class="rounded-lg bg-emerald-500/15 p-1.5">
+                  <div class="rounded-lg bg-emerald-50 p-1.5">
                     <div class="flex justify-between">
-                      <span>#139 · T10</span>
-                      <span class="text-[10px] text-emerald-300">Ready</span>
+                      <span>#139 · M10</span>
+                      <span class="text-[10px] text-emerald-700">Listo</span>
                     </div>
-                    <div class="text-[10px] text-slate-200">Tap to mark as paid</div>
+                    <div class="text-[10px] text-slate-600">Tocar para marcar pagado</div>
                   </div>
-                  <div class="rounded-lg bg-slate-800/60 p-1.5 text-slate-300">
-                    #138 · T2 · paying
+                  <div class="rounded-lg bg-slate-100 p-1.5 text-slate-600">
+                    #138 · M2 · pagando
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Tiny footer stats -->
-            <div class="mt-2 flex items-center justify-between text-[11px] text-slate-400">
+            <div class="mt-2 flex items-center justify-between text-[11px] text-slate-500">
               <div class="flex items-center gap-2">
-                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
-                <span>Online · 5 active tables</span>
+                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                <span>Online · 5 mesas activas</span>
               </div>
-              <div>Service charge: 10%</div>
+              <div>Cargo por servicio: 10%</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- CARACTERÍSTICAS -->
     <section id="features" class="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
       <div class="mb-10 flex flex-col gap-3 text-center">
-        <h2 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Everything you need in one place</h2>
-        <p class="mx-auto max-w-2xl text-sm text-slate-300 sm:text-base">
-          Cheflink covers the entire flow: guests scan a QR, place orders, and your team sees every ticket and tab in a single,
-          real-time view.
+        <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Todo lo que necesitas en un solo lugar</h2>
+        <p class="mx-auto max-w-2xl text-sm text-slate-600 sm:text-base">
+          Cheflink cubre todo el flujo: el cliente escanea un QR, manda sus pedidos y tu equipo ve cada ticket y cuenta por mesa en tiempo real.
         </p>
       </div>
 
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <!-- Feature 1 -->
-        <div class="group rounded-2xl border border-white/10 bg-slate-900/60 p-5 shadow-sm shadow-orange-500/10">
-          <div class="mb-3 inline-flex rounded-full bg-orange-500/15 p-2">
-            <svg class="h-5 w-5 text-orange-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex rounded-full bg-orange-50 p-2">
+            <svg class="h-5 w-5 text-orange-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M5 7h14M5 12h14M5 17h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-white">QR menu & ordering</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            Guests scan, browse your menu, and send orders directly from their phone. No downloads, no accounts, just a quick
-            tab code.
+          <h3 class="text-sm font-semibold text-slate-900">Menú y pedidos por QR</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Los clientes escanean el código de la mesa, ven tu menú y envían pedidos desde su teléfono. Sin apps, sin registros.
           </p>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="group rounded-2xl border border-white/10 bg-slate-900/60 p-5 shadow-sm shadow-orange-500/10">
-          <div class="mb-3 inline-flex rounded-full bg-orange-500/15 p-2">
-            <svg class="h-5 w-5 text-orange-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex rounded-full bg-orange-50 p-2">
+            <svg class="h-5 w-5 text-orange-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M5 12h4l3 7 3-14 2 7h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-white">Kitchen-friendly order board</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            A clean list or kanban board for the kitchen. Track every status from “New” to “Served” with big, readable cards.
+          <h3 class="text-sm font-semibold text-slate-900">Vista clara para cocina</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Lista o tablero tipo kanban para la cocina. Cada pedido se mueve de “Nuevo” a “Listo” con tarjetas grandes y fáciles de leer.
           </p>
         </div>
 
-        <!-- Feature 3 -->
-        <div class="group rounded-2xl border border-white/10 bg-slate-900/60 p-5 shadow-sm shadow-orange-500/10">
-          <div class="mb-3 inline-flex rounded-full bg-orange-500/15 p-2">
-            <svg class="h-5 w-5 text-orange-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex rounded-full bg-orange-50 p-2">
+            <svg class="h-5 w-5 text-orange-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M5 10a7 7 0 0114 0v3a4 4 0 01-4 4H9a4 4 0 01-4-4v-3z" stroke="currentColor" stroke-width="1.7" />
               <path d="M9 17v1a3 3 0 006 0v-1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-white">Tabs instead of chaos</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            Group orders into tabs per table or guest. See open balances, apply discounts, and mark as paid in one click.
+          <h3 class="text-sm font-semibold text-slate-900">Cuentas por mesa, sin caos</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Agrupa pedidos en cuentas por mesa o por cliente. Ve el saldo, aplica descuentos y marca como pagado con un clic.
           </p>
         </div>
 
-        <!-- Feature 4 -->
-        <div class="group rounded-2xl border border-white/10 bg-slate-900/60 p-5 shadow-sm shadow-orange-500/10">
-          <div class="mb-3 inline-flex rounded-full bg-orange-500/15 p-2">
-            <svg class="h-5 w-5 text-orange-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M3 5h18M5 9h14v10H5z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex rounded-full bg-orange-50 p-2">
+            <svg class="h-5 w-5 text-orange-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 9h14v10H5z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <path d="M3 5h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-white">Multi-tenant locations</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            Manage multiple venues under one account. Each tenant has its own language, currency, menus, and staff.
+          <h3 class="text-sm font-semibold text-slate-900">Multi-sede y multi-tenant</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Administra varias sucursales bajo una sola cuenta. Cada tenant con su propio idioma, moneda, menú y personal.
           </p>
         </div>
 
-        <!-- Feature 5 -->
-        <div class="group rounded-2xl border border-white/10 bg-slate-900/60 p-5 shadow-sm shadow-orange-500/10">
-          <div class="mb-3 inline-flex rounded-full bg-orange-500/15 p-2">
-            <svg class="h-5 w-5 text-orange-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex rounded-full bg-orange-50 p-2">
+            <svg class="h-5 w-5 text-orange-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 12a8 8 0 0114.32-4.906L21 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
               <path d="M20 12a8 8 0 01-14.32 4.906L3 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-white">Real-time updates</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            Orders, tabs, and statuses update automatically with lightweight polling. Staff always see the latest list.
+          <h3 class="text-sm font-semibold text-slate-900">Actualización en tiempo real</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Los pedidos y cuentas se actualizan automáticamente. El personal ve siempre la lista más reciente.
           </p>
         </div>
 
-        <!-- Feature 6 -->
-        <div class="group rounded-2xl border border-white/10 bg-slate-900/60 p-5 shadow-sm shadow-orange-500/10">
-          <div class="mb-3 inline-flex rounded-full bg-orange-500/15 p-2">
-            <svg class="h-5 w-5 text-orange-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex rounded-full bg-orange-50 p-2">
+            <svg class="h-5 w-5 text-orange-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M7 7h10M7 12h6M7 17h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
               <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-white">Localized for your staff</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            Per-tenant language and currency, so your team sees times, messages, and prices in a way that feels natural.
+          <h3 class="text-sm font-semibold text-slate-900">Localizado para tu equipo</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Configura idioma y moneda por tenant, para que tu equipo vea mensajes, precios y fechas de forma natural.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- CÓMO FUNCIONA -->
     <section id="how-it-works" class="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
       <div class="mb-8 text-center">
-        <h2 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">From scan to paid tab in three steps</h2>
+        <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Del escaneo al pago en tres pasos</h2>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
-        <div class="relative rounded-2xl border border-white/10 bg-slate-900/70 p-5">
-          <div class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-slate-950">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-white">
             1
           </div>
-          <h3 class="text-sm font-semibold text-white">Guests scan your table code</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            Each table has a unique QR that opens a clean mobile menu. No login, no friction.
+          <h3 class="text-sm font-semibold text-slate-900">Escanean el código de la mesa</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Cada mesa tiene un QR único que abre tu menú en el navegador del cliente. Sin descargas, sin fricción.
           </p>
         </div>
-        <div class="relative rounded-2xl border border-white/10 bg-slate-900/70 p-5">
-          <div class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-slate-950">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-white">
             2
           </div>
-          <h3 class="text-sm font-semibold text-white">Orders appear in Cheflink</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            The kitchen and servers see new orders in real time. Status changes trigger visual emphasis and optional sounds.
+          <h3 class="text-sm font-semibold text-slate-900">Los pedidos llegan a Cheflink</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Cocina y meseros ven cada pedido en tiempo real. Resaltado visual para nuevos tickets.
           </p>
         </div>
-        <div class="relative rounded-2xl border border-white/10 bg-slate-900/70 p-5">
-          <div class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-slate-950">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-500 text-xs font-semibold text-white">
             3
           </div>
-          <h3 class="text-sm font-semibold text-white">You close the tab & get paid</h3>
-          <p class="mt-2 text-sm text-slate-300">
-            Apply discounts, service charges, and mark the tab as paid. Cheflink keeps a history of every tab.
+          <h3 class="text-sm font-semibold text-slate-900">Cierras la cuenta y cobras</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Aplica descuentos, cargos por servicio y marca la cuenta como pagada. Cheflink guarda el historial de cada mesa.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- PRICING -->
+    <!-- PRECIOS -->
     <section id="pricing" class="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
       <div class="mb-8 text-center">
-        <h2 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Simple pricing for growing venues</h2>
-        <p class="mt-2 text-sm text-slate-300 sm:text-base">
-          Start free, then upgrade when you’re ready to roll Cheflink out to all your locations.
+        <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Precios simples para locales en crecimiento</h2>
+        <p class="mt-2 text-sm text-slate-600 sm:text-base">
+          Empieza gratis y migra al plan Pro cuando quieras usar Cheflink en todas tus mesas y sucursales.
         </p>
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
-        <!-- Plan 1 -->
-        <div class="flex flex-col justify-between rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+        <div class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div>
-            <h3 class="text-sm font-semibold text-white">Starter</h3>
-            <p class="mt-1 text-sm text-slate-300">Perfect for testing Cheflink in a single venue.</p>
+            <h3 class="text-sm font-semibold text-slate-900">Starter</h3>
+            <p class="mt-1 text-sm text-slate-600">Ideal para probar Cheflink en un solo local.</p>
             <div class="mt-4 flex items-baseline gap-1">
-              <span class="text-3xl font-semibold text-white">$0</span>
-              <span class="text-xs text-slate-400">/ month</span>
+              <span class="text-3xl font-semibold text-slate-900">$0</span>
+              <span class="text-xs text-slate-500">/ mes</span>
             </div>
-            <ul class="mt-4 space-y-2 text-sm text-slate-300">
+            <ul class="mt-4 space-y-2 text-sm text-slate-600">
               <li class="flex items-start gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-                <span>Up to 1 venue and 5 tables</span>
+                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Hasta 1 local y 5 mesas</span>
               </li>
               <li class="flex items-start gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-                <span>QR menu & ordering</span>
+                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Menú y pedidos por QR</span>
               </li>
               <li class="flex items-start gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-                <span>Basic order dashboard</span>
+                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Panel básico de pedidos</span>
               </li>
             </ul>
           </div>
           <a
             href="#signup"
-            class="mt-6 inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white hover:bg-white/15"
+            class="mt-6 inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
           >
-            Get started free
+            Empezar con el plan Starter
           </a>
         </div>
 
-        <!-- Plan 2 -->
-        <div class="relative flex flex-col justify-between rounded-2xl border border-orange-500/70 bg-gradient-to-br from-orange-500/20 via-slate-900 to-slate-900 p-6 shadow-lg shadow-orange-500/40">
-          <div class="absolute right-5 top-5 rounded-full bg-orange-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-950">
-            Most popular
+        <div class="relative flex flex-col justify-between rounded-2xl border border-orange-300 bg-gradient-to-br from-orange-50 via-white to-amber-50 p-6 shadow-md shadow-orange-200">
+          <div class="absolute right-5 top-5 rounded-full bg-orange-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+            Más elegido
           </div>
           <div>
-            <h3 class="text-sm font-semibold text-white">Pro</h3>
-            <p class="mt-1 text-sm text-slate-100">For restaurants & groups that rely on Cheflink every day.</p>
+            <h3 class="text-sm font-semibold text-slate-900">Pro</h3>
+            <p class="mt-1 text-sm text-slate-700">Para locales que usan Cheflink todos los días.</p>
             <div class="mt-4 flex items-baseline gap-1">
-              <span class="text-3xl font-semibold text-white">$49</span>
-              <span class="text-xs text-slate-200">/ month / venue</span>
+              <span class="text-3xl font-semibold text-slate-900">$49</span>
+              <span class="text-xs text-slate-600">/ mes / local</span>
             </div>
-            <ul class="mt-4 space-y-2 text-sm text-slate-100">
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
               <li class="flex items-start gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-300"></span>
-                <span>Unlimited tables & QR codes</span>
+                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Mesas y códigos QR ilimitados</span>
               </li>
               <li class="flex items-start gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-300"></span>
-                <span>Full tab management & discounts</span>
+                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Gestión completa de cuentas y descuentos</span>
               </li>
               <li class="flex items-start gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-300"></span>
-                <span>Multi-tenant support & localization</span>
+                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Soporte multi-tenant y localización</span>
               </li>
               <li class="flex items-start gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-300"></span>
-                <span>Priority support</span>
+                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Soporte prioritario</span>
               </li>
             </ul>
           </div>
           <a
             href="#signup"
-            class="mt-6 inline-flex items-center justify-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-orange-400"
+            class="mt-6 inline-flex items-center justify-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-400"
           >
-            Talk to sales
+            Hablar con ventas
           </a>
         </div>
       </div>
@@ -472,57 +465,58 @@
     <!-- FAQ -->
     <section id="faq" class="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
       <div class="mb-8 text-center">
-        <h2 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Frequently asked questions</h2>
-        <p class="mt-2 text-sm text-slate-300">
-          A couple of quick answers. You can always reach us if you need more details.
+        <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Preguntas frecuentes</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Algunas respuestas rápidas. Siempre puedes escribirnos si necesitas más detalles.
         </p>
       </div>
 
       <dl class="space-y-4">
-        <div class="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
-          <dt class="text-sm font-semibold text-white">Do guests need to download an app?</dt>
-          <dd class="mt-2 text-sm text-slate-300">
-            No. Guests only scan a QR code on the table. Cheflink opens in their browser and ties their orders to that table’s tab.
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <dt class="text-sm font-semibold text-slate-900">¿El cliente tiene que descargar una app?</dt>
+          <dd class="mt-2 text-sm text-slate-600">
+            No. Solo escanea el código QR de la mesa y Cheflink se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y
+            vincular todo a la cuenta de esa mesa.
           </dd>
         </div>
-        <div class="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
-          <dt class="text-sm font-semibold text-white">Can I run Cheflink in multiple locations?</dt>
-          <dd class="mt-2 text-sm text-slate-300">
-            Yes. Cheflink is multi-tenant by design, so you can manage multiple venues under one account with separate menus and staff.
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <dt class="text-sm font-semibold text-slate-900">¿Puedo usar Cheflink en varias sucursales?</dt>
+          <dd class="mt-2 text-sm text-slate-600">
+            Sí. Cheflink es multi-tenant desde el diseño, así que puedes manejar varios locales y separar pedidos y cuentas por local.
           </dd>
         </div>
-        <div class="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
-          <dt class="text-sm font-semibold text-white">Does Cheflink replace my POS?</dt>
-          <dd class="mt-2 text-sm text-slate-300">
-            Today Cheflink sits alongside your existing POS as a super-charged ordering and tab layer. Native POS integrations are on our
-            roadmap.
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <dt class="text-sm font-semibold text-slate-900">¿Cheflink reemplaza mi POS?</dt>
+          <dd class="mt-2 text-sm text-slate-600">
+            Por los momentos no. Actualmente Cheflink se usa junto a tu sistema POS como una capa de pedidos y cuentas por mesa. Las integraciones directas con
+            POS están en el roadmap.
           </dd>
         </div>
       </dl>
     </section>
 
-    <!-- FINAL CTA -->
+    <!-- CTA FINAL -->
     <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-      <div class="overflow-hidden rounded-3xl border border-orange-500/40 bg-gradient-to-r from-orange-500 via-amber-400 to-rose-500 p-[1px]">
-        <div class="flex flex-col items-start gap-4 bg-slate-950 px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-7">
+      <div class="overflow-hidden rounded-3xl border border-orange-200 bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100 p-[1px]">
+        <div class="flex flex-col items-start gap-4 bg-white px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-7">
           <div>
-            <h2 class="text-lg font-semibold text-white">Ready to see Cheflink at your busiest hour?</h2>
-            <p class="mt-1 text-sm text-slate-100">
-              Book a short demo and we’ll walk through your menu, tables, and how Cheflink fits into your current flow.
+            <h2 class="text-lg font-semibold text-slate-900">¿Quieres ver Cheflink en acción en tu hora pico?</h2>
+            <p class="mt-1 text-sm text-slate-600">
+              Agenda una demo corta y revisamos tu menú, tus mesas y cómo Cheflink encaja en tu operación actual.
             </p>
           </div>
           <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
             <a
               href="#demo"
-              class="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-100"
+              class="inline-flex items-center text-center justify-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-400"
             >
-              Book a live demo
+              Agendar demo en vivo
             </a>
             <a
               href="#signup"
-              class="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white hover:bg-white/15"
+              class="inline-flex items-center text-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
-              Start free
+              Empezar gratis
             </a>
           </div>
         </div>
@@ -531,25 +525,25 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-white/10 bg-slate-950">
-    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
       <div class="flex items-center gap-2">
-        <span class="inline-flex h-6 w-6 items-center justify-center rounded-xl bg-orange-500 text-[11px] font-black text-slate-950">
+        <span class="inline-flex h-6 w-6 items-center justify-center rounded-xl bg-orange-500 text-[11px] font-black text-white">
           CL
         </span>
-        <span>© <span id="year"></span> Cheflink. All rights reserved.</span>
+        <span>© <span id="year"></span> Cheflink. Todos los derechos reservados.</span>
       </div>
       <div class="flex flex-wrap items-center gap-4">
-        <a href="#" class="hover:text-slate-200">Privacy</a>
-        <a href="#" class="hover:text-slate-200">Terms</a>
-        <a href="#" class="hover:text-slate-200">Status</a>
+        <a href="#" class="hover:text-slate-700">Privacidad</a>
+        <a href="#" class="hover:text-slate-700">Términos</a>
+        <a href="#" class="hover:text-slate-700">Estado del servicio</a>
       </div>
     </div>
   </footer>
 </div>
 
 <script>
-  // Simple mobile nav toggle
+  // Toggle menú móvil
   const toggleBtn = document.querySelector("[data-mobile-toggle]");
   const menu = document.querySelector("[data-mobile-menu]");
   if (toggleBtn && menu) {
@@ -558,7 +552,7 @@
     });
   }
 
-  // Year in footer
+  // Año en el footer
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
