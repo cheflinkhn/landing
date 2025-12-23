@@ -149,6 +149,22 @@
                     <p class="mt-2 text-xs text-slate-500">Incluye el código de país si es posible.</p>
                   </div>
 
+                  <div>
+                    <label for="plan" class="block text-sm font-medium text-slate-700">Plan</label>
+                    <select
+                      id="plan"
+                      name="plan"
+                      required
+                      class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                    >
+                      <option value="" disabled selected>Selecciona un plan</option>
+                      <option value="sales">Starter</option>
+                      <option value="support">Pro</option>
+                      <option value="partnerships">Premium</option>
+                      <option value="billing">Diamond</option>
+                    </select>
+                  </div>
+
                   <!-- Spacer -->
                   <div class="hidden sm:block"></div>
                 </div>
@@ -210,5 +226,35 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
+
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+
+        // Query param name: ?topic=sales
+        const topicFromUrl = (params.get("plan") || "").trim().toLowerCase();
+        if (!topicFromUrl) return;
+
+        const select = document.getElementById("plan");
+        if (!select) return;
+
+        // If the option exists, select it.
+        const hasOption = Array.from(select.options).some((opt) => opt.value === topicFromUrl);
+
+        if (hasOption) {
+          select.value = topicFromUrl;
+          return;
+        }
+
+        // Optional: if you want to allow any arbitrary value coming from the query param,
+        // you can dynamically create an option. Comment out this block if you *don't* want that.
+        const opt = document.createElement("option");
+        opt.value = topicFromUrl;
+        opt.textContent = topicFromUrl.charAt(0).toUpperCase() + topicFromUrl.slice(1);
+        select.appendChild(opt);
+        select.value = topicFromUrl;
+      })();
+    </script>
+
   </body>
 </html>
