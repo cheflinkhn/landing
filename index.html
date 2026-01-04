@@ -307,9 +307,9 @@
               <path d="M3 5h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-slate-900">Multi-sede y multi-tenant</h3>
+          <h3 class="text-sm font-semibold text-slate-900">Multi-sede</h3>
           <p class="mt-2 text-sm text-slate-600">
-            Administra varias sucursales bajo una sola cuenta. Cada tenant con su propio idioma, moneda, menú y personal.
+            Administra varias sucursales bajo una sola cuenta.
           </p>
         </div>
 
@@ -333,9 +333,9 @@
               <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7" />
             </svg>
           </div>
-          <h3 class="text-sm font-semibold text-slate-900">Localizado para tu equipo</h3>
+          <h3 class="text-sm font-semibold text-slate-900">Localizado para tu país</h3>
           <p class="mt-2 text-sm text-slate-600">
-            Configura idioma y moneda por tenant, para que tu equipo vea mensajes, precios y fechas de forma natural.
+            Configura idioma, moneda, e impuestos según tu país.
           </p>
         </div>
       </div>
@@ -373,6 +373,96 @@
           <p class="mt-2 text-sm text-slate-600">
             Aplica descuentos, cargos por servicio y marca la cuenta como pagada. Cheflink guarda el historial de cada mesa.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Highlights Section (Orange primary, light mode) -->
+    <section id="dashboard" class="relative isolate bg-white py-16 sm:py-24 mb-8">
+      <!-- subtle background -->
+      <div class="absolute inset-0 -z-10">
+        <div
+          class="absolute left-1/2 top-0 h-[420px] w-[980px] -translate-x-1/2 rounded-full bg-gradient-to-r from-orange-50 via-amber-50 to-rose-50 blur-3xl"
+          aria-hidden="true"
+        ></div>
+      </div>
+
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <!-- Heading -->
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            Dasboard en tiempo real
+          </h2>
+          <p class="mt-4 text-base leading-7 text-slate-600">
+            Rastrea los artículos más vendidos, los ingresos totales, las tendencias de ingresos y las mesas activas, para que puedas optimizar las decisiones durante el servicio, no después.
+          </p>
+        </div>
+
+        <div class="mt-12 flex flex-col gap-10 lg:flex-row lg:items-stretch">
+          <!-- Left: Feature bullets -->
+          <div class="lg:w-5/12">
+            <dl class="space-y-6">
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <dt class="flex items-center gap-3 text-base font-semibold text-slate-900">
+                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 ring-1 ring-inset ring-orange-100">
+                    <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" aria-hidden="true">
+                      <path d="M4 19V5m0 14h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M8 15v-4m4 4V7m4 8v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  Productos más vendidos
+                </dt>
+                <dd class="mt-2 text-sm leading-6 text-slate-600">
+                  Identifica los productos más vendidos por día, mes o períodos personalizados. Descubre qué impulsa las ventas y mejora tu menú.
+                </dd>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <dt class="flex items-center gap-3 text-base font-semibold text-slate-900">
+                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 ring-1 ring-inset ring-orange-100">
+                    <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" aria-hidden="true">
+                      <path d="M12 2v20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M17 6H10a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  Ingresos y tendencias
+                </dt>
+                <dd class="mt-2 text-sm leading-6 text-slate-600">
+                  Monitorea los ingresos totales y las tendencias diarias o mensuales para tomar decisiones informadas y optimizar tu operación.
+                </dd>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <dt class="flex items-center gap-3 text-base font-semibold text-slate-900">
+                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 ring-1 ring-inset ring-orange-100">
+                    <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" aria-hidden="true">
+                      <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  Mesas activas en tiempo real
+                </dt>
+                <dd class="mt-2 text-sm leading-6 text-slate-600">
+                  Visualiza las cuentas abiertas, las mesas listas para pagar y la carga de trabajo del personal en tiempo real, ideal para ventanas de servicio ocupadas.
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Dashboard Image -->
+          <div class="lg:w-7/12 lg:flex lg:items-stretch">
+            <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <div class="flex-1 min-h-0 h-full border-b border-slate-200 px-5 py-4 sm:px-6">
+                <img
+                  src="./assets/img/dashboard.png"
+                  alt="Dashboard"
+                  class="h-full w-full object-cover rounded-lg shadow-sm"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -594,35 +684,6 @@
         </div>
       </dl>
     </section>
-
-    <!-- CTA FINAL -->
-    <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
-      <div class="overflow-hidden rounded-3xl border border-orange-200 bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100 p-[1px]">
-        <div class="flex flex-col items-start gap-4 bg-white px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-7">
-          <div>
-            <h2 class="text-lg font-semibold text-slate-900">¿Quieres ver Cheflink en acción en tu hora pico?</h2>
-            <p class="mt-1 text-sm text-slate-600">
-              Agenda una demo corta y revisamos tu menú, tus mesas y cómo Cheflink encaja en tu operación actual.
-            </p>
-          </div>
-          <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
-            <a
-              href="#demo"
-              class="inline-flex items-center text-center justify-center rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-400"
-            >
-              Agendar demo en vivo
-            </a>
-            <a
-              href="#signup"
-              class="inline-flex items-center text-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
-            >
-              Empezar gratis
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
 
   <!-- FOOTER -->
   <footer class="border-t border-slate-200 bg-white">
