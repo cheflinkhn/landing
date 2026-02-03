@@ -1,0 +1,6 @@
+@layer base {
+  html,
+  body {
+    font-family: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
+  }
+}
