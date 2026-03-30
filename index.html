@@ -166,91 +166,42 @@
         </div>
       </div>
 
-      <!-- “Preview” del producto -->
-      <div class="relative flex-1">
-        <div class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-orange-200 blur-3xl"></div>
-        <div class="relative mx-auto mt-4 w-full max-w-md rounded-3xl border border-slate-200 bg-white p-4 shadow-xl">
-          <div class="flex items-center justify-between gap-2 pb-3">
-            <div class="flex items-center gap-2">
-              <img src="assets/img/logo.png" alt="Cheflink Logo" class="h-6 w-6 rounded" />
-              <div class="text-xs">
-                <div class="font-semibold text-slate-900">Panel Cheflink</div>
-                <div class="text-[11px] text-slate-500">Pedidos en vivo · Vista por mesas</div>
-              </div>
-            </div>
-            <span class="rounded-full bg-emerald-50 px-2 py-1 text-[11px] font-medium text-emerald-700">
-              3 pedidos nuevos
-            </span>
+      <!-- Device composition -->
+      <div class="relative flex-1 flex items-center justify-center">
+        <!-- Glow -->
+        <div class="absolute -left-10 -top-10 h-52 w-52 rounded-full bg-orange-200 blur-3xl" aria-hidden="true"></div>
+        <div class="absolute -bottom-10 -right-6 h-40 w-40 rounded-full bg-amber-100 blur-2xl" aria-hidden="true"></div>
+
+        <!-- Desktop browser frame -->
+        <div class="relative w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden">
+          <!-- Browser chrome -->
+          <div class="flex items-center gap-1.5 border-b border-slate-100 bg-slate-50 px-3 py-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-red-400"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-2 flex-1 rounded-full bg-slate-200 px-3 py-0.5 text-[11px] text-slate-400">app.cheflink.io</span>
           </div>
+          <img
+            src="./assets/img/screenshots/kds.png"
+            alt="Kitchen Display System de Cheflink"
+            class="w-full block"
+            loading="eager"
+            width="1920"
+            height="1200"
+          />
+        </div>
 
-          <div class="space-y-3 rounded-2xl bg-slate-50 p-3">
-            <div class="grid grid-cols-3 gap-3 text-[11px] font-medium text-slate-700">
-              <div class="rounded-xl bg-white p-2 shadow-sm">
-                <div class="mb-1 flex items-center justify-between gap-2">
-                  <span class="text-[10px] uppercase tracking-wide text-slate-500">Nuevos</span>
-                  <span class="h-1.5 w-10 rounded-full bg-slate-200"></span>
-                </div>
-                <div class="space-y-1.5">
-                  <div class="rounded-lg bg-orange-50 p-1.5">
-                    <div class="flex justify-between">
-                      <span>#148 · M12</span>
-                      <span class="text-[10px] text-orange-700">00:02</span>
-                    </div>
-                    <div class="text-[10px] text-slate-600">3 ítems · $42.50</div>
-                  </div>
-                  <div class="rounded-lg bg-slate-100 p-1.5 text-slate-600">
-                    #147 · M7 · 2 ítems
-                  </div>
-                </div>
-              </div>
-
-              <div class="rounded-xl bg-white p-2 shadow-sm">
-                <div class="mb-1 flex items-center justify-between gap-2">
-                  <span class="text-[10px] uppercase tracking-wide text-slate-500">En cocina</span>
-                  <span class="h-1.5 w-10 rounded-full bg-sky-200"></span>
-                </div>
-                <div class="space-y-1.5">
-                  <div class="rounded-lg bg-sky-50 p-1.5">
-                    <div class="flex justify-between">
-                      <span>#143 · M3</span>
-                      <span class="text-[10px] text-sky-700">00:07</span>
-                    </div>
-                    <div class="text-[10px] text-slate-600">Hamburguesa · Papas · Refresco</div>
-                  </div>
-                  <div class="rounded-lg bg-slate-100 p-1.5 text-slate-600">
-                    #142 · M5 · 4 ítems
-                  </div>
-                </div>
-              </div>
-
-              <div class="rounded-xl bg-white p-2 shadow-sm">
-                <div class="mb-1 flex items-center justify-between gap-2">
-                  <span class="text-[10px] uppercase tracking-wide text-slate-500">Listo / Cuenta</span>
-                  <span class="h-1.5 w-10 rounded-full bg-emerald-300"></span>
-                </div>
-                <div class="space-y-1.5">
-                  <div class="rounded-lg bg-emerald-50 p-1.5">
-                    <div class="flex justify-between">
-                      <span>#139 · M10</span>
-                      <span class="text-[10px] text-emerald-700">Listo</span>
-                    </div>
-                    <div class="text-[10px] text-slate-600">Tocar para marcar pagado</div>
-                  </div>
-                  <div class="rounded-lg bg-slate-100 p-1.5 text-slate-600">
-                    #138 · M2 · pagando
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-2 flex items-center justify-between text-[11px] text-slate-500">
-              <div class="flex items-center gap-2">
-                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                <span>Online · 5 mesas activas</span>
-              </div>
-              <div>Cargo por servicio: 10%</div>
-            </div>
-          </div>
+        <!-- Phone frame overlaid bottom-right -->
+        <div class="absolute -bottom-6 -right-2 sm:right-0 lg:-right-6 w-[100px] sm:w-[118px] overflow-hidden rounded-[1.6rem] border-[5px] border-slate-800 bg-slate-800 shadow-2xl ring-1 ring-white/60">
+          <div class="absolute left-1/2 top-0 z-10 h-[12px] w-[40px] -translate-x-1/2 rounded-b-lg bg-slate-800"></div>
+          <img
+            src="./assets/img/screenshots/consumer_menu.png"
+            alt="Menú del cliente en Cheflink"
+            class="w-full block"
+            loading="eager"
+            width="1449"
+            height="2961"
+          />
         </div>
       </div>
     </section>
@@ -285,7 +236,7 @@
           </div>
           <h3 class="text-sm font-semibold text-slate-900">Vista clara para cocina</h3>
           <p class="mt-2 text-sm text-slate-600">
-            Lista o tablero tipo kanban para la cocina. Cada pedido se mueve de “Nuevo” a “Listo” con tarjetas grandes y fáciles de leer.
+            Lista o tablero tipo kanban para la cocina. Cada pedido se mueve de "Nuevo" a "Listo" con tarjetas grandes y fáciles de leer.
           </p>
         </div>
 
