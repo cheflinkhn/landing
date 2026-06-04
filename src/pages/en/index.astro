@@ -2,6 +2,63 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cheflink',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description: 'QR ordering and table management system for restaurants and bars. Connects QR orders, kitchen display, and table tabs in a single real-time dashboard.',
+  url: 'https://cheflink.io/en/',
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Starter',
+      price: '0',
+      priceCurrency: 'USD',
+      description: '1 venue, 1 table, 1 user, 10 menu items, 5 orders per day',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Premium',
+      price: '99',
+      priceCurrency: 'USD',
+      description: '1 venue with unlimited tables, unlimited users, unlimited orders, KDS, invoicing, sales dashboard',
+    },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does the guest need to download an app?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. They simply scan the QR code at the table and Cheflink opens in the browser. They can view the menu, place orders, and link everything to their table tab.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use Cheflink across multiple locations?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. With the Diamond plan you can use it across unlimited venues with unlimited tables.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Cheflink replace my POS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can use Cheflink alongside your current point-of-sale system, or integrate it with a digital payment provider to collect payment directly through the platform.',
+      },
+    },
+  ],
+};
 ---
 
 <BaseLayout
@@ -10,6 +67,10 @@ import Footer from '../../components/Footer.astro';
   description="Cheflink connects QR orders, kitchen, and table tabs in a single real-time dashboard."
   canonicalPath="/en/"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
 <div class="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100">
   <Navbar lang="en" currentPage="index" />
 

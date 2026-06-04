@@ -4,15 +4,29 @@ interface Props {
   title: string;
   description: string;
   canonicalPath: string; // e.g. '/es/' or '/en/contact/'
+  ogImage?: string; // absolute URL, defaults to KDS screenshot
 }
 
-const { lang, title, description, canonicalPath } = Astro.props;
+const { lang, title, description, canonicalPath, ogImage } = Astro.props;
 
 const site = 'https://cheflink.io';
 const otherLang = lang === 'es' ? 'en' : 'es';
+const canonicalUrl = `${site}${canonicalPath}`;
+const ogImageUrl = ogImage ?? `${site}/assets/img/screenshots/kds.png`;
+const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
 
-// Compute alternate path (swap language prefix)
-const alternatePath = canonicalPath.replace(`/${lang}/`, `/${otherLang}/`);
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Cheflink',
+  url: site,
+  logo: `${site}/assets/img/logo.png`,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    availableLanguage: ['English', 'Spanish'],
+  },
+};
 ---
 
 <!doctype html>
@@ -22,13 +36,36 @@ const alternatePath = canonicalPath.replace(`/${lang}/`, `/${otherLang}/`);
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-  <link rel="canonical" href={`${site}${canonicalPath}`} />
+  <link rel="canonical" href={canonicalUrl} />
   <link rel="alternate" hreflang="es" href={`${site}${canonicalPath.replace(`/${lang}/`, '/es/')}`} />
   <link rel="alternate" hreflang="en" href={`${site}${canonicalPath.replace(`/${lang}/`, '/en/')}`} />
   <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:locale" content={ogLocale} />
+  <meta property="og:site_name" content="Cheflink" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+
+  <!-- Organization structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+  <slot name="head" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

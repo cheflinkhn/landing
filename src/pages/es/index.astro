@@ -2,6 +2,63 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cheflink',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description: 'Sistema de pedidos por QR y gestión de mesas para restaurantes y bares. Conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real.',
+  url: 'https://cheflink.io/es/',
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Starter',
+      price: '0',
+      priceCurrency: 'USD',
+      description: '1 local con 1 mesa, 1 usuario, 10 items de menú, 5 pedidos al día',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Premium',
+      price: '99',
+      priceCurrency: 'USD',
+      description: '1 local con mesas ilimitadas, usuarios ilimitados, pedidos ilimitados, KDS, facturación, dashboard de ventas',
+    },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿El cliente tiene que descargar una app?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Solo escanea el código QR de la mesa y Cheflink se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Puedo usar Cheflink en varias sucursales?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cheflink reemplaza mi POS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Puedes utilizar Cheflink junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.',
+      },
+    },
+  ],
+};
 ---
 
 <BaseLayout
@@ -10,6 +67,10 @@ import Footer from '../../components/Footer.astro';
   description="Cheflink conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real."
   canonicalPath="/es/"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
 <div class="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100">
   <Navbar lang="es" currentPage="index" />
 

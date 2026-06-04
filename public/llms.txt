@@ -1,0 +1,37 @@
+# Cheflink
+
+> Cheflink is a QR ordering and table management system for restaurants and bars. Guests scan a QR code at their table to browse the menu and place orders directly from their phone — no app or account required. Staff see every order and table tab in real time through a single dashboard.
+
+## Key pages
+
+- [Home (English)](https://cheflink.io/en/): Product overview, features, pricing, and FAQ
+- [Home (Spanish)](https://cheflink.io/es/): Versión en español — características, precios y preguntas frecuentes
+- [Contact / Book a Demo (English)](https://cheflink.io/en/contact/): Request a demo or get in touch
+- [Contact / Reservar Demo (Spanish)](https://cheflink.io/es/contact/): Solicitar una demo o ponerse en contacto
+- [Privacy Policy](https://cheflink.io/en/privacy/): How Cheflink collects and uses data
+- [Terms & Conditions](https://cheflink.io/en/terms/): Terms of service
+
+## Product summary
+
+Cheflink covers the full dining flow:
+
+1. Each table has a unique QR code. Guests scan it and the menu opens in their browser — no download, no sign-up.
+2. Orders arrive instantly in the Cheflink dashboard. Kitchen staff and servers see every ticket in real time.
+3. Orders are grouped into table tabs. Staff can apply discounts, service charges, and mark tabs as paid in one click.
+
+**Key features:** QR menu and ordering, Kitchen Display System (KDS), table tabs, multi-location support, real-time updates, localized currency and tax configuration.
+
+## Pricing
+
+| Plan | Price | Best for |
+|------|-------|----------|
+| Starter | $0/month | Trying out Cheflink (1 venue, 1 table, 5 orders/day) |
+| Premium | $99/month | Small and medium restaurants (1 venue, unlimited tables and orders) |
+| Diamond | Custom | Large operations (unlimited venues, digital payments, loyalty programs) |
+
+## Company
+
+- Website: https://cheflink.io
+- App: https://app.cheflink.io
+- Languages: English, Spanish
+- Support: 24/7 chat and email
