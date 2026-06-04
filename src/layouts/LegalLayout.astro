@@ -1,0 +1,49 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  lang: 'es' | 'en';
+  title: string;
+  description: string;
+  canonicalPath: string;
+}
+
+const { lang, title, description, canonicalPath } = Astro.props;
+
+const t = {
+  es: { tagline: 'Pedidos por QR y cuentas por mesa', back: 'Volver al inicio' },
+  en: { tagline: 'QR Orders and Table Tabs', back: 'Back to home' },
+}[lang];
+
+const homePath = `/${lang}/`;
+---
+
+<BaseLayout {lang} {title} {description} {canonicalPath}>
+  <div class="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100">
+    <header class="border-b border-slate-200 bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href={homePath} class="flex items-center gap-3">
+          <img src="/assets/img/logo.png" alt="Cheflink Logo" class="h-9 w-9 rounded" />
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold tracking-tight sm:text-base">Cheflink</span>
+            <span class="hidden text-xs text-slate-500 sm:block">{t.tagline}</span>
+          </div>
+        </a>
+        <a href={homePath} class="text-xs font-medium text-slate-600 hover:text-slate-900">{t.back}</a>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <span>© <span data-year></span> Cheflink.</span>
+        <div class="flex flex-wrap gap-4">
+          <a href={homePath} class="hover:text-slate-700">{lang === 'es' ? 'Inicio' : 'Home'}</a>
+          <a href={`/${lang}/terms/`} class="hover:text-slate-700">{lang === 'es' ? 'Términos y Condiciones' : 'Terms & Conditions'}</a>
+          <a href={`/${lang}/privacy/`} class="hover:text-slate-700">{lang === 'es' ? 'Política de Privacidad' : 'Privacy Policy'}</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>

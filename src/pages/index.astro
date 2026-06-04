@@ -1,0 +1,26 @@
+---
+// Root page: redirect to /en/ or /es/ based on browser language.
+// This runs client-side since Astro static output can't inspect headers.
+---
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Cheflink</title>
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://cheflink.io/es/" />
+  <script>
+    const lang = navigator.language || navigator.languages?.[0] || 'es';
+    if (lang.startsWith('en')) {
+      window.location.replace('/en/');
+    } else {
+      window.location.replace('/es/');
+    }
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/es/" />
+  </noscript>
+</head>
+<body></body>
+</html>

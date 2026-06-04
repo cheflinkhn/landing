@@ -1,0 +1,56 @@
+---
+interface Props {
+  lang: 'es' | 'en';
+  title: string;
+  description: string;
+  canonicalPath: string; // e.g. '/es/' or '/en/contact/'
+}
+
+const { lang, title, description, canonicalPath } = Astro.props;
+
+const site = 'https://cheflink.io';
+const otherLang = lang === 'es' ? 'en' : 'es';
+
+// Compute alternate path (swap language prefix)
+const alternatePath = canonicalPath.replace(`/${lang}/`, `/${otherLang}/`);
+---
+
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <link rel="canonical" href={`${site}${canonicalPath}`} />
+  <link rel="alternate" hreflang="es" href={`${site}${canonicalPath.replace(`/${lang}/`, '/es/')}`} />
+  <link rel="alternate" hreflang="en" href={`${site}${canonicalPath.replace(`/${lang}/`, '/en/')}`} />
+  <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet" />
+
+  <style is:global>
+    html, body {
+      font-family: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <slot />
+  <script>
+    document.querySelectorAll('[data-year]').forEach(el => {
+      el.textContent = String(new Date().getFullYear());
+    });
+    const toggleBtn = document.querySelector('[data-mobile-toggle]');
+    const menu = document.querySelector('[data-mobile-menu]');
+    if (toggleBtn && menu) {
+      toggleBtn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    }
+  </script>
+</body>
+</html>

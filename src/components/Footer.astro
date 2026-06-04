@@ -1,0 +1,33 @@
+---
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const t = {
+  es: {
+    rights: 'Todos los derechos reservados.',
+    privacy: 'Privacidad',
+    terms: 'Términos',
+  },
+  en: {
+    rights: 'All rights reserved.',
+    privacy: 'Privacy',
+    terms: 'Terms',
+  },
+}[lang];
+---
+
+<footer class="border-t border-slate-200 bg-white">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+    <div class="flex items-center gap-2">
+      <img src="/assets/img/logo.png" alt="Cheflink Logo" class="h-6 w-6 rounded" />
+      <span>© <span data-year></span> Cheflink. {t.rights}</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-4">
+      <a href={`/${lang}/privacy/`} class="hover:text-slate-700">{t.privacy}</a>
+      <a href={`/${lang}/terms/`} class="hover:text-slate-700">{t.terms}</a>
+    </div>
+  </div>
+</footer>
