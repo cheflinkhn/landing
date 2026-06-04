@@ -4,3 +4,16 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Redirect / to /en/ for English browsers, /es/ for everyone else.
+# Netlify evaluates these top-to-bottom; first match wins.
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/"
+  to = "/es/"
+  status = 302
