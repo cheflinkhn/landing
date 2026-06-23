@@ -7,27 +7,85 @@ const { lang } = Astro.props;
 
 const t = {
   es: {
-    rights: 'Todos los derechos reservados.',
+    blurb: 'Pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real.',
+    productTitle: 'Producto',
+    features: 'Características',
+    howItWorks: 'Cómo funciona',
+    pricing: 'Precios',
+    faq: 'Preguntas frecuentes',
+    companyTitle: 'Empresa',
+    contact: 'Agendar demo',
+    legalTitle: 'Legal',
     privacy: 'Privacidad',
     terms: 'Términos',
+    cta: 'Pruébalo gratis',
+    rights: 'Todos los derechos reservados.',
   },
   en: {
-    rights: 'All rights reserved.',
+    blurb: 'QR orders, kitchen, and table tabs in a single real-time dashboard.',
+    productTitle: 'Product',
+    features: 'Features',
+    howItWorks: 'How it works',
+    pricing: 'Pricing',
+    faq: 'FAQ',
+    companyTitle: 'Company',
+    contact: 'Book a demo',
+    legalTitle: 'Legal',
     privacy: 'Privacy',
     terms: 'Terms',
+    cta: 'Try it free',
+    rights: 'All rights reserved.',
   },
 }[lang];
+
+const home = `/${lang}/`;
 ---
 
-<footer class="border-t border-slate-200 bg-white">
-  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-    <div class="flex items-center gap-2">
-      <img src="/assets/img/logo.png" alt="Cheflink Logo" class="h-6 w-6 rounded" />
-      <span>© <span data-year></span> Cheflink. {t.rights}</span>
+<footer class="border-t border-sand-200 bg-sand-50">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div class="max-w-xs">
+        <div class="flex items-center gap-2.5">
+          <img src="/assets/img/logo.png" alt="Cheflink Logo" class="h-8 w-8 rounded-lg ring-1 ring-sand-200" />
+          <span class="font-display text-lg font-semibold tracking-tight text-ink">Cheflink</span>
+        </div>
+        <p class="mt-4 text-sm leading-6 text-sand-600">{t.blurb}</p>
+        <a
+          href="https://app.cheflink.io/signup/"
+          class="mt-5 inline-flex items-center rounded-full bg-clay-500 px-4 py-2 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay-600"
+        >
+          {t.cta}
+        </a>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-sand-500">{t.productTitle}</h3>
+        <ul class="mt-4 space-y-3 text-sm text-sand-600">
+          <li><a href={`${home}#features`} class="transition-colors hover:text-ink">{t.features}</a></li>
+          <li><a href={`${home}#how-it-works`} class="transition-colors hover:text-ink">{t.howItWorks}</a></li>
+          <li class="hidden"><a href={`${home}#pricing`} class="transition-colors hover:text-ink">{t.pricing}</a></li>
+          <li><a href={`${home}#faq`} class="transition-colors hover:text-ink">{t.faq}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-sand-500">{t.companyTitle}</h3>
+        <ul class="mt-4 space-y-3 text-sm text-sand-600">
+          <li><a href={`/${lang}/contact/`} class="transition-colors hover:text-ink">{t.contact}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-sand-500">{t.legalTitle}</h3>
+        <ul class="mt-4 space-y-3 text-sm text-sand-600">
+          <li><a href={`/${lang}/privacy/`} class="transition-colors hover:text-ink">{t.privacy}</a></li>
+          <li><a href={`/${lang}/terms/`} class="transition-colors hover:text-ink">{t.terms}</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="flex flex-wrap items-center gap-4">
-      <a href={`/${lang}/privacy/`} class="hover:text-slate-700">{t.privacy}</a>
-      <a href={`/${lang}/terms/`} class="hover:text-slate-700">{t.terms}</a>
+
+    <div class="mt-12 border-t border-sand-200 pt-6 text-xs text-sand-500">
+      © <span data-year></span> Cheflink. {t.rights}
     </div>
   </div>
 </footer>

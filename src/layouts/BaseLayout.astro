@@ -69,17 +69,25 @@ const organizationSchema = {
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style is:global>
     html, body {
-      font-family: "Google Sans Flex", ui-sans-serif, system-ui, sans-serif;
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
+    .font-display {
+      font-family: "Fraunces", ui-serif, Georgia, serif;
+      font-optical-sizing: auto;
+    }
+    h1, h2, h3 { font-feature-settings: "ss01"; }
+    html { scroll-behavior: smooth; }
   </style>
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="a841e4bb-6b9b-46d9-8e33-9de2785de277"></script>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-cream text-ink">
   <slot />
   <script>
     document.querySelectorAll('[data-year]').forEach(el => {
