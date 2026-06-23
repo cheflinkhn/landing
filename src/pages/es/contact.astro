@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
+import { CALENDLY_URL } from '../../config/calendly';
 ---
 
 <BaseLayout
   lang="es"
-  title="Cheflink - Contáctanos"
-  description="Agenda una demo o contáctanos para conocer cómo Cheflink puede ayudar a tu restaurante."
+  title="Cheflink - Agenda una Demo"
+  description="Agenda una llamada por Google Meet para conocer cómo Cheflink puede ayudar a tu restaurante."
   canonicalPath="/es/contact/"
 >
 <div class="min-h-screen bg-white text-slate-900">
@@ -20,78 +21,27 @@ import Navbar from '../../components/Navbar.astro';
   <main class="relative z-10">
     <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-2xl">
-        <h1 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Contáctanos</h1>
-        <p class="mt-3 text-base leading-7 text-slate-600">Cuéntanos qué estás construyendo o en qué necesitas ayuda. Te responderemos lo antes posible.</p>
+        <h1 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Agenda una Demo</h1>
+        <p class="mt-3 text-base leading-7 text-slate-600">Elige el horario que mejor te convenga y nos reunimos por Google Meet. El enlace de la reunión se te envía automáticamente al agendar.</p>
       </div>
 
       <div class="mt-10 grid gap-8 lg:grid-cols-5">
         <aside class="lg:col-span-2">
           <div class="rounded-2xl border border-slate-200 bg-white/70 p-6 shadow-sm">
-            <h2 class="text-base font-semibold text-slate-900">Qué incluir</h2>
+            <h2 class="text-base font-semibold text-slate-900">Qué esperar</h2>
             <ul class="mt-4 space-y-3 text-sm text-slate-600">
-              <li class="flex gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>Tu tipo de negocio (restaurante, café, bar, etc.)</li>
-              <li class="flex gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>Número de locales que manejas</li>
-              <li class="flex gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>Número aproximado de mesas y usuarios del personal</li>
+              <li class="flex gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>Un recorrido por Cheflink adaptado a tu restaurante</li>
+              <li class="flex gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>Respuestas sobre precios, configuración e implementación</li>
+              <li class="flex gap-3"><span class="mt-1 inline-block h-2 w-2 rounded-full bg-orange-500"></span>Un enlace de Google Meet enviado automáticamente al agendar</li>
             </ul>
-            <div class="mt-6 border-t border-slate-200 pt-6">
-              <h3 class="text-sm font-semibold text-slate-900">Contacto via WhatsApp</h3>
-              <p class="mt-2 text-sm text-slate-600">
-                ¿Prefieres chatear por WhatsApp? Envíanos un mensaje a
-                <a class="font-medium text-orange-700 hover:text-orange-600" href="https://wa.link/eh04gu">https://wa.link/eh04gu</a>
-              </p>
-            </div>
           </div>
         </aside>
 
         <section class="lg:col-span-3">
-          <div class="rounded-2xl border border-slate-200 bg-white/70 p-6 shadow-sm">
-            <form name="contact-es" class="space-y-6" netlify>
-              <input type="hidden" name="form-name" value="contact-es" />
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="first_name" class="block text-sm font-medium text-slate-700">Nombre</label>
-                  <input id="first_name" name="first_name" type="text" autocomplete="given-name" required class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15" />
-                </div>
-                <div>
-                  <label for="last_name" class="block text-sm font-medium text-slate-700">Apellido</label>
-                  <input id="last_name" name="last_name" type="text" autocomplete="family-name" required class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15" />
-                </div>
-              </div>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" required class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15" />
-                </div>
-                <div>
-                  <label for="country" class="block text-sm font-medium text-slate-700">País</label>
-                  <input id="country" name="country" type="text" autocomplete="country-name" required class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15" />
-                </div>
-              </div>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label for="phone" class="block text-sm font-medium text-slate-700">Número de teléfono</label>
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" required class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15" />
-                  <p class="mt-2 text-xs text-slate-500">Incluye el código de país si es posible.</p>
-                </div>
-                <div>
-                  <label for="plan" class="block text-sm font-medium text-slate-700">Plan</label>
-                  <select id="plan" name="plan" required class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15">
-                    <option value="" disabled selected>Selecciona un plan</option>
-                    <option value="Starter">Starter</option>
-                    <option value="Premium">Premium</option>
-                    <option value="Diamond">Diamond</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label for="message" class="block text-sm font-medium text-slate-700">Mensaje</label>
-                <textarea id="message" name="message" rows="6" required class="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"></textarea>
-              </div>
-              <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p class="text-xs text-slate-500">Al enviar este formulario, aceptas que ChefLink se comunique contigo sobre tu consulta.</p>
-                <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-orange-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-orange-600/20 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/40">Enviar</button>
-              </div>
-            </form>
+          <div class="rounded-2xl border border-slate-200 bg-white/70 p-3 shadow-sm sm:p-4">
+            <div id="calendly-embed" class="min-w-[280px] overflow-hidden rounded-xl" style="height:760px;">
+              <p class="p-6 text-sm text-slate-500">Cargando el calendario… Si no aparece, <a class="font-medium text-orange-700 hover:text-orange-600" href={CALENDLY_URL} target="_blank" rel="noopener">ábrelo en una pestaña nueva</a>.</p>
+            </div>
           </div>
         </section>
       </div>
@@ -111,20 +61,26 @@ import Navbar from '../../components/Navbar.astro';
   </footer>
 </div>
 
-<script>
+<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script define:vars={{ calendlyUrl: CALENDLY_URL }}>
   (function () {
-    const params = new URLSearchParams(window.location.search);
-    const planFromUrl = (params.get('plan') || '').trim();
-    if (!planFromUrl) return;
-    const select = document.getElementById('plan') as HTMLSelectElement | null;
-    if (!select) return;
-    const hasOption = Array.from(select.options).some(opt => opt.value === planFromUrl);
-    if (hasOption) { select.value = planFromUrl; return; }
-    const opt = document.createElement('option');
-    opt.value = planFromUrl;
-    opt.textContent = planFromUrl;
-    select.appendChild(opt);
-    select.value = planFromUrl;
+    const parent = document.getElementById('calendly-embed');
+    if (!parent) return;
+
+    // Carry a `?plan=` query param through to Calendly so the chosen plan is
+    // tracked with the booking (visible in your Calendly event reporting).
+    const plan = (new URLSearchParams(window.location.search).get('plan') || '').trim();
+
+    let url = calendlyUrl + (calendlyUrl.includes('?') ? '&' : '?') + 'hide_gdpr_banner=1';
+    if (plan) url += '&utm_content=' + encodeURIComponent(plan);
+
+    function init() {
+      if (!window.Calendly) { window.setTimeout(init, 50); return; }
+      parent.innerHTML = '';
+      window.Calendly.initInlineWidget({ url, parentElement: parent });
+    }
+    init();
   })();
 </script>
 </BaseLayout>
