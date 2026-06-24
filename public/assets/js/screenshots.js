@@ -7,7 +7,7 @@ tabs.forEach((btn) => {
       const active = t.dataset.tab === target;
       t.setAttribute("aria-selected", active);
       t.className = active
-        ? "screenshot-tab rounded-full border border-clay-500 bg-clay-500 px-4 py-1.5 text-sm font-medium text-white transition-colors"
+        ? "screenshot-tab rounded-full border border-brand-700 bg-brand-700 px-4 py-1.5 text-sm font-medium text-white transition-colors"
         : "screenshot-tab rounded-full border border-sand-200 bg-white px-4 py-1.5 text-sm font-medium text-sand-600 transition-colors hover:border-sand-300 hover:text-ink";
       document.getElementById("tab-panel-" + t.dataset.tab).classList.toggle("hidden", !active);
     });
@@ -28,7 +28,7 @@ tabs.forEach((btn) => {
   let current = 0;
 
   const dotClass = {
-    active: "h-2 w-6 rounded-full bg-clay-500 transition-all duration-300",
+    active: "h-2 w-6 rounded-full bg-brand-500 transition-all duration-300",
     inactive: "h-2 w-2 rounded-full bg-sand-300 transition-all duration-300 cursor-pointer hover:bg-sand-400",
   };
 

@@ -4,18 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Warm terracotta accent — the brand voice
-        clay: {
-          50: '#FBF3EE',
-          100: '#F6E2D5',
-          200: '#EDC3AB',
-          300: '#E29F7B',
-          400: '#D77A4F',
-          500: '#C75A2E',
-          600: '#AC481F',
-          700: '#8C3A1B',
-          800: '#6E2F19',
-          900: '#4C2113',
+        // Brand orange — anchored on the logo (#F97216 ≈ orange-500).
+        // See DESIGN-TOKENS.md: 500 = brand mark / focus / large graphics only;
+        // 700 = accent (white-label buttons, links); 800 = hover/pressed.
+        brand: {
+          50: '#FFF7ED',
+          100: '#FFEDD5',
+          200: '#FED7AA',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F97216',
+          600: '#EA580C',
+          700: '#C2410C',
+          800: '#9A3412',
+          900: '#7C2D12',
         },
         // Warm neutral ramp (replaces cold slate)
         sand: {
