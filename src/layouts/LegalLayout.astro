@@ -16,6 +16,9 @@ const t = {
 }[lang];
 
 const homePath = `/${lang}/`;
+
+const esHref = canonicalPath.replace(/^\/en\//, '/es/');
+const enHref = canonicalPath.replace(/^\/es\//, '/en/');
 ---
 
 <BaseLayout {lang} {title} {description} {canonicalPath}>
@@ -26,7 +29,31 @@ const homePath = `/${lang}/`;
           <img src="/assets/img/logo.png" alt="Cheflink Logo" class="h-9 w-9 rounded-lg ring-1 ring-sand-200" />
           <span class="font-display text-lg font-semibold tracking-tight text-ink">Cheflink</span>
         </a>
-        <a href={homePath} class="text-sm font-medium text-sand-600 transition-colors hover:text-ink">{t.back}</a>
+        <div class="flex items-center gap-3 sm:gap-4">
+          <!-- Language toggle -->
+          <div class="relative" data-lang-dropdown>
+            <button
+              type="button"
+              class="flex items-center gap-1 rounded-full border border-sand-200 px-2.5 py-1.5 text-xs font-semibold tracking-wide text-sand-600 transition-colors hover:border-sand-300 hover:text-ink"
+              aria-haspopup="true"
+              aria-expanded="false"
+              data-lang-toggle
+            >
+              {lang.toUpperCase()}
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div
+              class="absolute right-0 top-full mt-1.5 hidden w-28 overflow-hidden rounded-xl border border-sand-200 bg-white py-1 shadow-soft"
+              data-lang-menu
+            >
+              <a href={esHref} class={`block px-3 py-1.5 text-sm transition-colors hover:bg-sand-50 ${lang === 'es' ? 'font-semibold text-ink' : 'text-sand-600'}`}>Español</a>
+              <a href={enHref} class={`block px-3 py-1.5 text-sm transition-colors hover:bg-sand-50 ${lang === 'en' ? 'font-semibold text-ink' : 'text-sand-600'}`}>English</a>
+            </div>
+          </div>
+          <a href={homePath} class="text-sm font-medium text-sand-600 transition-colors hover:text-ink">{t.back}</a>
+        </div>
       </div>
     </header>
 
@@ -43,4 +70,23 @@ const homePath = `/${lang}/`;
       </div>
     </footer>
   </div>
+
+  <script>
+    const dropdown = document.querySelector('[data-lang-dropdown]');
+    const toggle = dropdown?.querySelector('[data-lang-toggle]');
+    const menu = dropdown?.querySelector('[data-lang-menu]');
+
+    toggle?.addEventListener('click', () => {
+      const isOpen = !menu?.classList.contains('hidden');
+      menu?.classList.toggle('hidden', isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdown?.contains(e.target as Node)) {
+        menu?.classList.add('hidden');
+        toggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
 </BaseLayout>
