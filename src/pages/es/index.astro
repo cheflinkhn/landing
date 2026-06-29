@@ -62,36 +62,44 @@ const faqSchema = {
 
 const features = [
   {
-    title: 'Menú y pedidos por QR',
-    body: 'Los clientes escanean el código de la mesa, ven tu menú y envían pedidos desde su teléfono. Sin apps, sin registros.',
-    icon: 'M5 7h14M5 12h14M5 17h7',
+    title: 'Gestión de personal',
+    body: 'Suma a tu equipo con roles y permisos. Controla quién toma pedidos, edita menús o cierra cuentas.',
+    icon: 'M9 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM4 18a5 5 0 0110 0M16 10a2.5 2.5 0 10-1-4.85M20 18a5 5 0 00-3.2-4.66',
   },
   {
-    title: 'Vista clara para cocina',
-    body: 'Visualiza por mesa las cuentas activas y sus pedidos en tiempo real. El estado de cada cuenta y de cada ítem siempre visible para tu equipo.',
-    icon: 'M5 12h4l3 7 3-14 2 7h3',
+    title: 'Gestión de inventario',
+    body: 'Controla el stock en tiempo real, recibe alertas de bajo inventario y mantén tu menú al día con lo que realmente hay disponible.',
+    icon: 'M12 3l8 4v10l-8 4-8-4V7zM4 7l8 4 8-4M12 11v10',
   },
   {
-    title: 'Cuentas por mesa, sin caos',
-    body: 'Agrupa pedidos en cuentas por mesa o por cliente. Ve el saldo, aplica descuentos y marca como pagado con un clic.',
-    icon: 'M5 10a7 7 0 0114 0v3a4 4 0 01-4 4H9a4 4 0 01-4-4v-3zM9 17v1a3 3 0 006 0v-1',
+    title: 'Programa de fidelidad',
+    body: 'Premia a tus clientes frecuentes con puntos y beneficios que los hacen volver, registrados automáticamente en cada visita.',
+    icon: 'M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L12 16.77l-5.2 2.73.99-5.79-4.21-4.1 5.82-.85z',
   },
   {
-    title: 'Multi-sede',
-    body: 'Administra varias sucursales bajo una sola cuenta, cada una con su propio menú, equipo y reportes.',
-    icon: 'M5 9h14v10H5zM3 5h18',
+    title: 'Facturación',
+    body: 'Genera facturas y recibos con tus impuestos y cargos por servicio ya aplicados, listos para enviar o imprimir.',
+    icon: 'M14 3H7a1 1 0 00-1 1v16a1 1 0 001 1h10a1 1 0 001-1V7zM14 3v4h4M9 12h6M9 16h4',
   },
   {
-    title: 'Actualización en tiempo real',
-    body: 'Los pedidos y cuentas se actualizan automáticamente. El personal ve siempre la lista más reciente, sin recargar y sin tickets perdidos.',
-    icon: 'M4 12a8 8 0 0114.32-4.906L21 5M20 12a8 8 0 01-14.32 4.906L3 19',
+    title: 'Reservas de mesa',
+    body: 'Permite que tus clientes reserven mesa en línea y administra tu salón con una vista clara de cada próxima reserva.',
+    icon: 'M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1zM4 10h16M8 3v4M16 3v4',
   },
   {
-    title: 'Localizado para tu país',
-    body: 'Configura idioma, moneda e impuestos según tu país para que los totales siempre cuadren.',
-    icon: 'M7 7h10M7 12h6M7 17h4',
+    title: 'Pagos digitales',
+    body: 'Permite que tus clientes paguen desde su teléfono o cóbrales directamente desde la cuenta con un proveedor de pagos integrado.',
+    icon: 'M3 6h18a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V7a1 1 0 011-1zM2 10h20M6 15h4',
+  },
+  {
+    title: 'Reportes',
+    body: 'Visualiza ventas, productos más vendidos, horas pico y rendimiento por mesa en paneles claros que guían tus decisiones.',
+    icon: 'M4 20h16M7 20v-6M12 20V8M17 20v-9',
   },
 ];
+
+// Mesa del local de demostración en vivo — cada escaneo abre su propia cuenta aislada (ver el bloque de demo en #screenshots).
+const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
 ---
 
 <BaseLayout
@@ -200,7 +208,7 @@ const features = [
           <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Características</span>
           <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Todo lo que necesitas en un solo lugar</h2>
           <p class="mt-4 text-lg leading-8 text-sand-600">
-            Cheflink cubre todo el flujo: el cliente escanea un QR, manda sus pedidos y tu equipo ve cada ticket y cuenta por mesa en tiempo real.
+            Cheflink es más que pedidos por QR. Gestiona todo tu salón y tu cocina —desde reservas y pagos hasta personal, inventario y reportes— sin hacer malabares con herramientas separadas.
           </p>
         </div>
 
@@ -225,19 +233,78 @@ const features = [
             <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Del escaneo al pago en tres pasos</h2>
           </div>
 
-          <div class="relative mt-14 grid gap-10 md:grid-cols-3">
-            <div class="absolute left-0 right-0 top-7 hidden h-px bg-sand-300 md:block" aria-hidden="true"></div>
-            {[
-              ['Escanean el código de la mesa', 'Cada mesa tiene un QR único que abre tu menú en el navegador del cliente. Sin descargas, sin fricción.'],
-              ['Los pedidos llegan a Cheflink', 'Cocina y meseros ven cada pedido en tiempo real, con un resaltado visual para los nuevos tickets.'],
-              ['Cierras la cuenta y cobras', 'Aplica descuentos, cargos por servicio y marca la cuenta como pagada. Cheflink guarda el historial de cada mesa.'],
-            ].map(([title, body], i) => (
-              <div class="relative">
-                <div class="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-brand-700 font-display text-xl font-semibold text-white shadow-soft ring-4 ring-sand-50">{i + 1}</div>
-                <h3 class="mt-5 text-base font-semibold text-ink">{title}</h3>
-                <p class="mt-2 text-sm leading-6 text-sand-600">{body}</p>
+          <div class="relative mt-14 grid gap-6 md:grid-cols-3">
+            <!-- Conector de flujo (escritorio) -->
+            <div class="absolute left-[16.6%] right-[16.6%] top-[88px] hidden border-t-2 border-dashed border-sand-300 md:block" aria-hidden="true"></div>
+
+            <!-- PASO 1 — Escanean el QR -->
+            <article class="group relative z-10 flex flex-col rounded-2xl border border-sand-200 bg-white p-5 shadow-soft transition-shadow hover:shadow-lift">
+              <div class="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-sand-50 to-brand-50 ring-1 ring-sand-100">
+                <span class="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white shadow-soft">1</span>
+                <div class="relative">
+                  <img src="/assets/img/landing_qr.png" alt="Código QR de mesa de Cheflink" width="112" height="112" class="h-28 w-28 rounded-lg bg-white p-1.5 shadow-soft" loading="lazy" />
+                  <span class="pointer-events-none absolute -inset-2.5" aria-hidden="true">
+                    <span class="absolute left-0 top-0 h-5 w-5 rounded-tl-md border-l-2 border-t-2 border-brand-500"></span>
+                    <span class="absolute right-0 top-0 h-5 w-5 rounded-tr-md border-r-2 border-t-2 border-brand-500"></span>
+                    <span class="absolute bottom-0 left-0 h-5 w-5 rounded-bl-md border-b-2 border-l-2 border-brand-500"></span>
+                    <span class="absolute bottom-0 right-0 h-5 w-5 rounded-br-md border-b-2 border-r-2 border-brand-500"></span>
+                    <span class="absolute inset-x-0 top-1/2 h-0.5 animate-pulse bg-brand-500/70"></span>
+                  </span>
+                </div>
               </div>
-            ))}
+              <h3 class="text-base font-semibold text-ink">Escanean el código de la mesa</h3>
+              <p class="mt-2 text-sm leading-6 text-sand-600">Cada mesa tiene un QR único que abre tu menú en el navegador del cliente. Sin descargas, sin fricción.</p>
+            </article>
+
+            <!-- PASO 2 — Los pedidos llegan a la cocina -->
+            <article class="group relative z-10 flex flex-col rounded-2xl border border-sand-200 bg-white p-5 shadow-soft transition-shadow hover:shadow-lift">
+              <div class="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-sand-50 to-brand-50 ring-1 ring-sand-100">
+                <span class="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white shadow-soft">2</span>
+                <div class="w-44 -rotate-3 rounded-lg bg-white p-3 text-left shadow-lift ring-1 ring-sand-200">
+                  <div class="flex items-center justify-between border-b border-dashed border-sand-200 pb-1.5">
+                    <span class="font-display text-xs font-semibold text-ink">Mesa 7</span>
+                    <span class="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">
+                      <span class="relative flex h-1.5 w-1.5">
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+                        <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                      </span>
+                      Nuevo
+                    </span>
+                  </div>
+                  <ul class="mt-2 space-y-1 text-xs text-sand-600">
+                    <li>2× Hamburguesa</li>
+                    <li>1× Papas Trufa</li>
+                    <li>1× Limonada</li>
+                  </ul>
+                </div>
+              </div>
+              <h3 class="text-base font-semibold text-ink">Los pedidos llegan a la cocina</h3>
+              <p class="mt-2 text-sm leading-6 text-sand-600">Cocina y meseros ven cada pedido en tiempo real, con un resaltado visual para los nuevos tickets.</p>
+            </article>
+
+            <!-- PASO 3 — Cierras la cuenta y cobras -->
+            <article class="group relative z-10 flex flex-col rounded-2xl border border-sand-200 bg-white p-5 shadow-soft transition-shadow hover:shadow-lift">
+              <div class="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-sand-50 to-brand-50 ring-1 ring-sand-100">
+                <span class="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white shadow-soft">3</span>
+                <div class="relative w-44 rotate-2 rounded-lg bg-white p-3 text-left shadow-lift ring-1 ring-sand-200">
+                  <div class="flex items-center justify-between">
+                    <span class="font-display text-xs font-semibold text-ink">Mesa 7</span>
+                    <span class="text-[10px] text-sand-400">#1042</span>
+                  </div>
+                  <ul class="mt-2 space-y-1 text-xs text-sand-600">
+                    <li class="flex justify-between"><span>Hamburguesa ×2</span><span>$24.00</span></li>
+                    <li class="flex justify-between"><span>Papas Trufa</span><span>$9.00</span></li>
+                    <li class="flex justify-between"><span>Servicio 10%</span><span>$3.30</span></li>
+                  </ul>
+                  <div class="mt-2 flex justify-between border-t border-sand-200 pt-1.5 text-xs font-semibold text-ink">
+                    <span>Total</span><span>$36.30</span>
+                  </div>
+                  <span class="absolute -right-2.5 top-7 rotate-12 rounded-md border-2 border-emerald-500/80 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-emerald-600">Pagado</span>
+                </div>
+              </div>
+              <h3 class="text-base font-semibold text-ink">Cierras la cuenta y cobras</h3>
+              <p class="mt-2 text-sm leading-6 text-sand-600">Aplica descuentos, cargos por servicio y marca la cuenta como pagada. Cheflink guarda el historial de cada mesa.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -309,6 +376,31 @@ const features = [
             </div>
             <p id="carousel-label" class="text-sm font-medium text-ink"></p>
             <div class="flex gap-2" id="carousel-dots" role="tablist" aria-label="Pantallas del cliente"></div>
+          </div>
+
+          <!-- PRUEBA LA EXPERIENCIA DEL CLIENTE -->
+          <div class="mx-auto mt-14 max-w-3xl rounded-3xl border border-brand-100 bg-brand-50 px-6 py-8 text-center shadow-soft sm:px-10 sm:py-10">
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Pruébalo tú mismo</span>
+            <h3 class="mt-2 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">Escanea y pide como un cliente real</h3>
+            <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-sand-600">Apunta la cámara de tu teléfono al código para abrir nuestro menú de demostración en vivo — la misma experiencia de arriba, en una mesa real. Sin app, sin registro.</p>
+
+            <div class="mt-7 flex flex-col items-center gap-5 sm:flex-row sm:justify-center">
+              <a href={demoMenuUrl} target="_blank" rel="noopener" class="shrink-0 rounded-xl bg-white p-2 shadow-soft ring-1 ring-sand-200 transition-shadow hover:shadow-lift">
+                <img src="/assets/img/demo_table_qr.svg" alt="Escanea para abrir el menú de demostración de Cheflink" width="128" height="128" class="h-32 w-32" />
+              </a>
+              <div class="flex flex-col items-center gap-2 sm:items-start">
+                <a
+                  href={demoMenuUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800"
+                >
+                  Abrir demo en vivo
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </a>
+                <span class="text-xs text-sand-500">Mejor desde tu teléfono</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
