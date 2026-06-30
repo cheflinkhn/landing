@@ -212,13 +212,13 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
           </p>
         </div>
 
-        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
-            <div class="group rounded-2xl border border-sand-200 bg-white p-6 shadow-soft transition-shadow hover:shadow-lift">
-              <div class="inline-flex rounded-xl bg-brand-50 p-2.5 ring-1 ring-brand-100">
-                <svg class="h-5 w-5 text-brand-700" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={f.icon} stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <div class="rounded-2xl border border-sand-200 bg-gradient-to-b from-white to-sand-50/60 p-7 shadow-soft transition-shadow hover:shadow-lift">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-[0_8px_20px_-8px_rgba(249,114,22,0.55)] ring-1 ring-inset ring-white/20">
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={f.icon} stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </div>
-              <h3 class="mt-4 text-base font-semibold text-ink">{f.title}</h3>
+              <h3 class="mt-5 text-base font-semibold text-ink">{f.title}</h3>
               <p class="mt-2 text-sm leading-6 text-sand-600">{f.body}</p>
             </div>
           ))}
