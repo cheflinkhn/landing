@@ -1,0 +1,197 @@
+---
+// Schematic, illustrative visual for each feature card — built with markup +
+// inline SVG (no screenshots), in the warm brand palette. One per feature
+// `kind`; a few text bits are localized via `lang`.
+interface Props {
+  kind: 'staff' | 'inventory' | 'loyalty' | 'invoice' | 'reservation' | 'payment' | 'reports';
+  lang?: 'en' | 'es';
+}
+const { kind, lang = 'en' } = Astro.props;
+
+const copy = {
+  en: {
+    roles: ['Manager', 'Server', 'Kitchen'],
+    low: 'Low',
+    rewards: 'Rewards',
+    toNext: 'to next reward',
+    invoice: 'Invoice',
+    paid: 'Paid',
+    total: 'Total',
+    cardNumber: 'Card number',
+    expiry: 'Expiry',
+    cvc: 'CVC',
+    pay: 'Pay',
+    today: 'Today',
+    date: 'Jun 12',
+    times: ['7:00 PM', '7:30 PM', '8:15 PM'],
+  },
+  es: {
+    roles: ['Gerente', 'Mesero', 'Cocina'],
+    low: 'Bajo',
+    rewards: 'Recompensas',
+    toNext: 'para tu premio',
+    invoice: 'Factura',
+    paid: 'Pagado',
+    total: 'Total',
+    cardNumber: 'Número de tarjeta',
+    expiry: 'Vencimiento',
+    cvc: 'CVC',
+    pay: 'Pagar',
+    today: 'Hoy',
+    date: '12 jun',
+    times: ['19:00', '19:30', '20:15'],
+  },
+}[lang];
+
+const avatarTones = [
+  'from-brand-300 to-brand-500',
+  'from-sand-300 to-sand-500',
+  'from-brand-400 to-brand-600',
+];
+const stock = [
+  { w: '82%', low: false },
+  { w: '54%', low: false },
+  { w: '15%', low: true },
+];
+const lineItems = [
+  { w: 70, price: '$24.00' },
+  { w: 46, price: '$9.00' },
+  { w: 56, price: '$3.30' },
+];
+// Single-day reservation list — times come from `copy.times` (localized).
+const reservations = [
+  { name: 'Marcus Reyes', party: 4 },
+  { name: 'Diego Romero', party: 2 },
+  { name: 'Sara Lin', party: 6 },
+];
+---
+
+{kind === 'staff' && (
+  <div class="w-full max-w-[240px] space-y-2">
+    {copy.roles.map((role, i) => (
+      <div class="flex items-center gap-2.5 rounded-lg border border-sand-200 bg-white px-2.5 py-2 shadow-sm">
+        <span class={`h-6 w-6 shrink-0 rounded-full bg-gradient-to-br ${avatarTones[i]}`} />
+        <span class="h-2 w-20 rounded-full bg-sand-200" />
+        <span class="ml-auto rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-700 ring-1 ring-brand-100">{role}</span>
+      </div>
+    ))}
+  </div>
+)}
+
+{kind === 'inventory' && (
+  <div class="w-full max-w-[240px] space-y-3.5">
+    {stock.map((s) => (
+      <div>
+        <div class="mb-1.5 flex items-center justify-between">
+          <span class="h-2 w-24 rounded-full bg-sand-200" />
+          {s.low && (
+            <span class="rounded-full bg-amber-50 px-1.5 py-0.5 text-[9px] font-semibold text-amber-700 ring-1 ring-amber-100">{copy.low}</span>
+          )}
+        </div>
+        <div class="h-2 w-full overflow-hidden rounded-full bg-sand-100">
+          <div class={`h-full rounded-full ${s.low ? 'bg-amber-500' : 'bg-brand-500'}`} style={`width:${s.w}`} />
+        </div>
+      </div>
+    ))}
+  </div>
+)}
+
+{kind === 'loyalty' && (
+  <div class="w-[230px] rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 p-4 text-white shadow-lift">
+    <div class="flex items-center justify-between">
+      <span class="text-[10px] font-semibold uppercase tracking-wider text-white/70">{copy.rewards}</span>
+      <svg class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L12 16.77l-5.2 2.73.99-5.79-4.21-4.1 5.82-.85z" /></svg>
+    </div>
+    <div class="mt-3 font-display text-2xl font-semibold tabular-nums">1,240 <span class="text-sm font-normal text-white/60">pts</span></div>
+    <div class="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/20"><div class="h-full w-3/4 rounded-full bg-white" /></div>
+    <div class="mt-1.5 text-[10px] text-white/70">260 pts {copy.toNext}</div>
+  </div>
+)}
+
+{kind === 'invoice' && (
+  <div class="w-[210px] rounded-xl border border-sand-200 bg-white p-3.5 shadow-sm">
+    <div class="flex items-center justify-between border-b border-dashed border-sand-200 pb-2">
+      <span class="text-xs font-semibold text-ink">{copy.invoice}</span>
+      <span class="rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-semibold text-green-700 ring-1 ring-green-100">{copy.paid}</span>
+    </div>
+    <div class="space-y-2 py-2.5">
+      {lineItems.map((it) => (
+        <div class="flex items-center justify-between">
+          <span class="h-2 rounded-full bg-sand-200" style={`width:${it.w}px`} />
+          <span class="text-[10px] tabular-nums text-sand-500">{it.price}</span>
+        </div>
+      ))}
+    </div>
+    <div class="flex items-center justify-between border-t border-sand-200 pt-2">
+      <span class="text-xs font-semibold text-ink">{copy.total}</span>
+      <span class="text-xs font-semibold tabular-nums text-ink">$36.30</span>
+    </div>
+  </div>
+)}
+
+{kind === 'reservation' && (
+  <div class="w-[230px] rounded-xl border border-sand-200 bg-white p-3 shadow-sm">
+    <div class="mb-2 flex items-center justify-between">
+      <span class="text-xs font-semibold text-ink">{copy.today}</span>
+      <span class="text-[10px] text-sand-400">{copy.date}</span>
+    </div>
+    <div class="space-y-1.5">
+      {reservations.map((r, i) => (
+        <div class="flex items-center gap-2 rounded-lg border border-sand-200 bg-sand-50/60 px-2 py-1.5">
+          <span class="w-[46px] shrink-0 text-[11px] font-semibold tabular-nums text-brand-700">{copy.times[i]}</span>
+          <span class="min-w-0 flex-1 truncate text-[11px] font-medium text-ink">{r.name}</span>
+          <span class="flex shrink-0 items-center gap-1 text-[10px] tabular-nums text-sand-500">
+            <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3" /><path d="M3.5 19a5.5 5.5 0 0111 0" /><path d="M16 6.2a3 3 0 010 5.6M20.5 19a5.5 5.5 0 00-3.6-5.2" /></svg>
+            {r.party}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+{kind === 'payment' && (
+  <div class="w-[198px] rounded-xl border border-sand-200 bg-white p-2.5 shadow-sm">
+    <div>
+      <div class="mb-0.5 text-[8px] font-medium uppercase tracking-wider text-sand-500">{copy.cardNumber}</div>
+      <div class="flex items-center justify-between rounded-md border border-sand-200 bg-sand-50 px-2 py-1">
+        <span class="text-[10px] tabular-nums tracking-wide text-ink">4242 4242 4242 4242</span>
+        <span class="flex shrink-0">
+          <span class="h-3 w-3 rounded-full bg-brand-400" />
+          <span class="-ml-1.5 h-3 w-3 rounded-full bg-brand-600/80" />
+        </span>
+      </div>
+    </div>
+    <div class="mt-1.5 flex gap-1.5">
+      <div class="flex-1">
+        <div class="mb-0.5 text-[8px] font-medium uppercase tracking-wider text-sand-500">{copy.expiry}</div>
+        <div class="rounded-md border border-sand-200 bg-sand-50 px-2 py-1 text-[10px] tabular-nums text-ink">12 / 28</div>
+      </div>
+      <div class="w-[58px]">
+        <div class="mb-0.5 text-[8px] font-medium uppercase tracking-wider text-sand-500">{copy.cvc}</div>
+        <div class="rounded-md border border-sand-200 bg-sand-50 px-2 py-1 text-[10px] tracking-widest text-ink">•••</div>
+      </div>
+    </div>
+    <div class="mt-2 w-full rounded-md bg-brand-700 py-1.5 text-center text-[11px] font-semibold text-white shadow-soft">{copy.pay} $36.30</div>
+  </div>
+)}
+
+{kind === 'reports' && (
+  <div class="w-[240px]">
+    <svg viewBox="0 0 240 120" class="w-full" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="repFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F97216" stop-opacity="0.22" />
+          <stop offset="100%" stop-color="#F97216" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <line x1="0" y1="40" x2="240" y2="40" stroke="#E7DDD0" stroke-width="1" stroke-dasharray="3 4" />
+      <line x1="0" y1="72" x2="240" y2="72" stroke="#E7DDD0" stroke-width="1" stroke-dasharray="3 4" />
+      <line x1="0" y1="104" x2="240" y2="104" stroke="#E7DDD0" stroke-width="1" stroke-dasharray="3 4" />
+      <path d="M0 86 L40 70 L80 78 L120 52 L160 60 L200 32 L240 42 L240 120 L0 120 Z" fill="url(#repFill)" />
+      <path d="M0 86 L40 70 L80 78 L120 52 L160 60 L200 32 L240 42" stroke="#C2410C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="200" cy="32" r="6.5" fill="#C2410C" fill-opacity="0.15" />
+      <circle cx="200" cy="32" r="3.5" fill="#C2410C" stroke="#fff" stroke-width="1.5" />
+    </svg>
+  </div>
+)}
