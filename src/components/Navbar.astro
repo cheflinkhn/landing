@@ -11,6 +11,7 @@ const t = {
     tagline: 'Pedidos por QR · Cuentas por mesa',
     features: 'Características',
     howItWorks: 'Cómo funciona',
+    screenshots: 'Míralo en acción',
     pricing: 'Precios',
     faq: 'Preguntas frecuentes',
     demo: 'Agendar Demo',
@@ -21,6 +22,7 @@ const t = {
     tagline: 'QR Orders · Table Tabs',
     features: 'Features',
     howItWorks: 'How it works',
+    screenshots: 'See it in action',
     pricing: 'Pricing',
     faq: 'FAQ',
     demo: 'Book a Demo',
@@ -52,8 +54,9 @@ const enHref = `/en/${pageSlug[currentPage]}`;
     </div>
 
     <div class="hidden items-center gap-7 text-sm font-medium text-sand-600 md:flex">
-      <a href={`${homePath}#features`} class="transition-colors hover:text-ink">{t.features}</a>
       <a href={`${homePath}#how-it-works`} class="transition-colors hover:text-ink">{t.howItWorks}</a>
+      <a href={`${homePath}#features`} class="transition-colors hover:text-ink">{t.features}</a>
+      <a href={`${homePath}#screenshots`} class="transition-colors hover:text-ink">{t.screenshots}</a>
       <a href={`${homePath}#pricing`} class="hidden transition-colors hover:text-ink">{t.pricing}</a>
       <a href={`${homePath}#faq`} class="transition-colors hover:text-ink">{t.faq}</a>
     </div>
@@ -105,8 +108,9 @@ const enHref = `/en/${pageSlug[currentPage]}`;
   <div class="mx-auto hidden max-w-7xl px-4 pb-4 sm:px-6 md:hidden" data-mobile-menu>
     <div class="rounded-2xl border border-sand-200 bg-white p-4 shadow-soft">
       <div class="flex flex-col gap-1 text-sm font-medium text-sand-800">
-        <a href={`${homePath}#features`} class="rounded-lg px-3 py-2 transition-colors hover:bg-sand-50">{t.features}</a>
         <a href={`${homePath}#how-it-works`} class="rounded-lg px-3 py-2 transition-colors hover:bg-sand-50">{t.howItWorks}</a>
+        <a href={`${homePath}#features`} class="rounded-lg px-3 py-2 transition-colors hover:bg-sand-50">{t.features}</a>
+        <a href={`${homePath}#screenshots`} class="rounded-lg px-3 py-2 transition-colors hover:bg-sand-50">{t.screenshots}</a>
         <a href={`${homePath}#pricing`} class="hidden rounded-lg px-3 py-2 transition-colors hover:bg-sand-50">{t.pricing}</a>
         <a href={`${homePath}#faq`} class="rounded-lg px-3 py-2 transition-colors hover:bg-sand-50">{t.faq}</a>
         <div class="mt-1 border-t border-sand-100 pt-2">
