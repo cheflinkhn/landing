@@ -3,7 +3,7 @@
 // inline SVG (no screenshots), in the warm brand palette. One per feature
 // `kind`; a few text bits are localized via `lang`.
 interface Props {
-  kind: 'staff' | 'inventory' | 'loyalty' | 'invoice' | 'reservation' | 'payment' | 'reports';
+  kind: 'staff' | 'inventory' | 'loyalty' | 'invoice' | 'reservation' | 'payment' | 'reports' | 'delivery';
   lang?: 'en' | 'es';
 }
 const { kind, lang = 'en' } = Astro.props;
@@ -24,6 +24,8 @@ const copy = {
     today: 'Today',
     date: 'Jun 12',
     times: ['7:00 PM', '7:30 PM', '8:15 PM'],
+    onTheWay: 'On the way',
+    eta: '12–18 min',
   },
   es: {
     roles: ['Gerente', 'Mesero', 'Cocina'],
@@ -40,6 +42,8 @@ const copy = {
     today: 'Hoy',
     date: '12 jun',
     times: ['19:00', '19:30', '20:15'],
+    onTheWay: 'En camino',
+    eta: '12–18 min',
   },
 }[lang];
 
@@ -173,6 +177,38 @@ const reservations = [
       </div>
     </div>
     <div class="mt-2 w-full rounded-md bg-brand-700 py-1.5 text-center text-[11px] font-semibold text-white shadow-soft">{copy.pay} $36.30</div>
+  </div>
+)}
+
+{kind === 'delivery' && (
+  <div class="w-[230px] rounded-xl border border-sand-200 bg-white p-3 shadow-sm">
+    <div class="mb-2 flex items-center justify-between">
+      <span class="text-xs font-semibold text-ink">#1042</span>
+      <span class="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-semibold text-brand-700 ring-1 ring-brand-100">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500 opacity-75" />
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-500" />
+        </span>
+        {copy.onTheWay}
+      </span>
+    </div>
+    <div class="relative h-[72px] overflow-hidden rounded-lg bg-sand-50 ring-1 ring-sand-100">
+      <svg viewBox="0 0 206 72" class="h-full w-full" fill="none" aria-hidden="true">
+        <line x1="0" y1="23" x2="206" y2="23" stroke="#E7DDD0" stroke-width="1.5" />
+        <line x1="0" y1="51" x2="206" y2="51" stroke="#E7DDD0" stroke-width="1.5" />
+        <line x1="58" y1="0" x2="58" y2="72" stroke="#E7DDD0" stroke-width="1.5" />
+        <line x1="138" y1="0" x2="138" y2="72" stroke="#E7DDD0" stroke-width="1.5" />
+        <path d="M22 55 H58 V23 H138 V43 H166" stroke="#C2410C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 6" />
+        <circle cx="22" cy="55" r="5.5" fill="#C2410C" fill-opacity="0.15" />
+        <circle cx="22" cy="55" r="2.5" fill="#C2410C" />
+        <path d="M172 26c-4.4 0-8 3.5-8 7.9 0 5.9 8 12.1 8 12.1s8-6.2 8-12.1c0-4.4-3.6-7.9-8-7.9z" fill="#C2410C" />
+        <circle cx="172" cy="34" r="2.8" fill="#fff" />
+      </svg>
+    </div>
+    <div class="mt-2 flex items-center justify-between">
+      <span class="h-2 w-24 rounded-full bg-sand-200" />
+      <span class="text-[10px] font-semibold tabular-nums text-sand-500">{copy.eta}</span>
+    </div>
   </div>
 )}
 
