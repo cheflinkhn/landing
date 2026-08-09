@@ -1,4 +1,5 @@
 ---
+import { APP_NAME } from '../../config/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
@@ -7,7 +8,7 @@ import FeatureVisual from '../../components/FeatureVisual.astro';
 const softwareSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Cheflink',
+  name: APP_NAME,
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   description: 'Sistema de pedidos por QR y gestión de mesas para restaurantes y bares. Conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real.',
@@ -39,12 +40,12 @@ const faqSchema = {
       name: '¿El cliente tiene que descargar una app?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. Solo escanea el código QR de la mesa y Cheflink se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.',
+        text: `No. Solo escanea el código QR de la mesa y ${APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.`,
       },
     },
     {
       '@type': 'Question',
-      name: '¿Puedo usar Cheflink en varias sucursales?',
+      name: `¿Puedo usar ${APP_NAME} en varias sucursales?`,
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.',
@@ -52,10 +53,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: '¿Cheflink reemplaza mi POS?',
+      name: `¿${APP_NAME} reemplaza mi POS?`,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Puedes utilizar Cheflink junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.',
+        text: `Puedes utilizar ${APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.`,
       },
     },
   ],
@@ -118,8 +119,8 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
 
 <BaseLayout
   lang="es"
-  title="Cheflink - Pedidos por QR para restaurantes y bares"
-  description="Cheflink conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real."
+  title={`${APP_NAME} - El Sistema Operativo para Restaurantes`}
+  description={`${APP_NAME} conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real.`}
   canonicalPath="/es/"
 >
   <Fragment slot="head">
@@ -139,7 +140,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
               Tu menú puede <span class="text-brand-700">vender más</span> sin hablar.
             </h1>
             <p class="mt-6 text-lg leading-8 text-sand-600">
-              Cheflink conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real — menos vueltas del personal, más consumo por mesa y clientes que ya no tienen que llamar al mesero para pedir o pagar.
+              {APP_NAME} conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real — menos vueltas del personal, más consumo por mesa y clientes que ya no tienen que llamar al mesero para pedir o pagar.
             </p>
 
             <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -189,11 +190,11 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
             <!-- panel estructural, sin manchas borrosas -->
             <div class="absolute -right-6 -top-6 bottom-10 left-10 -z-10 rounded-[2.2rem] bg-gradient-to-br from-brand-100 via-sand-100 to-brand-50" aria-hidden="true"></div>
             <div class="relative mx-auto max-w-lg overflow-hidden rounded-3xl border border-sand-200 bg-white shadow-lift">
-              <img src="/assets/img/screenshots/11-kds-board-tablet.png" alt="Kitchen Display System de Cheflink" class="block w-full" loading="eager" width="2732" height="2048" />
+              <img src="/assets/img/screenshots/11-kds-board-tablet.png" alt={`Kitchen Display System de ${APP_NAME}`} class="block w-full" loading="eager" width="2732" height="2048" />
             </div>
             <div class="absolute -bottom-6 -right-2 w-[104px] overflow-hidden rounded-[1.7rem] border-[5px] border-ink bg-ink shadow-lift ring-1 ring-white/60 sm:w-[124px] sm:right-0 lg:-right-6">
               <div class="absolute left-1/2 top-0 z-10 h-[12px] w-[42px] -translate-x-1/2 rounded-b-lg bg-ink"></div>
-              <img src="/assets/img/screenshots/06-consumer-menu.png" alt="Menú del cliente en Cheflink" class="block w-full" loading="eager" width="1170" height="2532" />
+              <img src="/assets/img/screenshots/06-consumer-menu.png" alt={`Menú del cliente en ${APP_NAME}`} class="block w-full" loading="eager" width="1170" height="2532" />
             </div>
           </div>
         </div>
@@ -233,7 +234,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
               <div class="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-sand-50 to-brand-50 ring-1 ring-sand-100">
                 <span class="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white shadow-soft">1</span>
                 <div class="relative">
-                  <img src="/assets/img/landing_qr.png" alt="Código QR de mesa de Cheflink" width="112" height="112" class="h-28 w-28 rounded-lg bg-white p-1.5 shadow-soft" loading="lazy" />
+                  <img src="/assets/img/landing_qr.png" alt={`Código QR de mesa de ${APP_NAME}`} width="112" height="112" class="h-28 w-28 rounded-lg bg-white p-1.5 shadow-soft" loading="lazy" />
                   <span class="pointer-events-none absolute -inset-2.5" aria-hidden="true">
                     <span class="absolute left-0 top-0 h-5 w-5 rounded-tl-md border-l-2 border-t-2 border-brand-500"></span>
                     <span class="absolute right-0 top-0 h-5 w-5 rounded-tr-md border-r-2 border-t-2 border-brand-500"></span>
@@ -294,7 +295,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
                 </div>
               </div>
               <h3 class="text-base font-semibold text-ink">Cierras la cuenta y cobras</h3>
-              <p class="mt-2 text-sm leading-6 text-sand-600">Aplica descuentos, cargos por servicio y marca la cuenta como pagada. Cheflink guarda el historial de cada mesa.</p>
+              <p class="mt-2 text-sm leading-6 text-sand-600">Aplica descuentos, cargos por servicio y marca la cuenta como pagada. {APP_NAME} guarda el historial de cada mesa.</p>
             </article>
           </div>
         </div>
@@ -306,7 +307,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
           <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Características</span>
           <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Todo lo que necesitas en un solo lugar</h2>
           <p class="mt-4 text-lg leading-8 text-sand-600">
-            Cheflink es más que pedidos por QR. Gestiona todo tu salón y tu cocina —desde reservas y pagos hasta personal, inventario y reportes— sin hacer malabares con herramientas separadas.
+            {APP_NAME} es más que pedidos por QR. Gestiona todo tu salón y tu cocina —desde reservas y pagos hasta personal, inventario y reportes— sin hacer malabares con herramientas separadas.
           </p>
         </div>
 
@@ -334,7 +335,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
       <section id="screenshots" class="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div class="mx-auto max-w-2xl text-center">
           <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">El panel</span>
-          <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Mira Cheflink en acción</h2>
+          <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Mira {APP_NAME} en acción</h2>
           <p class="mt-4 text-lg leading-8 text-sand-600">Un vistazo real a lo que ven tú y tu equipo todos los días.</p>
         </div>
 
@@ -353,11 +354,11 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
               app.cheflink.io
             </span>
           </div>
-          <div id="tab-panel-1" role="tabpanel"><img src="/assets/img/screenshots/03-sales-kpis.png" alt="Estadísticas de ventas en Cheflink" class="w-full" loading="eager" width="2880" height="3280" /></div>
-          <div id="tab-panel-2" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/04-backoffice-menu.png" alt="Menú de backoffice en Cheflink" class="w-full" loading="lazy" width="2880" height="1800" /></div>
-          <div id="tab-panel-3" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/01-kds-board.png" alt="Kitchen Display System en Cheflink" class="w-full" loading="lazy" width="2880" height="1800" /></div>
-          <div id="tab-panel-4" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/05-backoffice-inventory.png" alt="Manejo de inventario en Cheflink" class="w-full" loading="lazy" width="2880" height="1800" /></div>
-          <div id="tab-panel-5" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/02-kds-floor.png" alt="Vista salón en Cheflink" class="w-full" loading="lazy" width="2880" height="1800" /></div>
+          <div id="tab-panel-1" role="tabpanel"><img src="/assets/img/screenshots/03-sales-kpis.png" alt={`Estadísticas de ventas en ${APP_NAME}`} class="w-full" loading="eager" width="2880" height="3280" /></div>
+          <div id="tab-panel-2" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/04-backoffice-menu.png" alt={`Menú de backoffice en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
+          <div id="tab-panel-3" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/01-kds-board.png" alt={`Kitchen Display System en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
+          <div id="tab-panel-4" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/05-backoffice-inventory.png" alt={`Manejo de inventario en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
+          <div id="tab-panel-5" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/02-kds-floor.png" alt={`Vista salón en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
         </div>
       </section>
 
@@ -384,12 +385,12 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
               <div class="relative w-[260px] overflow-hidden rounded-[2.8rem] border-[8px] border-ink bg-ink shadow-lift sm:w-[300px]">
                 <div class="absolute left-1/2 top-0 z-10 h-[20px] w-[88px] -translate-x-1/2 rounded-b-xl bg-ink"></div>
                 <div id="carousel-track" class="flex transition-transform duration-300 ease-in-out">
-                  <img src="/assets/img/screenshots/06-consumer-menu.png" alt="Menú del restaurante en Cheflink" class="block w-full shrink-0" loading="eager" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/07-consumer-add-item.png" alt="Agregar ítem al pedido en Cheflink" class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/08-consumer-tab.png" alt="Progreso del pedido en Cheflink" class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/09-consumer-paid-tab.png" alt="Cuenta pagada en Cheflink" class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/12-consumer-delivery.png" alt="Seguimiento de un pedido a domicilio en Cheflink" class="block w-full shrink-0 aspect-[1170/2532] object-cover object-top" loading="lazy" width="1170" height="5256" />
-                  <img src="/assets/img/screenshots/10-table-reservation.png" alt="Reservar una mesa en Cheflink" class="block w-full shrink-0" loading="lazy" width="1170" height="2730" />
+                  <img src="/assets/img/screenshots/06-consumer-menu.png" alt={`Menú del restaurante en ${APP_NAME}`} class="block w-full shrink-0" loading="eager" width="1170" height="2532" />
+                  <img src="/assets/img/screenshots/07-consumer-add-item.png" alt={`Agregar ítem al pedido en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
+                  <img src="/assets/img/screenshots/08-consumer-tab.png" alt={`Progreso del pedido en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
+                  <img src="/assets/img/screenshots/09-consumer-paid-tab.png" alt={`Cuenta pagada en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
+                  <img src="/assets/img/screenshots/12-consumer-delivery.png" alt={`Seguimiento de un pedido a domicilio en ${APP_NAME}`} class="block w-full shrink-0 aspect-[1170/2532] object-cover object-top" loading="lazy" width="1170" height="5256" />
+                  <img src="/assets/img/screenshots/10-table-reservation.png" alt={`Reservar una mesa en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2730" />
                 </div>
               </div>
               <button type="button" id="carousel-next" aria-label="Siguiente" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-sand-500 shadow-soft transition hover:border-sand-300 hover:text-ink">
@@ -408,7 +409,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
 
             <div class="mt-7 flex flex-col items-center gap-5 sm:flex-row sm:justify-center">
               <a href={demoMenuUrl} target="_blank" rel="noopener" class="shrink-0 rounded-xl bg-white p-2 shadow-soft ring-1 ring-sand-200 transition-shadow hover:shadow-lift">
-                <img src="/assets/img/demo_table_qr.svg" alt="Escanea para abrir el menú de demostración de Cheflink" width="128" height="128" class="h-32 w-32" />
+                <img src="/assets/img/demo_table_qr.svg" alt={`Escanea para abrir el menú de demostración de ${APP_NAME}`} width="128" height="128" class="h-32 w-32" />
               </a>
               <div class="flex flex-col items-center gap-2 sm:items-start">
                 <a
@@ -432,7 +433,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
         <div class="mx-auto max-w-2xl text-center">
           <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Precios</span>
           <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Precios que crecen contigo</h2>
-          <p class="mt-4 text-lg leading-8 text-sand-600">Empieza gratis y migra a cualquier otro plan cuando quieras usar Cheflink en todas tus mesas y sucursales.</p>
+          <p class="mt-4 text-lg leading-8 text-sand-600">Empieza gratis y migra a cualquier otro plan cuando quieras usar {APP_NAME} en todas tus mesas y sucursales.</p>
         </div>
 
         <div class="mt-12 grid items-start gap-6 md:grid-cols-3">
@@ -440,7 +441,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
           <div class="flex flex-col justify-between rounded-3xl border border-sand-200 bg-white p-7 shadow-soft">
             <div>
               <h3 class="font-display text-lg font-semibold text-ink">Starter</h3>
-              <p class="mt-1 text-sm text-sand-600">Ideal para probar Cheflink.</p>
+              <p class="mt-1 text-sm text-sand-600">Ideal para probar {APP_NAME}.</p>
               <div class="mt-5 flex items-baseline gap-1">
                 <span class="font-display text-4xl font-semibold text-ink">$0</span>
                 <span class="text-sm text-sand-500">/ mes</span>
@@ -509,9 +510,9 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
           </div>
           <div class="mt-10 space-y-3">
             {[
-              ['¿El cliente tiene que descargar una app?', 'No. Solo escanea el código QR de la mesa y Cheflink se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.'],
-              ['¿Puedo usar Cheflink en varias sucursales?', 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.'],
-              ['¿Cheflink reemplaza mi POS?', 'Puedes utilizar Cheflink junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.'],
+              ['¿El cliente tiene que descargar una app?', 'No. Solo escanea el código QR de la mesa y {APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.'],
+              ['¿Puedo usar {APP_NAME} en varias sucursales?', 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.'],
+              ['¿{APP_NAME} reemplaza mi POS?', 'Puedes utilizar {APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.'],
             ].map(([q, a]) => (
               <details class="group rounded-2xl border border-sand-200 bg-white px-5 shadow-soft">
                 <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-sm font-semibold text-ink marker:hidden">

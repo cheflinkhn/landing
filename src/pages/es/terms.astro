@@ -1,40 +1,41 @@
 ---
+import { APP_NAME, SUPPORT_EMAIL } from '../../config/site';
 import LegalLayout from '../../layouts/LegalLayout.astro';
 ---
 
 <LegalLayout
   lang="es"
-  title="Términos y Condiciones - Cheflink"
-  description="Términos y Condiciones de uso de Cheflink, plataforma de pedidos por código QR y gestión de cuentas por mesa."
+  title={`Términos y Condiciones - ${APP_NAME}`}
+  description={`Términos y Condiciones de uso de ${APP_NAME}, plataforma de pedidos por código QR y gestión de cuentas por mesa.`}
   canonicalPath="/es/terms/"
 >
   <main class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
     <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
       <header class="mb-6 border-b border-slate-100 pb-4">
         <h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">Términos y Condiciones de Uso</h1>
-        <p class="mt-2 text-sm text-slate-600">Última actualización: enero 2025</p>
+        <p class="mt-2 text-sm text-slate-600">Última actualización: enero 2026</p>
       </header>
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">1. Introducción</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Bienvenido/a a <strong>Cheflink</strong> ("la Plataforma"). Estos Términos y Condiciones regulan el uso de la Plataforma por parte de restaurantes, bares, cafeterías y otros establecimientos de consumo (en adelante, el "Local" o "Usuario Profesional"), así como por parte de los clientes finales que realizan pedidos a través de códigos QR (en adelante, los "Clientes").</p>
-        <p class="text-sm leading-relaxed text-slate-700">Al acceder o utilizar Cheflink, aceptas quedar vinculado/a por estos Términos y Condiciones.</p>
+        <p class="text-sm leading-relaxed text-slate-700">Bienvenido/a a <strong>{APP_NAME}</strong> ("la Plataforma"). Estos Términos y Condiciones regulan el uso de la Plataforma por parte de restaurantes, bares, cafeterías y otros establecimientos de consumo (en adelante, el "Local" o "Usuario Profesional"), así como por parte de los clientes finales que realizan pedidos a través de códigos QR (en adelante, los "Clientes").</p>
+        <p class="text-sm leading-relaxed text-slate-700">Al acceder o utilizar {APP_NAME}, aceptas quedar vinculado/a por estos Términos y Condiciones.</p>
       </section>
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">2. Definiciones</h2>
         <ul class="list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700">
-          <li><strong>Plataforma:</strong> el software Cheflink (incluyendo la interfaz web, panel de administración y páginas de pedidos por QR).</li>
-          <li><strong>Local / Usuario Profesional:</strong> negocio que utiliza Cheflink para recibir pedidos y gestionar cuentas por mesa.</li>
+          <li><strong>Plataforma:</strong> el software {APP_NAME} (incluyendo la interfaz web, panel de administración y páginas de pedidos por QR).</li>
+          <li><strong>Local / Usuario Profesional:</strong> negocio que utiliza {APP_NAME} para recibir pedidos y gestionar cuentas por mesa.</li>
           <li><strong>Cliente:</strong> persona que realiza pedidos a través de los códigos QR generados por el Local.</li>
           <li><strong>Cuenta:</strong> perfil o acceso asignado a un Local o a miembros de su personal autorizado.</li>
-          <li><strong>Servicios:</strong> todas las funcionalidades ofrecidas por Cheflink.</li>
+          <li><strong>Servicios:</strong> todas las funcionalidades ofrecidas por {APP_NAME}.</li>
         </ul>
       </section>
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">3. Alcance del servicio</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Cheflink proporciona una herramienta tecnológica para que los Locales gestionen pedidos por QR, cuentas por mesa y flujo de órdenes hacia cocina y personal de servicio. Cheflink:</p>
+        <p class="text-sm leading-relaxed text-slate-700">{APP_NAME} proporciona una herramienta tecnológica para que los Locales gestionen pedidos por QR, cuentas por mesa y flujo de órdenes hacia cocina y personal de servicio. {APP_NAME}:</p>
         <ul class="mt-1 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700">
           <li>No vende, prepara ni entrega alimentos o bebidas.</li>
           <li>No forma parte de la relación comercial entre el Local y el Cliente.</li>
@@ -48,7 +49,7 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
           <li>Para utilizar la Plataforma como Local, debes crear una cuenta con información veraz, completa y actualizada.</li>
           <li>Eres responsable de mantener la confidencialidad de tus credenciales de acceso.</li>
           <li>El Local es responsable de gestionar los accesos del personal autorizado y de revocar accesos cuando corresponda.</li>
-          <li>Cheflink puede suspender o cancelar el acceso en caso de uso indebido o incumplimiento de estos Términos.</li>
+          <li>{APP_NAME} puede suspender o cancelar el acceso en caso de uso indebido o incumplimiento de estos Términos.</li>
         </ul>
       </section>
 
@@ -57,8 +58,8 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
         <ul class="mt-1 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700">
           <li>Usar la Plataforma conforme a la legislación vigente y a estos Términos.</li>
           <li>No intentar acceder sin autorización a sistemas, cuentas o datos de otros usuarios.</li>
-          <li>No alterar, copiar, distribuir o descompilar el software de Cheflink sin permiso expreso.</li>
-          <li>No utilizar Cheflink para actividades ilegales o fraudulentas.</li>
+          <li>No alterar, copiar, distribuir o descompilar el software de {APP_NAME} sin permiso expreso.</li>
+          <li>No utilizar {APP_NAME} para actividades ilegales o fraudulentas.</li>
         </ul>
       </section>
 
@@ -75,7 +76,7 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">7. Precios, planes y pagos</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Cheflink puede ofrecer planes gratuitos y de pago para Locales. Salvo que se indique lo contrario:</p>
+        <p class="text-sm leading-relaxed text-slate-700">{APP_NAME} puede ofrecer planes gratuitos y de pago para Locales. Salvo que se indique lo contrario:</p>
         <ul class="mt-1 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700">
           <li>Los precios podrán expresarse en la moneda local o en otra moneda acordada.</li>
           <li>Los cargos se facturan por periodo y no son reembolsables una vez iniciado el periodo.</li>
@@ -85,7 +86,7 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">8. Propiedad intelectual</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Cheflink, el código fuente, el diseño, las interfaces y la marca son propiedad del titular de la Plataforma o de sus licenciantes, y están protegidos por leyes de propiedad intelectual.</p>
+        <p class="text-sm leading-relaxed text-slate-700">{APP_NAME}, el código fuente, el diseño, las interfaces y la marca son propiedad del titular de la Plataforma o de sus licenciantes, y están protegidos por leyes de propiedad intelectual.</p>
         <p class="text-sm leading-relaxed text-slate-700">El Local conserva todos los derechos sobre sus propios contenidos y nos otorga una licencia limitada para mostrarlos dentro de la Plataforma mientras utilice el servicio.</p>
       </section>
 
@@ -96,12 +97,12 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">10. Disponibilidad, mantenimiento y cambios</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Cheflink se esfuerza por mantener la Plataforma disponible de forma continua, pero no garantiza la ausencia de interrupciones debidas a mantenimiento, actualizaciones o fallas técnicas.</p>
+        <p class="text-sm leading-relaxed text-slate-700">{APP_NAME} se esfuerza por mantener la Plataforma disponible de forma continua, pero no garantiza la ausencia de interrupciones debidas a mantenimiento, actualizaciones o fallas técnicas.</p>
       </section>
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">11. Limitación de responsabilidad</h2>
-        <p class="text-sm leading-relaxed text-slate-700">En la medida permitida por la ley aplicable, Cheflink no será responsable por:</p>
+        <p class="text-sm leading-relaxed text-slate-700">En la medida permitida por la ley aplicable, {APP_NAME} no será responsable por:</p>
         <ul class="mt-1 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700">
           <li>Pérdidas derivadas de errores en la configuración de precios, menús o cargos definidos por el Local.</li>
           <li>Reclamos de Clientes relacionados con calidad de productos o errores en pedidos.</li>
@@ -111,7 +112,7 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">12. Modificaciones de los Términos</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Podemos actualizar estos Términos ocasionalmente. El uso continuado de Cheflink después de la fecha de entrada en vigor de las modificaciones implicará la aceptación de los nuevos Términos.</p>
+        <p class="text-sm leading-relaxed text-slate-700">Podemos actualizar estos Términos ocasionalmente. El uso continuado de {APP_NAME} después de la fecha de entrada en vigor de las modificaciones implicará la aceptación de los nuevos Términos.</p>
       </section>
 
       <section class="mt-6 space-y-2">
@@ -122,14 +123,10 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">14. Contacto</h2>
         <ul class="mt-1 list-none space-y-1 text-sm leading-relaxed text-slate-700">
-          <li><strong>Correo electrónico:</strong> <a href="mailto:support@cheflink.com" class="text-orange-600 hover:underline">support@cheflink.com</a></li>
-          <li><strong>Asunto sugerido:</strong> "Consulta Términos y Condiciones Cheflink"</li>
+          <li><strong>Correo electrónico:</strong> <a href={`mailto:${SUPPORT_EMAIL}`} class="text-orange-600 hover:underline">{SUPPORT_EMAIL}</a></li>
+          <li><strong>Asunto sugerido:</strong> "Consulta Términos y Condiciones {APP_NAME}"</li>
         </ul>
       </section>
-
-      <p class="mt-8 border-t border-slate-100 pt-4 text-center text-xs text-slate-500">
-        Este texto es un ejemplo de referencia. Ajusta, traduce o amplía según las necesidades legales de tu negocio.
-      </p>
     </article>
   </main>
 </LegalLayout>

@@ -1,4 +1,5 @@
 ---
+import { APP_NAME } from '../config/site';
 interface Props {
   lang: 'es' | 'en';
   currentPage?: 'index' | 'contact' | 'privacy' | 'terms';
@@ -48,8 +49,8 @@ const enHref = `/en/${pageSlug[currentPage]}`;
   <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
     <div class="flex items-center gap-2.5">
       <a href={homePath} class="flex items-center gap-2.5">
-        <img src="/assets/img/logo.png" alt="Cheflink Logo" class="h-9 w-9 rounded-lg ring-1 ring-sand-200" />
-        <span class="font-display text-lg font-semibold tracking-tight text-ink">Cheflink</span>
+        <img src="/assets/img/logo.png" alt={`${APP_NAME} Logo`} class="h-9 w-9 rounded-lg ring-1 ring-sand-200" />
+        <span class="font-display text-lg font-semibold tracking-tight text-ink">{APP_NAME}</span>
       </a>
     </div>
 

@@ -1,4 +1,5 @@
 ---
+import { APP_NAME } from '../config/site';
 // On Netlify, / is redirected server-side via netlify.toml before this page loads.
 // This JS fallback only runs in local dev or non-Netlify environments.
 ---
@@ -7,7 +8,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Cheflink</title>
+  <title>{APP_NAME}</title>
   <meta name="robots" content="noindex" />
   <script>
     const lang = navigator.language || navigator.languages?.[0] || 'es';

@@ -1,4 +1,5 @@
 ---
+import { APP_NAME } from '../../config/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import { CALENDLY_URL } from '../../config/calendly';
@@ -6,8 +7,8 @@ import { CALENDLY_URL } from '../../config/calendly';
 
 <BaseLayout
   lang="en"
-  title="Cheflink - Book a Demo"
-  description="Schedule a Google Meet call to see how Cheflink can help your restaurant."
+  title={`Book a Demo - ${APP_NAME}`}
+  description={`Schedule a Google Meet call to see how ${APP_NAME} can help your restaurant.`}
   canonicalPath="/en/contact/"
 >
 <div class="min-h-screen bg-cream text-ink">
@@ -30,7 +31,7 @@ import { CALENDLY_URL } from '../../config/calendly';
           <div class="rounded-2xl border border-sand-200 bg-white p-6 shadow-soft">
             <h2 class="text-base font-semibold text-ink">What to expect</h2>
             <ul class="mt-4 space-y-3 text-sm text-sand-600">
-              <li class="flex gap-3"><span class="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></span>A walkthrough of Cheflink tailored to your restaurant</li>
+              <li class="flex gap-3"><span class="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></span>A walkthrough of {APP_NAME} tailored to your restaurant</li>
               <li class="flex gap-3"><span class="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></span>Answers about pricing, setup, and onboarding</li>
               <li class="flex gap-3"><span class="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></span>A Google Meet link delivered automatically once you book</li>
             </ul>
@@ -51,7 +52,7 @@ import { CALENDLY_URL } from '../../config/calendly';
   <footer class="relative z-10 border-t border-sand-200">
     <div class="mx-auto max-w-6xl px-4 py-8 text-sm text-sand-500 sm:px-6 lg:px-8">
       <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p>© <span data-year></span> Cheflink. All rights reserved.</p>
+        <p>© <span data-year></span> {APP_NAME}. All rights reserved.</p>
         <div class="flex gap-4">
           <a href="/en/terms/" class="transition-colors hover:text-ink">Terms</a>
           <a href="/en/privacy/" class="transition-colors hover:text-ink">Privacy</a>

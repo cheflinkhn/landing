@@ -1,4 +1,5 @@
 ---
+import { APP_NAME } from '../config/site';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -26,8 +27,8 @@ const enHref = canonicalPath.replace(/^\/es\//, '/en/');
     <header class="border-b border-sand-200 bg-cream/85 backdrop-blur-md">
       <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         <a href={homePath} class="flex items-center gap-2.5">
-          <img src="/assets/img/logo.png" alt="Cheflink Logo" class="h-9 w-9 rounded-lg ring-1 ring-sand-200" />
-          <span class="font-display text-lg font-semibold tracking-tight text-ink">Cheflink</span>
+          <img src="/assets/img/logo.png" alt={`${APP_NAME} Logo`} class="h-9 w-9 rounded-lg ring-1 ring-sand-200" />
+          <span class="font-display text-lg font-semibold tracking-tight text-ink">{APP_NAME}</span>
         </a>
         <div class="flex items-center gap-3 sm:gap-4">
           <!-- Language toggle -->
@@ -61,7 +62,7 @@ const enHref = canonicalPath.replace(/^\/es\//, '/en/');
 
     <footer class="border-t border-sand-200 bg-sand-50">
       <div class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 text-xs text-sand-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-        <span>© <span data-year></span> Cheflink.</span>
+        <span>© <span data-year></span> {APP_NAME}.</span>
         <div class="flex flex-wrap gap-4">
           <a href={homePath} class="transition-colors hover:text-ink">{lang === 'es' ? 'Inicio' : 'Home'}</a>
           <a href={`/${lang}/terms/`} class="transition-colors hover:text-ink">{lang === 'es' ? 'Términos y Condiciones' : 'Terms & Conditions'}</a>

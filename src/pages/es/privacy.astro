@@ -1,11 +1,12 @@
 ---
+import { APP_NAME, SUPPORT_EMAIL } from '../../config/site';
 import LegalLayout from '../../layouts/LegalLayout.astro';
 ---
 
 <LegalLayout
   lang="es"
-  title="Política de Privacidad - Cheflink"
-  description="Política de Privacidad de Cheflink, plataforma de pedidos por código QR y gestión de cuentas por mesa."
+  title={`Política de Privacidad - ${APP_NAME}`}
+  description={`Política de Privacidad de ${APP_NAME}, plataforma de pedidos por código QR y gestión de cuentas por mesa.`}
   canonicalPath="/es/privacy/"
 >
   <main class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
@@ -17,8 +18,8 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">1. Introducción</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Esta Política de Privacidad explica cómo <strong>Cheflink</strong> («Cheflink», «nosotros») recopila, utiliza, comparte y protege los datos personales cuando usas nuestra plataforma de pedidos por código QR y gestión de cuentas por mesa (la «Plataforma»), nuestros sitios web y los servicios relacionados.</p>
-        <p class="text-sm leading-relaxed text-slate-700">Aplica a los restaurantes, bares, cafeterías y demás establecimientos que contratan Cheflink (cada uno, un «Local»), al personal que opera la cuenta de un Local, y a los clientes finales que realizan pedidos mediante códigos QR generados por un Local (cada uno, un «Cliente»).</p>
+        <p class="text-sm leading-relaxed text-slate-700">Esta Política de Privacidad explica cómo <strong>{APP_NAME}</strong> («{APP_NAME}», «nosotros») recopila, utiliza, comparte y protege los datos personales cuando usas nuestra plataforma de pedidos por código QR y gestión de cuentas por mesa (la «Plataforma»), nuestros sitios web y los servicios relacionados.</p>
+        <p class="text-sm leading-relaxed text-slate-700">Aplica a los restaurantes, bares, cafeterías y demás establecimientos que contratan {APP_NAME} (cada uno, un «Local»), al personal que opera la cuenta de un Local, y a los clientes finales que realizan pedidos mediante códigos QR generados por un Local (cada uno, un «Cliente»).</p>
         <p class="text-sm leading-relaxed text-slate-700">Léela junto con nuestros <a href="/es/terms/" class="text-orange-600 hover:underline">Términos y Condiciones</a>. Al usar la Plataforma reconoces las prácticas aquí descritas.</p>
       </section>
 
@@ -26,8 +27,8 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
         <h2 class="text-lg font-semibold text-slate-900">2. Quiénes somos</h2>
         <p class="text-sm leading-relaxed text-slate-700">La organización responsable de la Plataforma es:</p>
         <ul class="mt-1 list-none space-y-1 text-sm leading-relaxed text-slate-700">
-          <li><strong>Servicio:</strong> Cheflink</li>
-          <li><strong>Contacto de privacidad:</strong> <a href="mailto:support@cheflink.com" class="text-orange-600 hover:underline">support@cheflink.com</a></li>
+          <li><strong>Servicio:</strong> {APP_NAME}</li>
+          <li><strong>Contacto de privacidad:</strong> <a href={`mailto:${SUPPORT_EMAIL}`} class="text-orange-600 hover:underline">{SUPPORT_EMAIL}</a></li>
           <li><strong>Jurisdicción aplicable:</strong> <em>Honduras</em></li>
         </ul>
         <p class="text-sm leading-relaxed text-slate-700">Si tienes cualquier consulta sobre esta Política o sobre el tratamiento de tus datos, escríbenos a la dirección anterior.</p>
@@ -35,10 +36,10 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">3. Nuestro rol: responsable y encargado</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Cheflink cumple dos roles distintos según de quién sean los datos:</p>
+        <p class="text-sm leading-relaxed text-slate-700">{APP_NAME} cumple dos roles distintos según de quién sean los datos:</p>
         <ul class="mt-1 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700">
           <li><strong>Como responsable</strong> — respecto de los datos de los Locales, su personal, titulares de cuenta, clientes potenciales y visitantes de nuestro sitio web, nosotros decidimos por qué y cómo se tratan los datos.</li>
-          <li><strong>Como encargado</strong> — respecto de los datos de Clientes y pedidos que circulan por las páginas de pedido QR de un Local, el Local es el responsable y Cheflink trata esos datos por cuenta y según las instrucciones del Local. Cada Local es responsable de sus propios avisos de privacidad y de atender las solicitudes de derechos de sus Clientes; nosotros lo asistimos en el cumplimiento de esas obligaciones.</li>
+          <li><strong>Como encargado</strong> — respecto de los datos de Clientes y pedidos que circulan por las páginas de pedido QR de un Local, el Local es el responsable y {APP_NAME} trata esos datos por cuenta y según las instrucciones del Local. Cada Local es responsable de sus propios avisos de privacidad y de atender las solicitudes de derechos de sus Clientes; nosotros lo asistimos en el cumplimiento de esas obligaciones.</li>
         </ul>
       </section>
 
@@ -59,7 +60,7 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
           <li>Identificadores y historial de recompensas cuando el Local opera un programa de fidelidad.</li>
         </ul>
         <h3 class="mt-3 text-sm font-semibold text-slate-900">4.3. Datos de pago</h3>
-        <p class="text-sm leading-relaxed text-slate-700">Cuando un Local habilita pagos digitales, las transacciones las gestionan proveedores de pago externos. Cheflink <strong>no</strong> recopila ni almacena números completos de tarjeta ni códigos de seguridad; solo recibimos datos de confirmación limitados, como una referencia de transacción, importe, estado y un identificador enmascarado de la tarjeta.</p>
+        <p class="text-sm leading-relaxed text-slate-700">Cuando un Local habilita pagos digitales, las transacciones las gestionan proveedores de pago externos. {APP_NAME} <strong>no</strong> recopila ni almacena números completos de tarjeta ni códigos de seguridad; solo recibimos datos de confirmación limitados, como una referencia de transacción, importe, estado y un identificador enmascarado de la tarjeta.</p>
         <h3 class="mt-3 text-sm font-semibold text-slate-900">4.4. Datos técnicos y de uso</h3>
         <ul class="mt-1 list-disc space-y-1 pl-5 text-sm leading-relaxed text-slate-700">
           <li>Información de dispositivo y conexión (dirección IP, tipo de navegador/dispositivo, idioma y marcas de tiempo de acceso).</li>
@@ -112,7 +113,7 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
 
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">8. Transferencias internacionales de datos</h2>
-        <p class="text-sm leading-relaxed text-slate-700">Cheflink y nuestros proveedores pueden tratar datos en países distintos al tuyo. Cuando los datos se transfieren a otro país, adoptamos garantías reconocidas — como cláusulas contractuales estándar o transferencias a jurisdicciones que ofrezcan un nivel de protección adecuado — para que tus datos sigan protegidos según el estándar descrito en esta Política.</p>
+        <p class="text-sm leading-relaxed text-slate-700">{APP_NAME} y nuestros proveedores pueden tratar datos en países distintos al tuyo. Cuando los datos se transfieren a otro país, adoptamos garantías reconocidas — como cláusulas contractuales estándar o transferencias a jurisdicciones que ofrezcan un nivel de protección adecuado — para que tus datos sigan protegidos según el estándar descrito en esta Política.</p>
       </section>
 
       <section class="mt-6 space-y-2">
@@ -144,7 +145,7 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
           <li><strong>Retirar el consentimiento:</strong> cuando el tratamiento se base en el consentimiento, retirarlo en cualquier momento sin afectar el tratamiento previo.</li>
           <li><strong>Reclamar:</strong> presentar una reclamación ante tu autoridad de protección de datos.</li>
         </ul>
-        <p class="text-sm leading-relaxed text-slate-700">Para ejercer estos derechos, escribe a <a href="mailto:hola@cheflink.com" class="text-orange-600 hover:underline">hola@cheflink.com</a>. Responderemos dentro del plazo que exija la ley aplicable y es posible que primero debamos verificar tu identidad. Si tu solicitud se refiere a datos que controla un Local (datos de Clientes o pedidos), la derivaremos a dicho Local o actuaremos según sus instrucciones.</p>
+        <p class="text-sm leading-relaxed text-slate-700">Para ejercer estos derechos, escribe a <a href={`mailto:${SUPPORT_EMAIL}`} class="text-orange-600 hover:underline">{SUPPORT_EMAIL}</a>. Responderemos dentro del plazo que exija la ley aplicable y es posible que primero debamos verificar tu identidad. Si tu solicitud se refiere a datos que controla un Local (datos de Clientes o pedidos), la derivaremos a dicho Local o actuaremos según sus instrucciones.</p>
       </section>
 
       <section class="mt-6 space-y-2">
@@ -181,8 +182,8 @@ import LegalLayout from '../../layouts/LegalLayout.astro';
       <section class="mt-6 space-y-2">
         <h2 class="text-lg font-semibold text-slate-900">17. Contacto</h2>
         <ul class="mt-1 list-none space-y-1 text-sm leading-relaxed text-slate-700">
-          <li><strong>Correo electrónico:</strong> <a href="mailto:hola@cheflink.com" class="text-orange-600 hover:underline">hola@cheflink.com</a></li>
-          <li><strong>Asunto sugerido:</strong> «Consulta de Privacidad Cheflink»</li>
+          <li><strong>Correo electrónico:</strong> <a href={`mailto:${SUPPORT_EMAIL}`} class="text-orange-600 hover:underline">{SUPPORT_EMAIL}</a></li>
+          <li><strong>Asunto sugerido:</strong> «Consulta de Privacidad {APP_NAME}»</li>
         </ul>
       </section>
     </article>
