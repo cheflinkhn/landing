@@ -143,19 +143,20 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
               {APP_NAME} connects QR orders, kitchen, and table tabs in one real-time dashboard — less running around for staff, more spending per table, and guests who never have to flag down a waiter to order or pay.
             </p>
 
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                id="signup"
-                href="https://app.cheflink.io/signup/"
-                class="inline-flex items-center justify-center rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800"
-              >
-                Try it free
-              </a>
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <a
                 href="/en/contact/"
-                class="inline-flex items-center justify-center rounded-full border border-sand-300 bg-white px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-sand-50"
+                class="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-b from-brand-600 to-brand-700 px-8 py-4 text-base font-semibold text-white shadow-[0_12px_28px_-8px_rgba(249,114,22,0.55)] ring-1 ring-inset ring-white/15 transition-all duration-200 hover:-translate-y-0.5 hover:from-brand-700 hover:to-brand-800 hover:shadow-[0_16px_34px_-8px_rgba(249,114,22,0.65)]"
               >
                 Book a demo
+                <svg class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+              <a
+                href="#try-demo"
+                class="group inline-flex items-center justify-center gap-2 rounded-full border border-sand-300 bg-white px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-brand-300 hover:bg-brand-50"
+              >
+                Try it yourself
+                <svg class="h-4 w-4 text-sand-400 transition-all duration-200 group-hover:translate-y-0.5 group-hover:text-brand-700" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v13m0 0-5-5m5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </a>
             </div>
 
@@ -402,7 +403,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
           </div>
 
           <!-- TRY THE GUEST EXPERIENCE -->
-          <div class="mx-auto mt-14 max-w-3xl rounded-3xl border border-brand-100 bg-brand-50 px-6 py-8 text-center shadow-soft sm:px-10 sm:py-10">
+          <div id="try-demo" class="mx-auto mt-14 max-w-3xl scroll-mt-24 rounded-3xl border border-brand-100 bg-brand-50 px-6 py-8 text-center shadow-soft sm:px-10 sm:py-10">
             <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Try it yourself</span>
             <h3 class="mt-2 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">Scan and order like a real guest</h3>
             <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-sand-600">Point your phone camera at the code to open our live demo menu — the exact experience above, on a real table. No app, no signup.</p>
@@ -455,7 +456,7 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
                 ))}
               </ul>
             </div>
-            <a href="https://app.cheflink.io/signup/" class="mt-7 inline-flex items-center justify-center rounded-full border border-sand-300 bg-white px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand-50">Try it free</a>
+            <a href="/en/contact/?plan=Starter" class="mt-7 inline-flex items-center justify-center rounded-full border border-sand-300 bg-white px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand-50">Contact us</a>
           </div>
 
           <!-- PREMIUM -->
@@ -533,10 +534,16 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
           <div class="absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-brand-500/10" aria-hidden="true"></div>
           <div class="relative mx-auto max-w-2xl">
             <h2 class="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">Ready to turn every table into self-service?</h2>
-            <p class="mt-4 text-lg leading-8 text-sand-200">Start free today, or book a quick demo and we'll walk you through it.</p>
+            <p class="mt-4 text-lg leading-8 text-sand-200">Book a quick demo and we'll walk you through it — or try the live demo menu right now.</p>
             <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="https://app.cheflink.io/signup/" class="inline-flex items-center justify-center rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800">Try it free</a>
-              <a href="/en/contact/" class="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">Book a demo</a>
+              <a href="/en/contact/" class="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800">
+                Book a demo
+                <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+              <a href={demoMenuUrl} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+                Try it yourself
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
             </div>
           </div>
         </div>

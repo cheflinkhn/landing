@@ -15,11 +15,11 @@ const t = {
     pricing: 'Precios',
     faq: 'Preguntas frecuentes',
     companyTitle: 'Empresa',
-    contact: 'Agendar demo',
+    contact: 'Contacto',
     legalTitle: 'Legal',
     privacy: 'Privacidad',
     terms: 'Términos',
-    cta: 'Pruébalo gratis',
+    cta: 'Agendar demo',
     rights: 'Todos los derechos reservados.',
   },
   en: {
@@ -30,11 +30,11 @@ const t = {
     pricing: 'Pricing',
     faq: 'FAQ',
     companyTitle: 'Company',
-    contact: 'Book a demo',
+    contact: 'Contact',
     legalTitle: 'Legal',
     privacy: 'Privacy',
     terms: 'Terms',
-    cta: 'Try it free',
+    cta: 'Book a demo',
     rights: 'All rights reserved.',
   },
 }[lang];
@@ -52,7 +52,7 @@ const home = `/${lang}/`;
         </div>
         <p class="mt-4 text-sm leading-6 text-sand-600">{t.blurb}</p>
         <a
-          href="https://app.cheflink.io/signup/"
+          href={`/${lang}/contact/`}
           class="mt-5 inline-flex items-center rounded-full bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800"
         >
           {t.cta}
