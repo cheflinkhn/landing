@@ -34,6 +34,8 @@ FILES=(
   08-consumer-tab.png
   09-consumer-paid-tab.png
   10-table-reservation.png
+  11-kds-board-tablet.png
+  12-consumer-delivery.png
 )
 
 if [ "${1:-}" = "--generate" ]; then
