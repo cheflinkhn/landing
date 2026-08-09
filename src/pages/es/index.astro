@@ -511,9 +511,9 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
           </div>
           <div class="mt-10 space-y-3">
             {[
-              ['¿El cliente tiene que descargar una app?', 'No. Solo escanea el código QR de la mesa y {APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.'],
-              ['¿Puedo usar {APP_NAME} en varias sucursales?', 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.'],
-              ['¿{APP_NAME} reemplaza mi POS?', 'Puedes utilizar {APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.'],
+              ['¿El cliente tiene que descargar una app?', `No. Solo escanea el código QR de la mesa y ${APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.`],
+              [`¿Puedo usar ${APP_NAME} en varias sucursales?`, 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.'],
+              [`¿${APP_NAME} reemplaza mi POS?`, `Puedes utilizar ${APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.`],
             ].map(([q, a]) => (
               <details class="group rounded-2xl border border-sand-200 bg-white px-5 shadow-soft">
                 <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-sm font-semibold text-ink marker:hidden">
