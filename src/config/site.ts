@@ -1,5 +1,6 @@
-// Single source of truth for the product name shown across the site.
 export const APP_NAME = 'Cheflink';
 
-// Support contact shown on legal and contact pages.
 export const SUPPORT_EMAIL = 'support@cheflink.io';
+
+export const INSTAGRAM_URL = 'https://www.instagram.com/cheflinkhq';
+export const FACEBOOK_URL = 'https://www.facebook.com/cheflinkhq';
