@@ -1,6 +1,6 @@
 # Cheflink
 
-> Cheflink is a QR ordering and table management system for restaurants and bars. Guests scan a QR code at their table to browse the menu and place orders directly from their phone — no app or account required. Staff see every order and table tab in real time through a single dashboard.
+> Cheflink is a restaurant operating system: one real-time dashboard for the floor, the kitchen and the back office. Guests can order from a QR code at their table (no app or account required) or through a waiter; the kitchen sees every ticket on a display; tabs, invoicing, inventory, reservations, delivery, loyalty, staff permissions and reports all run on the same records.
 
 ## Key pages
 
@@ -13,13 +13,13 @@
 
 ## Product summary
 
-Cheflink covers the full dining flow:
+Cheflink covers a full night of service:
 
-1. Each table has a unique QR code. Guests scan it and the menu opens in their browser — no download, no sign-up.
-2. Orders arrive instantly in the Cheflink dashboard. Kitchen staff and servers see every ticket in real time.
-3. Orders are grouped into table tabs. Staff can apply discounts, service charges, and mark tabs as paid in one click.
+1. Guests order however they like: they scan the table's QR code and the menu opens in their browser (no download, no sign-up), or a waiter takes the order. Online reservations land on the same floor plan.
+2. Orders arrive instantly on the Kitchen Display System. Kitchen staff and servers see every ticket and its status in real time; inventory is drawn down automatically.
+3. Orders are grouped into table tabs. Staff apply discounts and service charges, take payment from the phone or at the register, issue a tax-compliant invoice, and sales reports and closures are ready without re-typing anything.
 
-**Key features:** QR menu and ordering, Kitchen Display System (KDS), table tabs, multi-location support, real-time updates, localized currency and tax configuration.
+**Key features:** Floor: QR or waiter ordering, table tabs and digital payments, online reservations, delivery orders from the venue's own menu, loyalty program. Kitchen: Kitchen Display System (KDS), floor view, inventory with low-stock alerts, waste (merma) records with reason and cost, warehouses that receive supplier deliveries and supply venues through internal stock requests. Back office: invoicing, closures and sales reports, staff roles and permissions, multiple venues per account, localized currency and tax configuration.
 
 ## Pricing
 

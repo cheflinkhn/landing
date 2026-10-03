@@ -13,7 +13,7 @@ const { lang, title, description, canonicalPath, ogImage } = Astro.props;
 const site = 'https://cheflink.io';
 const otherLang = lang === 'es' ? 'en' : 'es';
 const canonicalUrl = `${site}${canonicalPath}`;
-const ogImageUrl = ogImage ?? `${site}/assets/img/screenshots/01-kds-board.png`;
+const ogImageUrl = ogImage ?? `${site}/assets/img/screenshots/01-kds-board.webp`;
 const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
 
 const organizationSchema = {
@@ -52,8 +52,8 @@ const organizationSchema = {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImageUrl} />
-  <meta property="og:image:width" content="2880" />
-  <meta property="og:image:height" content="1800" />
+  <meta property="og:image:width" content="2560" />
+  <meta property="og:image:height" content="1600" />
   <meta property="og:locale" content={ogLocale} />
   <meta property="og:site_name" content={APP_NAME} />
 
@@ -70,7 +70,7 @@ const organizationSchema = {
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
 
   <style is:global>
     html, body {
@@ -78,12 +78,33 @@ const organizationSchema = {
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
+    /* Fraunces with its optical-size, softness and "wonk" axes: roman headings stay
+       crisp, italics get the soft, slightly quirky cut. */
     .font-display {
       font-family: "Fraunces", ui-serif, Georgia, serif;
       font-optical-sizing: auto;
+      font-variation-settings: "SOFT" 40, "WONK" 0;
     }
-    h1, h2, h3 { font-feature-settings: "ss01"; }
+    .font-display em, .font-display i, .display-italic {
+      font-style: italic;
+      font-variation-settings: "SOFT" 60, "WONK" 1;
+    }
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* Torn edges of a kitchen ticket (paper color = #FFFDF8) */
+    .serrated-b { height: 6px; background: conic-gradient(from -45deg at 50% 100%, #FFFDF8 90deg, transparent 0) 0 0 / 12px 6px repeat-x; }
+    .serrated-t { height: 6px; background: conic-gradient(from 135deg at 50% 0, #FFFDF8 90deg, transparent 0) 0 0 / 12px 6px repeat-x; }
+
+    /* Gingham tablecloth behind the demo placemat */
+    .gingham {
+      background-color: #FBF8F4;
+      background-image: linear-gradient(90deg, rgba(249, 114, 22, 0.13) 50%, transparent 50%), linear-gradient(rgba(249, 114, 22, 0.13) 50%, transparent 50%);
+      background-size: 64px 64px;
+    }
+
+    .no-scrollbar { scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
   </style>
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="a841e4bb-6b9b-46d9-8e33-9de2785de277"></script>

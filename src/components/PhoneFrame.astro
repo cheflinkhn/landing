@@ -1,0 +1,13 @@
+---
+// A phone bezel around a guest-app screenshot. The screen keeps the phone's
+// aspect ratio; taller captures (delivery tracking, reservations) are cropped
+// from the top.
+interface Props { class?: string; tilt?: number }
+const { class: className = '', tilt = 0 } = Astro.props;
+---
+
+<div class={`overflow-hidden rounded-[30px] border-[7px] border-ink bg-ink shadow-[0_30px_50px_-24px_rgba(28,23,20,0.5)] ${className}`} style={tilt ? `transform: rotate(${tilt}deg)` : undefined}>
+  <div class="aspect-[1170/2532] overflow-hidden bg-[#FFF8E7] [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top">
+    <slot />
+  </div>
+</div>

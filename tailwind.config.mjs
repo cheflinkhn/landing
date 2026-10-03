@@ -33,11 +33,19 @@ export default {
           900: '#1C1714',
         },
         cream: '#FBF8F4',
+        // Hero sky: a shade warmer than cream, so the street scene sits on a sky
+        dawn: '#FFF3E6',
+        // Paper: the tint of tickets, menus and checks (a hair warmer than white)
+        paper: '#FFFDF8',
         ink: '#1C1714',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+        // Kitchen printer / receipt type
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        // The waiter's handwriting — used sparingly, one note at a time
+        hand: ['Kalam', '"Comic Sans MS"', 'cursive'],
       },
       borderRadius: {
         '4xl': '2rem',

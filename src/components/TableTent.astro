@@ -1,0 +1,41 @@
+---
+// The folded card that sits on every table: table number, QR, "scan to order".
+// `qr` is the image shown; the demo variant links to the live demo table.
+interface Props {
+  lang: 'es' | 'en';
+  qr: string;
+  table?: string;        // shown big; omit to show `title` instead
+  title?: string;
+  tilt?: number;
+  size?: 'sm' | 'md';
+  href?: string;
+  class?: string;
+}
+const { lang, qr, table, title, tilt = -3, size = 'sm', href, class: className = '' } = Astro.props;
+const t = lang === 'es' ? { table: 'MESA', scan: 'Escanea para pedir', alt: 'Código QR de la mesa' } : { table: 'TABLE', scan: 'Scan to order', alt: 'Table QR code' };
+const w = size === 'md' ? 'w-[210px]' : 'w-[190px]';
+const qrSize = size === 'md' ? 'h-[150px] w-[150px]' : 'h-[118px] w-[118px]';
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  href={href}
+  target={href ? '_blank' : undefined}
+  rel={href ? 'noopener' : undefined}
+  class={`block ${w} ${className}`}
+  style={`transform: rotate(${tilt}deg); filter: drop-shadow(0 14px 14px rgba(28,23,20,0.22))`}
+>
+  <div class="flex flex-col items-center gap-2 bg-white px-4 pb-4 pt-[18px] text-ink">
+    {table ? (
+      <div class="flex items-baseline gap-2">
+        <span class="font-mono text-[11px] font-semibold tracking-[0.2em]">{t.table}</span>
+        <span class="font-display text-[44px] font-medium leading-none">{table}</span>
+      </div>
+    ) : (
+      <div class="font-display text-[22px] italic leading-none">{title}</div>
+    )}
+    <img src={qr} alt={t.alt} width="150" height="150" class={qrSize} loading="lazy" />
+    <div class="font-mono text-[11px] uppercase tracking-[0.08em] text-sand-700">{t.scan}</div>
+  </div>
+  <div class="h-4 bg-sand-300 [clip-path:polygon(0_0,100%_0,94%_100%,6%_100%)]" aria-hidden="true"></div>
+</Tag>

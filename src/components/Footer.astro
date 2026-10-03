@@ -1,4 +1,6 @@
 ---
+// Footer set like the bottom of a guest check: dashed rules, receipt type, and a
+// thank-you line. Sits on the ink ground so the closing CTA flows into it.
 import { APP_NAME, INSTAGRAM_URL, FACEBOOK_URL } from '../config/site';
 interface Props {
   lang: 'es' | 'en';
@@ -8,10 +10,11 @@ const { lang } = Astro.props;
 
 const t = {
   es: {
-    blurb: 'Pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real.',
+    blurb: 'Salón, cocina y oficina de tu restaurante en un solo panel en tiempo real.',
     productTitle: 'Producto',
     features: 'Características',
     howItWorks: 'Cómo funciona',
+    screenshots: 'Míralo en acción',
     pricing: 'Precios',
     faq: 'Preguntas frecuentes',
     companyTitle: 'Empresa',
@@ -19,14 +22,15 @@ const t = {
     legalTitle: 'Legal',
     privacy: 'Privacidad',
     terms: 'Términos',
-    cta: 'Agendar demo',
     rights: 'Todos los derechos reservados.',
+    thanks: 'Gracias por su visita.',
   },
   en: {
-    blurb: 'QR orders, kitchen, and table tabs in a single real-time dashboard.',
+    blurb: 'Your floor, kitchen and back office in one real-time dashboard.',
     productTitle: 'Product',
     features: 'Features',
     howItWorks: 'How it works',
+    screenshots: 'See it in action',
     pricing: 'Pricing',
     faq: 'FAQ',
     companyTitle: 'Company',
@@ -34,83 +38,53 @@ const t = {
     legalTitle: 'Legal',
     privacy: 'Privacy',
     terms: 'Terms',
-    cta: 'Book a demo',
     rights: 'All rights reserved.',
+    thanks: 'Thank you for your visit.',
   },
 }[lang];
 
 const home = `/${lang}/`;
+const heading = 'mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-sand-600';
+const item = 'block py-1.5 font-mono text-[13px] text-ink transition-opacity hover:opacity-70';
 ---
 
-<footer class="border-t border-sand-200 bg-sand-50">
-  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+<footer class="bg-sand-200 text-ink">
+  <div class="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+    <div class="grid gap-8 border-t border-dashed border-sand-400 pt-9 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
       <div class="max-w-xs">
-        <div class="flex items-center gap-2.5">
-          <img src="/assets/img/logo.png" alt={`${APP_NAME} Logo`} class="h-8 w-8 rounded-lg ring-1 ring-sand-200" />
-          <span class="font-display text-lg font-semibold tracking-tight text-ink">{APP_NAME}</span>
-        </div>
-        <p class="mt-4 text-sm leading-6 text-sand-600">{t.blurb}</p>
-        <a
-          href={`/${lang}/contact/`}
-          class="mt-5 inline-flex items-center rounded-full bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800"
-        >
-          {t.cta}
+        <a href={home} class="flex items-center gap-2.5 text-ink">
+          <img src="/assets/img/logo.png" alt="" class="h-8 w-8 rounded-lg" width="32" height="32" />
+          <span class="font-display text-[20px] font-semibold tracking-tight">{APP_NAME}</span>
         </a>
-        <div class="mt-5 flex items-center gap-3">
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            class="text-sand-500 transition-colors hover:text-ink"
-          >
-            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" clip-rule="evenodd" />
-            </svg>
-          </a>
-          <a
-            href={FACEBOOK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            class="text-sand-500 transition-colors hover:text-ink"
-          >
-            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-            </svg>
-          </a>
-        </div>
+        <p class="mt-4 text-sm leading-6 text-sand-600">{t.blurb}</p>
       </div>
 
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-wider text-sand-500">{t.productTitle}</h3>
-        <ul class="mt-4 space-y-3 text-sm text-sand-600">
-          <li><a href={`${home}#features`} class="transition-colors hover:text-ink">{t.features}</a></li>
-          <li><a href={`${home}#how-it-works`} class="transition-colors hover:text-ink">{t.howItWorks}</a></li>
-          <li class="hidden"><a href={`${home}#pricing`} class="transition-colors hover:text-ink">{t.pricing}</a></li>
-          <li><a href={`${home}#faq`} class="transition-colors hover:text-ink">{t.faq}</a></li>
-        </ul>
+        <h3 class={heading}>{t.productTitle}</h3>
+        <a href={`${home}#features`} class={item}>{t.features}</a>
+        <a href={`${home}#how-it-works`} class={item}>{t.howItWorks}</a>
+        <a href={`${home}#screenshots`} class={item}>{t.screenshots}</a>
+        <a href={`${home}#pricing`} class={`hidden ${item}`}>{t.pricing}</a>
+        <a href={`${home}#faq`} class={item}>{t.faq}</a>
       </div>
 
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-wider text-sand-500">{t.companyTitle}</h3>
-        <ul class="mt-4 space-y-3 text-sm text-sand-600">
-          <li><a href={`/${lang}/contact/`} class="transition-colors hover:text-ink">{t.contact}</a></li>
-        </ul>
+        <h3 class={heading}>{t.companyTitle}</h3>
+        <a href={`/${lang}/contact/`} class={item}>{t.contact}</a>
+        <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" class={item}>Instagram</a>
+        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" class={item}>Facebook</a>
       </div>
 
       <div>
-        <h3 class="text-xs font-semibold uppercase tracking-wider text-sand-500">{t.legalTitle}</h3>
-        <ul class="mt-4 space-y-3 text-sm text-sand-600">
-          <li><a href={`/${lang}/privacy/`} class="transition-colors hover:text-ink">{t.privacy}</a></li>
-          <li><a href={`/${lang}/terms/`} class="transition-colors hover:text-ink">{t.terms}</a></li>
-        </ul>
+        <h3 class={heading}>{t.legalTitle}</h3>
+        <a href={`/${lang}/privacy/`} class={item}>{t.privacy}</a>
+        <a href={`/${lang}/terms/`} class={item}>{t.terms}</a>
       </div>
     </div>
 
-    <div class="mt-12 border-t border-sand-200 pt-6 text-xs text-sand-500">
-      © <span data-year></span> {APP_NAME}. {t.rights}
+    <div class="mt-10 flex flex-wrap items-baseline justify-between gap-3 border-t border-dashed border-sand-400 pt-5">
+      <span class="font-mono text-xs text-sand-600">© <span data-year></span> {APP_NAME}. {t.rights}</span>
+      <span class="font-display text-[19px] italic text-sand-700">{t.thanks}</span>
     </div>
   </div>
 </footer>

@@ -1,0 +1,64 @@
+---
+// A kitchen ticket: monospace, dashed dividers, torn bottom edge, and a clip so it
+// can hang from a rail. Carries either free lines (an order) or label/value rows
+// (a check). One optional handwritten note and one optional stamp.
+interface Row { label: string; value: string }
+interface Props {
+  title: string;
+  meta?: string;
+  lines?: string[];
+  rows?: Row[];
+  total?: Row;
+  note?: string;
+  status?: string;
+  statusTone?: 'muted' | 'accent';
+  stamp?: string;
+  stampTone?: 'accent' | 'ok';
+  tilt?: number;   // degrees, rotated around the clip
+  lift?: number;   // px pushed down the rail
+  clip?: boolean;
+  tornTop?: boolean;
+  size?: 'sm' | 'md';
+  shadow?: string; // drop-shadow color; darker on the ink ground
+  class?: string;
+}
+const {
+  title, meta, lines = [], rows = [], total, note, status, statusTone = 'muted',
+  stamp, stampTone = 'accent', tilt = 0, lift = 0, clip = true, tornTop = false,
+  size = 'sm', shadow = 'rgba(28,23,20,0.2)', class: className = '',
+} = Astro.props;
+
+const width = size === 'md' ? 'w-[210px]' : 'w-[194px]';
+const text = size === 'md' ? 'text-[13px] leading-5' : 'text-xs leading-[18px]';
+const titleSize = size === 'md' ? 'text-[17px]' : 'text-[15px]';
+const stampClass = stampTone === 'ok' ? 'border-green-700 text-green-700' : 'border-brand-700 text-brand-700';
+---
+
+<div
+  class={`shrink-0 ${width} ${className}`}
+  style={`transform: rotate(${tilt}deg); transform-origin: 50% 0; margin-top: ${lift}px; filter: drop-shadow(0 ${size === 'md' ? '18px 18px' : '10px 10px'} ${shadow})`}
+>
+  {clip && <div class="relative z-10 mx-auto -mb-2.5 h-[22px] w-8 rounded-[3px_3px_7px_7px] bg-sand-800" aria-hidden="true"></div>}
+  {tornTop && <div class="serrated-t" aria-hidden="true"></div>}
+  <div class={`relative flex flex-col gap-2 bg-paper px-3.5 pb-3 pt-5 font-mono text-ink tabular-nums ${text}`}>
+    <div class="flex items-baseline justify-between gap-2">
+      <span class={`font-semibold ${titleSize}`}>{title}</span>
+      {meta && <span class="text-sand-600">{meta}</span>}
+    </div>
+    <div class="border-t border-dashed border-sand-400" aria-hidden="true"></div>
+    {lines.length > 0 && <div>{lines.map((l) => <div>{l}</div>)}</div>}
+    {rows.length > 0 && (
+      <div class="flex flex-col">
+        {rows.map((r) => <div class="flex justify-between gap-2"><span>{r.label}</span><span>{r.value}</span></div>)}
+      </div>
+    )}
+    {note && <div class="-rotate-3 font-hand text-[19px] leading-5 text-brand-700">{note}</div>}
+    {(status || total) && <div class="border-t border-dashed border-sand-400" aria-hidden="true"></div>}
+    {total && <div class="flex justify-between text-[14px] font-semibold"><span>{total.label}</span><span>{total.value}</span></div>}
+    {status && <div class={`font-semibold uppercase tracking-[0.08em] ${statusTone === 'accent' ? 'text-brand-700' : 'text-sand-600'}`}>{status}</div>}
+    {stamp && (
+      <div class={`absolute right-2 top-14 rotate-[11deg] rounded border-2 bg-paper/85 px-2 py-0.5 text-[14px] font-semibold tracking-[0.14em] ${stampClass}`}>{stamp}</div>
+    )}
+  </div>
+  <div class="serrated-b" aria-hidden="true"></div>
+</div>

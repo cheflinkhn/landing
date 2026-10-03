@@ -3,7 +3,11 @@ import { APP_NAME } from '../../config/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-import FeatureVisual from '../../components/FeatureVisual.astro';
+import Ticket from '../../components/Ticket.astro';
+import PixelScene from '../../components/PixelScene.astro';
+import TableTent from '../../components/TableTent.astro';
+import AppFrame from '../../components/AppFrame.astro';
+import PhoneFrame from '../../components/PhoneFrame.astro';
 
 const softwareSchema = {
   '@context': 'https://schema.org',
@@ -11,7 +15,7 @@ const softwareSchema = {
   name: APP_NAME,
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
-  description: 'Sistema de pedidos por QR y gestión de mesas para restaurantes y bares. Conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real.',
+  description: 'Sistema operativo para restaurantes: pedidos por QR o del mesero, cocina en tiempo real, cuentas por mesa, facturación, inventario y reportes en un solo panel.',
   url: 'https://cheflink.io/es/',
   offers: [
     {
@@ -31,96 +35,65 @@ const softwareSchema = {
   ],
 };
 
+const faq = [
+  ['¿El cliente tiene que descargar una app?', `No. Solo escanea el código QR de la mesa y ${APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.`],
+  [`¿Puedo usar ${APP_NAME} en varias sucursales?`, 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.'],
+  [`¿${APP_NAME} reemplaza mi POS?`, `Puedes utilizar ${APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.`],
+];
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: '¿El cliente tiene que descargar una app?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: `No. Solo escanea el código QR de la mesa y ${APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.`,
-      },
-    },
-    {
-      '@type': 'Question',
-      name: `¿Puedo usar ${APP_NAME} en varias sucursales?`,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: `¿${APP_NAME} reemplaza mi POS?`,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: `Puedes utilizar ${APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.`,
-      },
-    },
-  ],
+  mainEntity: faq.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })),
 };
 
-const features = [
-  {
-    title: 'Gestión de personal',
-    body: 'Suma a tu equipo con roles y permisos. Controla quién toma pedidos, edita menús o cierra cuentas.',
-    icon: 'M9 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM4 18a5 5 0 0110 0M16 10a2.5 2.5 0 10-1-4.85M20 18a5 5 0 00-3.2-4.66',
-    visual: 'staff',
-  },
-  {
-    title: 'Gestión de inventario',
-    body: 'Controla el stock en tiempo real, recibe alertas de bajo inventario y mantén tu menú al día con lo que realmente hay disponible.',
-    icon: 'M12 3l8 4v10l-8 4-8-4V7zM4 7l8 4 8-4M12 11v10',
-    visual: 'inventory',
-  },
-  {
-    title: 'Programa de lealtad',
-    body: 'Premia a tus clientes frecuentes con puntos y beneficios que los hacen volver, registrados automáticamente en cada visita.',
-    icon: 'M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L12 16.77l-5.2 2.73.99-5.79-4.21-4.1 5.82-.85z',
-    visual: 'loyalty',
-  },
-  {
-    title: 'Facturación',
-    body: 'Genera facturas y recibos con validez fiscal, con tus impuestos y cargos por servicio ya aplicados, listos para enviar o imprimir.',
-    icon: 'M14 3H7a1 1 0 00-1 1v16a1 1 0 001 1h10a1 1 0 001-1V7zM14 3v4h4M9 12h6M9 16h4',
-    visual: 'invoice',
-  },
-  {
-    title: 'Reservas de mesa',
-    body: 'Permite que tus clientes reserven mesa en línea y administra tu salón con una vista clara de cada próxima reserva.',
-    icon: 'M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1zM4 10h16M8 3v4M16 3v4',
-    visual: 'reservation',
-  },
-  {
-    title: 'Pagos digitales',
-    body: 'Permite que tus clientes paguen desde su teléfono o cóbrales directamente desde la cuenta con un proveedor de pagos integrado.',
-    icon: 'M3 6h18a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V7a1 1 0 011-1zM2 10h20M6 15h4',
-    visual: 'payment',
-  },
-  {
-    title: 'Pedidos a domicilio',
-    body: 'Recibe pedidos a domicilio directamente desde tu propio menú. Tus clientes piden desde su dispositivo, comparten su ubicación y reciben su comida donde estén.',
-    icon: 'M12 21s-7-5.4-7-11a7 7 0 0114 0c0 5.6-7 11-7 11zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',
-    visual: 'delivery',
-  },
-  {
-    title: 'Reportes',
-    body: 'Visualiza ventas, productos más vendidos, horas pico y rendimiento por mesa en paneles claros que guían tus decisiones.',
-    icon: 'M4 20h16M7 20v-6M12 20V8M17 20v-9',
-    visual: 'reports',
-  },
+// The features as three pillars: the three places in a restaurant that have to
+// talk to each other. QR ordering is one line under Salón, not the headline.
+const pillars = [
+  { name: 'Salón', where: 'Donde se atiende', items: [
+    ['Pedidos por QR o del mesero', 'El cliente pide desde su teléfono sin app, o tu equipo lo toma desde el suyo.'],
+    ['Cuentas por mesa y pagos', 'Descuentos, cargos por servicio y pago desde el teléfono o en caja.'],
+    ['Vista del salón', 'Qué mesa espera qué, y desde hace cuánto, de un vistazo.'],
+    ['Reservas en línea', 'Tus clientes reservan desde tu página y el salón ya sabe quién llega.'],
+    ['Pedidos a domicilio', 'Desde tu propio menú, con la ubicación del cliente y seguimiento del repartidor.'],
+    ['Programa de lealtad', 'Puntos y beneficios que se registran solos en cada visita.'],
+  ] },
+  { name: 'Cocina', where: 'Donde se produce', items: [
+    ['Pantalla de cocina (KDS)', 'Cada comanda con su estado, en tiempo real, en cualquier pantalla.'],
+    ['Inventario', 'Stock en tiempo real, alertas de mínimos y un menú al día con lo que hay.'],
+    ['Merma', 'Registra lo que se pierde o se tira, con motivo y costo, y sale del inventario al momento.'],
+    ['Bodegas', 'Centraliza las compras en una bodega y surte a cada local con pedidos internos de inventario.'],
+  ] },
+  { name: 'Oficina', where: 'Donde se administra', items: [
+    ['Facturación', 'Facturas y recibos con validez fiscal, con impuestos y servicio ya aplicados.'],
+    ['Cierres y reportes', 'Ventas, productos más vendidos, horas pico y rendimiento por mesa.'],
+    ['Personal y permisos', 'Roles para quién toma pedidos, edita el menú o cierra cuentas.'],
+    ['Varias sucursales', 'Todos tus locales en una sola cuenta.'],
+  ] },
 ];
 
-// Mesa del local de demostración en vivo — cada escaneo abre su propia cuenta aislada (ver el bloque de demo en #screenshots).
+const panelTabs = [
+  { id: 'sales', label: 'Ventas' },
+  { id: 'menu', label: 'Administración de menú' },
+  { id: 'kitchen', label: 'Cocina (KDS)' },
+  { id: 'inventory', label: 'Inventario' },
+  { id: 'floor', label: 'Vista salón' },
+];
+const defaultTab = 'kitchen';
+
+// Mesa del local de demostración en vivo — cada escaneo abre su propia cuenta aislada.
 const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
+
+const eyebrow = 'font-mono text-xs font-medium uppercase tracking-[0.14em]';
+const h2 = 'font-display text-[2.4rem] font-normal leading-[1.05] tracking-[-0.025em] sm:text-5xl lg:text-[3.5rem]';
+const btnPrimary = 'inline-flex h-[54px] items-center justify-center rounded-full bg-brand-700 px-8 text-base font-semibold text-white shadow-[0_3px_0_#7C2D12] transition-colors hover:bg-brand-800';
+const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline decoration-[1.5px] underline-offset-[6px]';
 ---
 
 <BaseLayout
   lang="es"
   title={`${APP_NAME} - El Sistema Operativo para Restaurantes`}
-  description={`${APP_NAME} conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real.`}
+  description={`${APP_NAME} es el sistema operativo para restaurantes: pedidos por QR o del mesero, cocina en tiempo real, cuentas, facturación, inventario y reportes en un solo panel.`}
   canonicalPath="/es/"
 >
   <Fragment slot="head">
@@ -128,399 +101,276 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
-  <div class="min-h-screen bg-cream">
+  <div class="min-h-screen bg-cream text-ink">
     <Navbar lang="es" currentPage="index" />
 
     <main>
-      <!-- HERO -->
-      <section id="hero" class="relative overflow-hidden">
-        <div class="mx-auto flex max-w-7xl flex-col gap-14 px-4 pb-16 pt-12 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-28 lg:pt-20">
-          <div class="max-w-xl lg:max-w-lg">
-            <h1 class="font-display text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-              Tu menú puede <span class="text-brand-700">vender más</span> sin hablar.
+      <!-- HERO: copy, the kitchen board as the cook sees it, and the night's tickets on the rail -->
+      <section id="hero" class="relative bg-dawn" data-tone="dawn">
+        <div class="mx-auto grid max-w-7xl gap-12 px-4 pb-4 pt-10 sm:px-6 lg:grid-cols-12 lg:items-start lg:gap-6 lg:px-8 lg:pt-14">
+          <div class="flex flex-col items-start lg:col-span-6">
+            <span class={`${eyebrow} text-sand-600`}>El sistema operativo para restaurantes</span>
+            <h1 class="mt-5 font-display text-[2.75rem] font-normal leading-[1] tracking-[-0.03em] sm:text-6xl lg:text-[4.9rem]">
+              Todo tu restaurante, <em class="text-brand-700">en un solo sistema.</em>
             </h1>
-            <p class="mt-6 text-lg leading-8 text-sand-600">
-              {APP_NAME} conecta pedidos por QR, cocina y cuentas por mesa en un solo panel en tiempo real — menos vueltas del personal, más consumo por mesa y clientes que ya no tienen que llamar al mesero para pedir o pagar.
+            <p class="mt-6 max-w-[34em] text-lg leading-[1.6] text-sand-600">
+              {APP_NAME} conecta el salón, la cocina y la oficina de tu restaurante en un solo panel en tiempo real: pedidos por QR o del mesero, reservas, cocina, cuentas, facturación, inventario y reportes, sin herramientas sueltas ni capturar nada dos veces.
             </p>
-
-            <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <a
-                href="/es/contact/"
-                class="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-b from-brand-600 to-brand-700 px-8 py-4 text-base font-semibold text-white shadow-[0_12px_28px_-8px_rgba(249,114,22,0.55)] ring-1 ring-inset ring-white/15 transition-all duration-200 hover:-translate-y-0.5 hover:from-brand-700 hover:to-brand-800 hover:shadow-[0_16px_34px_-8px_rgba(249,114,22,0.65)]"
-              >
-                Agendar demo
-                <svg class="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </a>
-              <a
-                href="#try-demo"
-                class="group inline-flex items-center justify-center gap-2 rounded-full border border-sand-300 bg-white px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-brand-300 hover:bg-brand-50"
-              >
-                Pruébalo tú mismo
-                <svg class="h-4 w-4 text-sand-400 transition-all duration-200 group-hover:translate-y-0.5 group-hover:text-brand-700" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v13m0 0-5-5m5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </a>
+            <div class="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+              <a href="/es/contact/" class={btnPrimary}>Agendar demo</a>
+              <a href="#try-demo" class={`${btnLink} text-ink`}>Pruébalo tú mismo</a>
             </div>
-
-            <div class="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-sand-600">
-              <div class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-brand-600" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5 8.5 14 15 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                <span>No requiere app</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="h-4 w-4 text-brand-600" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5 8.5 14 15 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                <span>Funciona con tu flujo actual</span>
-              </div>
+            <div class="mt-9 flex flex-wrap gap-x-6 gap-y-2 border-t border-sand-300 pt-5 text-sm text-sand-600">
+              <span>Sin app para tus clientes</span>
+              <span>Convive con tu POS</span>
             </div>
-
-            <dl class="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-sand-200 pt-6">
-              <div>
-                <dt class="font-display text-2xl font-semibold text-ink">+30%</dt>
-                <dd class="mt-1 text-xs leading-5 text-sand-500">servicio más rápido en horas pico</dd>
-              </div>
-              <div>
-                <dt class="font-display text-2xl font-semibold text-ink">2×</dt>
-                <dd class="mt-1 text-xs leading-5 text-sand-500">más pedidos cuando el local se llena</dd>
-              </div>
-              <div>
-                <dt class="font-display text-2xl font-semibold text-ink">24/7</dt>
-                <dd class="mt-1 text-xs leading-5 text-sand-500">soporte por chat y correo</dd>
-              </div>
-            </dl>
           </div>
 
-          <div class="relative flex-1">
-            <!-- panel estructural, sin manchas borrosas -->
-            <div class="absolute -right-6 -top-6 bottom-10 left-10 -z-10 rounded-[2.2rem] bg-gradient-to-br from-brand-100 via-sand-100 to-brand-50" aria-hidden="true"></div>
-            <div class="relative mx-auto max-w-lg overflow-hidden rounded-3xl border border-sand-200 bg-white shadow-lift">
-              <img src="/assets/img/screenshots/11-kds-board-tablet.png" alt={`Kitchen Display System de ${APP_NAME}`} class="block w-full" loading="eager" width="2732" height="2048" />
+          <div class="relative lg:col-span-6">
+            <div class="relative mx-auto max-w-[590px] pb-8 pl-6 pt-8 sm:pl-10 lg:ml-auto lg:mr-0 lg:pt-10">
+              <div class="absolute -top-1 right-4 hidden -rotate-3 items-start gap-1.5 font-hand text-[21px] leading-none text-sand-700 lg:flex" aria-hidden="true">
+                así lo ve la cocina
+                <svg class="mt-2 h-[50px] w-[46px]" viewBox="0 0 46 50" fill="none"><path d="M3 4c14 1 27 9 31 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M25 33l9 10 7-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <AppFrame variant="tablet" tilt={1.2}>
+                <img src="/assets/img/screenshots/11-kds-board-tablet.webp" alt="Kitchen Display System de Cheflink" width="2048" height="1536" loading="eager" />
+              </AppFrame>
+              <div class="absolute bottom-0 left-0 w-[104px] sm:w-[128px] lg:-left-3">
+                <PhoneFrame tilt={-4}>
+                  <img src="/assets/img/screenshots/06-consumer-menu.webp" alt="Menú del cliente en Cheflink" width="1170" height="2532" loading="eager" />
+                </PhoneFrame>
+              </div>
             </div>
-            <div class="absolute -bottom-6 -right-2 w-[104px] overflow-hidden rounded-[1.7rem] border-[5px] border-ink bg-ink shadow-lift ring-1 ring-white/60 sm:w-[124px] sm:right-0 lg:-right-6">
-              <div class="absolute left-1/2 top-0 z-10 h-[12px] w-[42px] -translate-x-1/2 rounded-b-lg bg-ink"></div>
-              <img src="/assets/img/screenshots/06-consumer-menu.png" alt={`Menú del cliente en ${APP_NAME}`} class="block w-full" loading="eager" width="1170" height="2532" />
+          </div>
+        </div>
+
+        <div class="mt-8 lg:mt-4">
+          <PixelScene lang="es" />
+        </div>
+      </section>
+
+      <!-- CONFIANZA + CÓMO FUNCIONA: on the dark ground the tickets hang into -->
+      <section id="how-it-works" class="scroll-mt-24 bg-sand-100 text-ink" data-tone="sand">
+        <div class="mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20">
+          <div class="grid gap-6 border-b border-dashed border-sand-400 pb-10 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ['Sin hardware nuevo', 'Funciona en los teléfonos y pantallas que ya tienes.'],
+              ['Convive con tu POS', 'Úsalo junto a tu punto de venta actual, o cobra directo desde el sistema.'],
+              ['Listo en un día', 'Arma tu menú, imprime los códigos y empieza a recibir pedidos.'],
+              ['Pensado para el servicio', 'Diseñado para cómo funciona de verdad un local lleno.'],
+            ].map(([title, body]) => (
+              <div class="flex flex-col gap-1.5">
+                <span class="text-[15px] font-semibold">{title}</span>
+                <span class="text-sm leading-6 text-sand-600">{body}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-16 max-w-2xl">
+            <span class={`${eyebrow} text-brand-700`}>Cómo funciona</span>
+            <h2 class={`mt-4 ${h2}`}>Una noche de servicio en <em>tres pasos</em></h2>
+          </div>
+
+          <div class="relative mt-12 grid gap-12 md:grid-cols-3 md:gap-6">
+            <svg class="absolute left-0 top-[140px] hidden h-[120px] w-full md:block" viewBox="0 0 1280 120" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M120 70C260 10 330 110 520 60S800 20 940 70s180 20 260-10" stroke="#A99685" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 11"/></svg>
+
+            <div class="relative flex flex-col gap-7">
+              <div class="flex h-[300px] items-center pl-4 md:h-[330px]">
+                <TableTent lang="es" table="7" qr="/assets/img/landing_qr.png" />
+              </div>
+              <div class="flex max-w-[350px] flex-col gap-2">
+                <span class="font-display text-2xl italic text-brand-700">1. La mesa</span>
+                <h3 class="text-[19px] font-semibold">El cliente pide como prefiera</h3>
+                <p class="text-[15px] leading-6 text-sand-600">Escanea el QR de la mesa y pide desde su teléfono, o el mesero toma el pedido en el suyo. Las reservas llegan al mismo salón.</p>
+              </div>
+            </div>
+
+            <div class="relative flex flex-col gap-7">
+              <div class="flex h-[300px] items-center pl-4 md:h-[330px]">
+                <Ticket title="MESA 07" meta="20:41" lines={['2× Hamburguesa', '1× Papas trufa', '1× Limonada']} note="sin cebolla" status="Nuevo" statusTone="accent" size="md" clip={false} tornTop tilt={2.5} shadow="rgba(28,23,20,0.22)" />
+              </div>
+              <div class="flex max-w-[350px] flex-col gap-2">
+                <span class="font-display text-2xl italic text-brand-700">2. La comanda</span>
+                <h3 class="text-[19px] font-semibold">La cocina lo ve al instante</h3>
+                <p class="text-[15px] leading-6 text-sand-600">Cada plato aparece en la pantalla de cocina con su estado, y el inventario se descuenta solo.</p>
+              </div>
+            </div>
+
+            <div class="relative flex flex-col gap-7">
+              <div class="flex h-[300px] items-center pl-4 md:h-[330px]">
+                <Ticket title="CUENTA" meta="#1042" rows={[{ label: 'Hamburguesa ×2', value: '$24.00' }, { label: 'Papas trufa', value: '$9.00' }, { label: 'Servicio 10%', value: '$3.30' }]} total={{ label: 'Total', value: '$36.30' }} stamp="PAGADO" stampTone="ok" size="md" clip={false} tilt={-2} shadow="rgba(28,23,20,0.22)" />
+              </div>
+              <div class="flex max-w-[350px] flex-col gap-2">
+                <span class="font-display text-2xl italic text-brand-700">3. La cuenta</span>
+                <h3 class="text-[19px] font-semibold">Cobras, facturas y cierras el día</h3>
+                <p class="text-[15px] leading-6 text-sand-600">La cuenta se paga desde la mesa o en caja, sale con factura, y las ventas y los reportes quedan listos sin capturar nada.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- FRANJA DE CONFIANZA -->
-      <section class="border-y border-sand-200 bg-white">
-        <div class="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {[
-            ['Sin hardware nuevo', 'Funciona en los teléfonos y pantallas que ya tienes.'],
-            ['Convive con tu POS', 'Suma pedidos por QR sin cambiar lo que ya usas.'],
-            ['Listo en un día', 'Arma tu menú, imprime los códigos y empieza a recibir pedidos.'],
-            ['Pensado para el servicio', 'Diseñado para cómo funciona de verdad un local lleno.'],
-          ].map(([title, body]) => (
-            <div class="flex flex-col gap-1">
-              <span class="text-sm font-semibold text-ink">{title}</span>
-              <span class="text-sm leading-6 text-sand-600">{body}</span>
+      <!-- CARACTERÍSTICAS: tres pilares, como las tres partes de la casa -->
+      <section id="features" class="scroll-mt-24 bg-cream" data-tone="cream">
+        <div class="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:py-28">
+          <div class="flex flex-col gap-4 lg:col-span-4 lg:pr-6">
+            <span class={`${eyebrow} text-brand-700`}>Características</span>
+            <h2 class={h2}>Todo lo que necesitas en <em>un solo lugar</em></h2>
+            <p class="mt-2 text-[17px] leading-7 text-sand-600">
+              Un restaurante son tres lugares que tienen que hablarse: el salón, la cocina y la oficina. {APP_NAME} los conecta en un solo sistema, y los pedidos por QR son solo una de las puertas de entrada.
+            </p>
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="h-1 border-b border-t border-ink" aria-hidden="true"></div>
+            <div class="grid gap-x-8 gap-y-10 pt-7 md:grid-cols-3">
+              {pillars.map((p) => (
+                <div class="flex flex-col">
+                  <span class={`${eyebrow} text-sand-600`}>{p.where}</span>
+                  <h3 class="mt-2 font-display text-[30px] font-normal leading-none tracking-[-0.02em]">{p.name}</h3>
+                  <ul class="mt-5 flex flex-col">
+                    {p.items.map(([title, body]) => (
+                      <li class="border-t border-sand-200 py-4">
+                        <span class="block text-[15px] font-semibold">{title}</span>
+                        <span class="mt-1 block text-sm leading-6 text-sand-600">{body}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
+            <div class="mt-6 border-t border-ink pt-4 font-display text-base italic text-sand-600">Todo servido desde un solo panel.</div>
+          </div>
         </div>
       </section>
 
-      <!-- CÓMO FUNCIONA -->
-      <section id="how-it-works" class="border-y border-sand-200 bg-sand-50">
-        <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <!-- EL PANEL: the backoffice, view by view -->
+      <section id="screenshots" class="relative scroll-mt-24 overflow-hidden bg-brand-50" data-tone="peach">
+        <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div class="max-w-2xl">
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Cómo funciona</span>
-            <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Del escaneo al pago en tres pasos</h2>
+            <span class={`${eyebrow} text-brand-700`}>El panel</span>
+            <h2 class={`mt-4 ${h2}`}>Mira {APP_NAME} <em>en acción</em></h2>
+            <p class="mt-4 text-lg leading-8 text-sand-600">Un vistazo a lo que ven tú y tu equipo todos los días.</p>
           </div>
 
-          <div class="relative mt-14 grid gap-6 md:grid-cols-3">
-            <!-- Conector de flujo (escritorio) -->
-            <div class="absolute left-[16.6%] right-[16.6%] top-[88px] hidden border-t-2 border-dashed border-sand-300 md:block" aria-hidden="true"></div>
-
-            <!-- PASO 1 — Escanean el QR -->
-            <article class="group relative z-10 flex flex-col rounded-2xl border border-sand-200 bg-white p-5 shadow-soft transition-shadow hover:shadow-lift">
-              <div class="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-sand-50 to-brand-50 ring-1 ring-sand-100">
-                <span class="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white shadow-soft">1</span>
-                <div class="relative">
-                  <img src="/assets/img/landing_qr.png" alt={`Código QR de mesa de ${APP_NAME}`} width="112" height="112" class="h-28 w-28 rounded-lg bg-white p-1.5 shadow-soft" loading="lazy" />
-                  <span class="pointer-events-none absolute -inset-2.5" aria-hidden="true">
-                    <span class="absolute left-0 top-0 h-5 w-5 rounded-tl-md border-l-2 border-t-2 border-brand-500"></span>
-                    <span class="absolute right-0 top-0 h-5 w-5 rounded-tr-md border-r-2 border-t-2 border-brand-500"></span>
-                    <span class="absolute bottom-0 left-0 h-5 w-5 rounded-bl-md border-b-2 border-l-2 border-brand-500"></span>
-                    <span class="absolute bottom-0 right-0 h-5 w-5 rounded-br-md border-b-2 border-r-2 border-brand-500"></span>
-                    <span class="absolute inset-x-0 top-1/2 h-0.5 animate-pulse bg-brand-500/70"></span>
-                  </span>
-                </div>
-              </div>
-              <h3 class="text-base font-semibold text-ink">Escanean el código de la mesa</h3>
-              <p class="mt-2 text-sm leading-6 text-sand-600">Cada mesa tiene un QR único que abre tu menú en el navegador del cliente. Sin descargas, sin fricción.</p>
-            </article>
-
-            <!-- PASO 2 — Los pedidos llegan a la cocina -->
-            <article class="group relative z-10 flex flex-col rounded-2xl border border-sand-200 bg-white p-5 shadow-soft transition-shadow hover:shadow-lift">
-              <div class="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-sand-50 to-brand-50 ring-1 ring-sand-100">
-                <span class="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white shadow-soft">2</span>
-                <div class="w-44 -rotate-3 rounded-lg bg-white p-3 text-left shadow-lift ring-1 ring-sand-200">
-                  <div class="flex items-center justify-between border-b border-dashed border-sand-200 pb-1.5">
-                    <span class="font-display text-xs font-semibold text-ink">Mesa 7</span>
-                    <span class="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">
-                      <span class="relative flex h-1.5 w-1.5">
-                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
-                        <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                      </span>
-                      Nuevo
-                    </span>
-                  </div>
-                  <ul class="mt-2 space-y-1 text-xs text-sand-600">
-                    <li>2× Hamburguesa</li>
-                    <li>1× Papas Trufa</li>
-                    <li>1× Limonada</li>
-                  </ul>
-                </div>
-              </div>
-              <h3 class="text-base font-semibold text-ink">Los pedidos llegan a la cocina</h3>
-              <p class="mt-2 text-sm leading-6 text-sand-600">Cocina y meseros ven cada pedido en tiempo real, con un resaltado visual para los nuevos tickets.</p>
-            </article>
-
-            <!-- PASO 3 — Cierras la cuenta y cobras -->
-            <article class="group relative z-10 flex flex-col rounded-2xl border border-sand-200 bg-white p-5 shadow-soft transition-shadow hover:shadow-lift">
-              <div class="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-sand-50 to-brand-50 ring-1 ring-sand-100">
-                <span class="absolute right-3 top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white shadow-soft">3</span>
-                <div class="relative w-44 rotate-2 rounded-lg bg-white p-3 text-left shadow-lift ring-1 ring-sand-200">
-                  <div class="flex items-center justify-between">
-                    <span class="font-display text-xs font-semibold text-ink">Mesa 7</span>
-                    <span class="text-[10px] text-sand-400">#1042</span>
-                  </div>
-                  <ul class="mt-2 space-y-1 text-xs text-sand-600">
-                    <li class="flex justify-between"><span>Hamburguesa ×2</span><span>$24.00</span></li>
-                    <li class="flex justify-between"><span>Papas Trufa</span><span>$9.00</span></li>
-                    <li class="flex justify-between"><span>Servicio 10%</span><span>$3.30</span></li>
-                  </ul>
-                  <div class="mt-2 flex justify-between border-t border-sand-200 pt-1.5 text-xs font-semibold text-ink">
-                    <span>Total</span><span>$36.30</span>
-                  </div>
-                  <span class="absolute -right-2.5 top-7 rotate-12 rounded-md border-2 border-emerald-500/80 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-emerald-600">Pagado</span>
-                </div>
-              </div>
-              <h3 class="text-base font-semibold text-ink">Cierras la cuenta y cobras</h3>
-              <p class="mt-2 text-sm leading-6 text-sand-600">Aplica descuentos, cargos por servicio y marca la cuenta como pagada. {APP_NAME} guarda el historial de cada mesa.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- CARACTERÍSTICAS -->
-      <section id="features" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div class="max-w-2xl">
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Características</span>
-          <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Todo lo que necesitas en un solo lugar</h2>
-          <p class="mt-4 text-lg leading-8 text-sand-600">
-            {APP_NAME} es más que pedidos por QR. Gestiona todo tu salón y tu cocina —desde reservas y pagos hasta personal, inventario y reportes— sin hacer malabares con herramientas separadas.
-          </p>
-        </div>
-
-        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <div class="flex flex-col overflow-hidden rounded-2xl border border-sand-200 bg-white shadow-soft transition-shadow hover:shadow-lift">
-              <div class="relative flex h-44 items-center justify-center overflow-hidden border-b border-sand-200 bg-gradient-to-br from-sand-50 to-brand-50/40 px-6">
-                <FeatureVisual kind={f.visual} lang="es" />
-              </div>
-              <div class="p-6">
-                <div class="flex items-center gap-3">
-                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-[0_6px_16px_-8px_rgba(249,114,22,0.6)] ring-1 ring-inset ring-white/20">
-                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={f.icon} stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                  </div>
-                  <h3 class="text-base font-semibold text-ink">{f.title}</h3>
-                </div>
-                <p class="mt-3 text-sm leading-6 text-sand-600">{f.body}</p>
-              </div>
+          <div class="mt-9 lg:max-w-[980px]" data-tabs>
+            <div class="no-scrollbar -mx-4 flex gap-8 overflow-x-auto border-b border-sand-300 px-4 text-[15px] font-medium sm:mx-0 sm:px-0" role="tablist" aria-label="Vistas del panel">
+              {panelTabs.map((tab) => (
+                <button
+                  type="button"
+                  role="tab"
+                  id={`tab-${tab.id}`}
+                  aria-selected={tab.id === defaultTab ? 'true' : 'false'}
+                  aria-controls={`panel-${tab.id}`}
+                  tabindex={tab.id === defaultTab ? 0 : -1}
+                  class="-mb-px inline-flex h-12 shrink-0 items-center whitespace-nowrap border-b-2 border-transparent text-sand-600 transition-colors hover:text-ink aria-selected:border-brand-700 aria-selected:font-semibold aria-selected:text-ink"
+                >{tab.label}</button>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
 
-      <!-- SCREENSHOTS -->
-      <section id="screenshots" class="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">El panel</span>
-          <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Mira {APP_NAME} en acción</h2>
-          <p class="mt-4 text-lg leading-8 text-sand-600">Un vistazo real a lo que ven tú y tu equipo todos los días.</p>
-        </div>
-
-                <div class="mb-6 mt-10 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Vistas del dashboard">
-          <button type="button" role="tab" aria-selected="true" aria-controls="tab-panel-1" data-tab="1" class="screenshot-tab rounded-full border border-brand-700 bg-brand-700 px-4 py-1.5 text-sm font-medium text-white transition-colors">Ventas</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="tab-panel-2" data-tab="2" class="screenshot-tab rounded-full border border-sand-200 bg-white px-4 py-1.5 text-sm font-medium text-sand-600 transition-colors hover:border-sand-300 hover:text-ink">Administración de Menú</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="tab-panel-3" data-tab="3" class="screenshot-tab rounded-full border border-sand-200 bg-white px-4 py-1.5 text-sm font-medium text-sand-600 transition-colors hover:border-sand-300 hover:text-ink">Kitchen Display System</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="tab-panel-4" data-tab="4" class="screenshot-tab rounded-full border border-sand-200 bg-white px-4 py-1.5 text-sm font-medium text-sand-600 transition-colors hover:border-sand-300 hover:text-ink">Inventario</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="tab-panel-5" data-tab="5" class="screenshot-tab rounded-full border border-sand-200 bg-white px-4 py-1.5 text-sm font-medium text-sand-600 transition-colors hover:border-sand-300 hover:text-ink">Vista Salón</button>
-        </div>
-
-        <div class="relative overflow-hidden rounded-3xl border border-sand-200 bg-white shadow-lift">
-          <div class="flex items-center justify-center border-b border-sand-100 bg-sand-50 px-4 py-2.5">
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs text-sand-500 ring-1 ring-sand-200">
-              <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.7" /><path d="M8 11V8a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
-              app.cheflink.io
-            </span>
+            <div class="relative mt-8">
+              <div id="panel-sales" role="tabpanel" aria-labelledby="tab-sales" hidden={defaultTab !== 'sales'}><AppFrame variant="window"><img src="/assets/img/screenshots/03-sales-kpis.webp" alt="Estadísticas de ventas en Cheflink" width="2560" height="3280" loading="lazy" /></AppFrame></div>
+              <div id="panel-menu" role="tabpanel" aria-labelledby="tab-menu" hidden={defaultTab !== 'menu'}><AppFrame variant="window"><img src="/assets/img/screenshots/04-backoffice-menu.webp" alt="Administración del menú en Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
+              <div id="panel-kitchen" role="tabpanel" aria-labelledby="tab-kitchen" hidden={defaultTab !== 'kitchen'}><AppFrame variant="window"><img src="/assets/img/screenshots/01-kds-board.webp" alt="Kitchen Display System de Cheflink" width="2560" height="1600" loading="eager" /></AppFrame></div>
+              <div id="panel-inventory" role="tabpanel" aria-labelledby="tab-inventory" hidden={defaultTab !== 'inventory'}><AppFrame variant="window"><img src="/assets/img/screenshots/05-backoffice-inventory.webp" alt="Manejo de inventario en Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
+              <div id="panel-floor" role="tabpanel" aria-labelledby="tab-floor" hidden={defaultTab !== 'floor'}><AppFrame variant="window"><img src="/assets/img/screenshots/02-kds-floor.webp" alt="Vista del salón en Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
+            </div>
           </div>
-          <div id="tab-panel-1" role="tabpanel"><img src="/assets/img/screenshots/03-sales-kpis.png" alt={`Estadísticas de ventas en ${APP_NAME}`} class="w-full" loading="eager" width="2880" height="3280" /></div>
-          <div id="tab-panel-2" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/04-backoffice-menu.png" alt={`Menú de backoffice en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
-          <div id="tab-panel-3" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/01-kds-board.png" alt={`Kitchen Display System en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
-          <div id="tab-panel-4" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/05-backoffice-inventory.png" alt={`Manejo de inventario en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
-          <div id="tab-panel-5" role="tabpanel" class="hidden"><img src="/assets/img/screenshots/02-kds-floor.png" alt={`Vista salón en ${APP_NAME}`} class="w-full" loading="lazy" width="2880" height="1800" /></div>
+        </div>
+
+        <div class="absolute bottom-16 right-[max(1rem,calc((100vw-80rem)/2+2rem))] hidden w-[250px] xl:block">
+          <div class="mb-3 ml-8 -rotate-3 font-hand text-[22px] leading-none text-sand-700" aria-hidden="true">y esto ve tu cliente<svg class="ml-10 mt-1 h-[58px] w-[40px]" viewBox="0 0 40 58" fill="none"><path d="M6 3c16 8 22 24 18 48" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 41l10 11 9-13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <PhoneFrame tilt={3}><img src="/assets/img/screenshots/09-consumer-paid-tab.webp" alt="Cuenta pagada desde el teléfono del cliente" width="1170" height="2532" loading="lazy" /></PhoneFrame>
         </div>
       </section>
 
-      <!-- CONSUMER EXPERIENCE -->
-      <section id="consumer-view" class="border-y border-sand-200 bg-sand-50">
-        <div class="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-          <div class="mx-auto max-w-2xl text-center">
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">La experiencia del cliente</span>
-            <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Lo que ven tus clientes</h2>
+      <!-- LA EXPERIENCIA DEL CLIENTE -->
+      <section id="consumer-view" class="scroll-mt-24 bg-cream" data-tone="cream">
+        <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div class="max-w-2xl">
+            <span class={`${eyebrow} text-brand-700`}>La experiencia del cliente</span>
+            <h2 class={`mt-4 ${h2}`}>Lo que ven <em>tus clientes</em></h2>
             <p class="mt-4 text-lg leading-8 text-sand-600">
               Sin descargas, sin cuentas. Escanean el QR de la mesa y en segundos están viendo tu menú, haciendo su pedido y siguiendo su estado, todo desde el navegador de su teléfono.
             </p>
           </div>
 
-          <div
-            class="mt-14 flex flex-col items-center gap-6"
-            id="phone-carousel"
-            data-labels='["Menú", "Agregar al Carrito", "Estado del Pedido", "Cuenta Pagada", "Pedidos a Domicilio", "Reservaciones"]'
-          >
-            <div class="flex items-center gap-6 sm:gap-10">
-              <button type="button" id="carousel-prev" aria-label="Anterior" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-sand-500 shadow-soft transition hover:border-sand-300 hover:text-ink">
-                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div class="relative w-[260px] overflow-hidden rounded-[2.8rem] border-[8px] border-ink bg-ink shadow-lift sm:w-[300px]">
-                <div class="absolute left-1/2 top-0 z-10 h-[20px] w-[88px] -translate-x-1/2 rounded-b-xl bg-ink"></div>
-                <div id="carousel-track" class="flex transition-transform duration-300 ease-in-out">
-                  <img src="/assets/img/screenshots/06-consumer-menu.png" alt={`Menú del restaurante en ${APP_NAME}`} class="block w-full shrink-0" loading="eager" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/07-consumer-add-item.png" alt={`Agregar ítem al pedido en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/08-consumer-tab.png" alt={`Progreso del pedido en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/09-consumer-paid-tab.png" alt={`Cuenta pagada en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2532" />
-                  <img src="/assets/img/screenshots/12-consumer-delivery.png" alt={`Seguimiento de un pedido a domicilio en ${APP_NAME}`} class="block w-full shrink-0 aspect-[1170/2532] object-cover object-top" loading="lazy" width="1170" height="5256" />
-                  <img src="/assets/img/screenshots/10-table-reservation.png" alt={`Reservar una mesa en ${APP_NAME}`} class="block w-full shrink-0" loading="lazy" width="1170" height="2730" />
-                </div>
-              </div>
-              <button type="button" id="carousel-next" aria-label="Siguiente" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sand-200 bg-white text-sand-500 shadow-soft transition hover:border-sand-300 hover:text-ink">
-                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-            <p id="carousel-label" class="text-sm font-medium text-ink"></p>
-            <div class="flex gap-2" id="carousel-dots" role="tablist" aria-label="Pantallas del cliente"></div>
+          <div class="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 lg:grid-cols-4">
+            {[
+              ['Menú', 'Escanean y piden desde la mesa.', '06-consumer-menu.webp', 2532],
+              ['Tu cuenta', 'Cada plato con su estado, hasta pagar.', '08-consumer-tab.webp', 2532],
+              ['Domicilio', 'Piden desde tu menú y siguen al repartidor.', '12-consumer-delivery.webp', 5256],
+              ['Reservas', 'Eligen día, hora y personas en línea.', '10-table-reservation.webp', 2895],
+            ].map(([label, caption, file, height]) => (
+              <figure class="m-0 flex flex-col items-center gap-4">
+                <PhoneFrame class="w-full max-w-[250px]"><img src={`/assets/img/screenshots/${file}`} alt={`${label}: ${caption}`} width="1170" height={height} loading="lazy" /></PhoneFrame>
+                <figcaption class="text-center">
+                  <span class="block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-ink">{label}</span>
+                  <span class="mt-1 block text-sm text-sand-600">{caption}</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
+        </div>
 
-          <!-- PRUEBA LA EXPERIENCIA DEL CLIENTE -->
-          <div id="try-demo" class="mx-auto mt-14 max-w-3xl scroll-mt-24 rounded-3xl border border-brand-100 bg-brand-50 px-6 py-8 text-center shadow-soft sm:px-10 sm:py-10">
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Pruébalo tú mismo</span>
-            <h3 class="mt-2 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">Escanea y pide como un cliente real</h3>
-            <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-sand-600">Apunta la cámara de tu teléfono al código para abrir nuestro menú de demostración en vivo — la misma experiencia de arriba, en una mesa real. Sin app, sin registro.</p>
-
-            <div class="mt-7 flex flex-col items-center gap-5 sm:flex-row sm:justify-center">
-              <a href={demoMenuUrl} target="_blank" rel="noopener" class="shrink-0 rounded-xl bg-white p-2 shadow-soft ring-1 ring-sand-200 transition-shadow hover:shadow-lift">
-                <img src="/assets/img/demo_table_qr.svg" alt={`Escanea para abrir el menú de demostración de ${APP_NAME}`} width="128" height="128" class="h-32 w-32" />
-              </a>
-              <div class="flex flex-col items-center gap-2 sm:items-start">
-                <a
-                  href={demoMenuUrl}
-                  target="_blank"
-                  rel="noopener"
-                  class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800"
-                >
-                  Abrir demo en vivo
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                </a>
-                <span class="text-xs text-sand-500">Mejor desde tu teléfono</span>
+        <!-- PRUEBA LA EXPERIENCIA DEL CLIENTE: a placemat on the tablecloth -->
+        <div id="try-demo" class="gingham scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <div class="mx-auto flex max-w-[1040px] flex-col items-center gap-10 border border-sand-300 bg-paper px-6 py-10 shadow-[0_24px_40px_-28px_rgba(28,23,20,0.45)] sm:px-10 md:flex-row md:gap-16 md:px-20 md:py-14">
+            <TableTent lang="es" title="Mesa de prueba" qr="/assets/img/demo_table_qr.svg" size="md" href={demoMenuUrl} class="shrink-0" />
+            <div class="flex flex-col items-start gap-3.5">
+              <span class={`${eyebrow} text-brand-700`}>Pruébalo tú mismo</span>
+              <h3 class="font-display text-[2.1rem] font-normal leading-[1.08] tracking-[-0.02em] sm:text-[2.5rem]">Escanea y pide como un cliente real</h3>
+              <p class="max-w-[34em] text-base leading-relaxed text-sand-600">Apunta la cámara de tu teléfono al código para abrir nuestro menú de demostración en vivo, en una mesa real. Sin app, sin registro.</p>
+              <div class="mt-2 flex flex-wrap items-center gap-5">
+                <a href={demoMenuUrl} target="_blank" rel="noopener" class="inline-flex h-12 items-center rounded-full bg-brand-700 px-6 text-[15px] font-semibold text-white shadow-[0_3px_0_#7C2D12] transition-colors hover:bg-brand-800">Abrir demo en vivo</a>
+                <span class="text-sm text-sand-600">Mejor desde tu teléfono</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- PRECIOS -->
+      <!-- PRECIOS (oculto por ahora) -->
       <section id="pricing" class="hidden mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div class="mx-auto max-w-2xl text-center">
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Precios</span>
-          <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Precios que crecen contigo</h2>
+          <span class={`${eyebrow} text-brand-700`}>Precios</span>
+          <h2 class={`mt-4 ${h2}`}>Precios que crecen contigo</h2>
           <p class="mt-4 text-lg leading-8 text-sand-600">Empieza gratis y migra a cualquier otro plan cuando quieras usar {APP_NAME} en todas tus mesas y sucursales.</p>
         </div>
-
         <div class="mt-12 grid items-start gap-6 md:grid-cols-3">
-          <!-- STARTER -->
-          <div class="flex flex-col justify-between rounded-3xl border border-sand-200 bg-white p-7 shadow-soft">
-            <div>
-              <h3 class="font-display text-lg font-semibold text-ink">Starter</h3>
-              <p class="mt-1 text-sm text-sand-600">Ideal para probar {APP_NAME}.</p>
-              <div class="mt-5 flex items-baseline gap-1">
-                <span class="font-display text-4xl font-semibold text-ink">$0</span>
-                <span class="text-sm text-sand-500">/ mes</span>
+          {[
+            ['Starter', 'Ideal para probar.', '$0', ['1 local con 1 mesa', '1 usuario', '10 items de menú', '5 pedidos al día', 'Kitchen Display System (KDS)'], false],
+            ['Premium', 'Ideal para negocios pequeños y medianos.', '$99', ['1 local con mesas ilimitadas', 'Usuarios ilimitados', 'Items de menú ilimitados', 'Pedidos ilimitados', 'Kitchen Display System (KDS)', 'Facturación', 'Cierres', 'Dashboard de ventas', 'Reportes', 'Soporte prioritario'], true],
+            ['Diamond', 'Ideal para negocios grandes.', '', ['Locales ilimitados con mesas ilimitadas', 'Cobros Digitales', 'Pedidos online', 'Programas de Fidelidad', 'Manejo de Inventario', 'Onboarding completo'], false],
+          ].map(([name, tagline, price, items, featured]) => (
+            <div class={`flex flex-col justify-between border bg-paper p-7 ${featured ? 'border-ink' : 'border-sand-300'}`}>
+              <div>
+                <h3 class="font-display text-2xl">{name}</h3>
+                <p class="mt-1 text-sm text-sand-600">{tagline}</p>
+                {price && <div class="mt-5 flex items-baseline gap-1"><span class="font-display text-4xl">{price}</span><span class="text-sm text-sand-500">/ mes</span></div>}
+                <ul class="mt-6 space-y-2 text-sm text-sand-700">{(items as string[]).map((item) => <li class="border-t border-dotted border-sand-300 pt-2">{item}</li>)}</ul>
               </div>
-              <ul class="mt-6 space-y-2.5 text-sm text-sand-700">
-                {['1 local con 1 mesa','1 usuario','10 items de menú','5 pedidos al día','Kitchen Display System (KDS)'].map(item => (
-                  <li class="flex items-start gap-2.5">
-                    <svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <a href={`/es/contact/?plan=${name}`} class={`mt-7 inline-flex h-11 items-center justify-center rounded-full text-sm font-semibold ${featured ? 'bg-brand-700 text-white hover:bg-brand-800' : 'border border-sand-300 text-ink hover:bg-sand-50'}`}>Contáctanos</a>
             </div>
-            <a href="/es/contact/?plan=Starter" class="mt-7 inline-flex items-center justify-center rounded-full border border-sand-300 bg-white px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand-50">Contáctanos</a>
-          </div>
-
-          <!-- PREMIUM -->
-          <div class="relative flex flex-col justify-between rounded-3xl border-2 border-brand-300 bg-white p-7 shadow-lift md:-mt-3 md:mb-3">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-700 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow-soft">Más elegido</div>
-            <div>
-              <h3 class="font-display text-lg font-semibold text-ink">Premium</h3>
-              <p class="mt-1 text-sm text-sand-600">Ideal para negocios pequeños y medianos.</p>
-              <div class="mt-5 flex items-baseline gap-1">
-                <span class="font-display text-4xl font-semibold text-ink">$99</span>
-                <span class="text-sm text-sand-500">/ mes</span>
-              </div>
-              <ul class="mt-6 space-y-2.5 text-sm text-sand-700">
-                {['1 local con mesas ilimitadas','Usuarios ilimitados','Items de menú ilimitados','Pedidos ilimitados','Kitchen Display System (KDS)','Facturación','Cierres','Dashboard de ventas','Reportes','Soporte prioritario'].map(item => (
-                  <li class="flex items-start gap-2.5">
-                    <svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <a href="/es/contact/?plan=Premium" class="mt-7 inline-flex items-center justify-center rounded-full bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800">Contáctanos</a>
-          </div>
-
-          <!-- DIAMOND -->
-          <div class="flex flex-col justify-between rounded-3xl border border-sand-200 bg-white p-7 shadow-soft">
-            <div>
-              <h3 class="font-display text-lg font-semibold text-ink">Diamond</h3>
-              <p class="mt-1 text-sm text-sand-600">Ideal para negocios grandes.</p>
-              <p class="mt-5 text-sm text-sand-700">Todo lo que incluye <span class="font-semibold text-ink">Premium</span>, más:</p>
-              <ul class="mt-4 space-y-2.5 text-sm text-sand-700">
-                {['Locales ilimitados con mesas ilimitadas','Cobros Digitales','Pedidos online','Programas de Fidelidad','Manejo de Inventario','Onboarding completo'].map(item => (
-                  <li class="flex items-start gap-2.5">
-                    <svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-600"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <a href="/es/contact/?plan=Diamond" class="mt-7 inline-flex items-center justify-center rounded-full border border-sand-300 bg-white px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-sand-50">Contáctanos</a>
-          </div>
+          ))}
         </div>
       </section>
 
       <!-- FAQ -->
-      <section id="faq" class="border-t border-sand-200 bg-sand-50">
-        <div class="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div class="text-center">
-            <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Preguntas frecuentes</span>
-            <h2 class="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Preguntas frecuentes</h2>
-            <p class="mt-4 text-base text-sand-600">Algunas respuestas rápidas. Siempre puedes escribirnos si necesitas más detalles.</p>
+      <section id="faq" class="scroll-mt-24 bg-sand-100" data-tone="sand">
+        <div class="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:py-28">
+          <div class="flex flex-col gap-4 lg:col-span-4 lg:pr-6">
+            <h2 class={h2}>Preguntas <em>frecuentes</em></h2>
+            <p class="text-base leading-relaxed text-sand-600">Algunas respuestas rápidas. Siempre puedes escribirnos si necesitas más detalles.</p>
           </div>
-          <div class="mt-10 space-y-3">
-            {[
-              ['¿El cliente tiene que descargar una app?', `No. Solo escanea el código QR de la mesa y ${APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.`],
-              [`¿Puedo usar ${APP_NAME} en varias sucursales?`, 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.'],
-              [`¿${APP_NAME} reemplaza mi POS?`, `Puedes utilizar ${APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.`],
-            ].map(([q, a]) => (
-              <details class="group rounded-2xl border border-sand-200 bg-white px-5 shadow-soft">
-                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-sm font-semibold text-ink marker:hidden">
+          <div class="lg:col-span-8">
+            {faq.map(([q, a], i) => (
+              <details class={`group border-t py-5 last:border-b last:border-b-sand-300 ${i === 0 ? 'border-t-ink' : 'border-t-sand-300'}`} open={i === 0}>
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[23px] font-medium tracking-[-0.01em] marker:hidden [&::-webkit-details-marker]:hidden">
                   {q}
-                  <svg class="h-4 w-4 flex-shrink-0 text-sand-400 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="h-5 w-5 shrink-0 text-sand-500 transition-transform group-open:rotate-45" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
                 </summary>
-                <p class="pb-5 text-sm leading-6 text-sand-600">{a}</p>
+                <p class="mt-3 max-w-[42em] text-base leading-relaxed text-sand-600">{a}</p>
               </details>
             ))}
           </div>
@@ -528,23 +378,13 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
       </section>
 
       <!-- CTA -->
-      <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div class="relative overflow-hidden rounded-[2.2rem] bg-ink px-6 py-14 text-center shadow-lift sm:px-12">
-          <div class="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand-500/20" aria-hidden="true"></div>
-          <div class="absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-brand-500/10" aria-hidden="true"></div>
-          <div class="relative mx-auto max-w-2xl">
-            <h2 class="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">¿Listo para que cada mesa se atienda sola?</h2>
-            <p class="mt-4 text-lg leading-8 text-sand-200">Agenda una demo rápida y te lo mostramos — o prueba el menú de demostración en vivo ahora mismo.</p>
-            <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="/es/contact/" class="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-brand-800">
-                Agendar demo
-                <svg class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </a>
-              <a href={demoMenuUrl} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
-                Pruébalo tú mismo
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </a>
-            </div>
+      <section class="bg-brand-100 text-ink" data-tone="apricot">
+        <div class="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8 lg:pt-28">
+          <h2 class="max-w-[14em] font-display text-[2.6rem] font-normal leading-[1.03] tracking-[-0.03em] sm:text-6xl lg:text-[4.25rem]">¿Listo para que cada mesa <em class="text-brand-700">se atienda sola?</em></h2>
+          <p class="mt-6 max-w-[34em] text-lg leading-[1.6] text-sand-600">Agenda una demo rápida y te lo mostramos, o prueba el menú de demostración en vivo ahora mismo.</p>
+          <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3 pb-20 lg:pb-24">
+            <a href="/es/contact/" class={btnPrimary}>Agendar demo</a>
+            <a href={demoMenuUrl} target="_blank" rel="noopener" class={`${btnLink} text-ink`}>Pruébalo tú mismo</a>
           </div>
         </div>
       </section>
@@ -553,5 +393,6 @@ const demoMenuUrl = 'https://app.cheflink.io/t/757_iu-h/';
     <Footer lang="es" />
   </div>
 
-  <script src="/assets/js/screenshots.js" defer></script>
+  <script src="/assets/js/landing.js" defer></script>
+  <script src="/assets/js/pixel-scenes.js" defer></script>
 </BaseLayout>

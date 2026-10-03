@@ -1,0 +1,16 @@
+---
+// A pixel-art business in service, along the hero's floor: one of several
+// scenes (a café, a restaurant terrace, …) picked at random on each load by
+// /assets/js/pixel-scenes.js, which also sets the canvas's accessible label
+// to the chosen scene. The band ends in the room's near edge over the section
+// below.
+interface Props { lang: 'es' | 'en' }
+const { lang } = Astro.props;
+const label = lang === 'es'
+  ? 'Un negocio de comida en servicio, en pixel art'
+  : 'A food business in service, in pixel art';
+---
+
+<div class="relative">
+  <canvas data-pixel-scene class="block w-full [image-rendering:pixelated]" role="img" aria-label={label} width="320" height="80"></canvas>
+</div>

@@ -52,6 +52,7 @@ shown; where one column is blank, the value is shared.
 | `--color-link-hover` | Hyperlink hover | `#9A3412` | `#9A3412` |
 | `--color-focus` | Keyboard focus ring | `#F97216` | `#F97216` |
 | `--color-bg` | Page canvas | `#FBF8F4` (cream) | `#FFFFFF` |
+| `--color-sky` | Landing hero ground (behind the street scene) | `#FFF3E6` (dawn) | — |
 | `--color-surface` | Card / panel | `#FFFFFF` | `#FFFFFF` |
 | `--color-surface-subtle` | Zebra rows, inset panels | `#F4EEE6` | `#FAFAF9` |
 | `--color-border` | Hairline borders / dividers | `#E7DDD0` | `#E7E5E4` |
@@ -131,7 +132,9 @@ links, focus, and status are shared across both.
 | Role | Font | Weights | Notes |
 |---|---|---|---|
 | UI / body | **Inter** | 400 / 500 / 600 / 700 | Both surfaces, everywhere |
-| Display | **Fraunces** | 500 / 600 / 700 | **Marketing only.** Never in the app. |
+| Display | **Fraunces** | 300–700 (variable) | **Marketing only.** Never in the app. Set with `"SOFT" 40, "WONK" 0`; italics use `"SOFT" 60, "WONK" 1`. |
+| Receipt / ticket | **IBM Plex Mono** | 400 / 500 / 600 | **Marketing only.** Kitchen tickets, checks, eyebrows, footer links. |
+| Handwriting | **Kalam** | 400 / 700 | **Marketing only.** One note at a time (a waiter's scribble, an arrow caption). Never for UI text. |
 | Numeric data | Inter + `font-variant-numeric: tabular-nums` | — | Money, quantities, tables, KDS — keeps digits aligned |
 | Mono (optional) | `ui-monospace` | — | App: IDs, codes, order numbers |
 
