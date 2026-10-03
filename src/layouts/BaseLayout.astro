@@ -1,5 +1,5 @@
 ---
-import { APP_NAME } from '../config/site';
+import { APP_NAME, INSTAGRAM_URL, FACEBOOK_URL } from '../config/site';
 interface Props {
   lang: 'es' | 'en';
   title: string;
@@ -23,6 +23,7 @@ const organizationSchema = {
   name: APP_NAME,
   url: site,
   logo: `${site}/assets/img/logo.png`,
+  sameAs: [INSTAGRAM_URL, FACEBOOK_URL],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
