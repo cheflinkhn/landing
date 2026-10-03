@@ -119,7 +119,7 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
               {APP_NAME} connects your floor, kitchen and back office in one real-time dashboard: QR or waiter orders, reservations, kitchen screens, tabs, invoicing, inventory and reports, with no loose tools and nothing typed twice.
             </p>
             <div class="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
-              <a href="/en/contact/" class={btnPrimary}>Book a demo</a>
+              <a href="/en/demo/" class={btnPrimary}>Book a demo</a>
               <a href="#try-demo" class={`${btnLink} text-ink`}>Try it yourself</a>
             </div>
             <div class="mt-9 flex flex-wrap gap-x-6 gap-y-2 border-t border-sand-300 pt-5 text-sm text-sand-600">
@@ -352,7 +352,7 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
                 {price && <div class="mt-5 flex items-baseline gap-1"><span class="font-display text-4xl">{price}</span><span class="text-sm text-sand-500">/ month</span></div>}
                 <ul class="mt-6 space-y-2 text-sm text-sand-700">{(items as string[]).map((item) => <li class="border-t border-dotted border-sand-300 pt-2">{item}</li>)}</ul>
               </div>
-              <a href={`/en/contact/?plan=${name}`} class={`mt-7 inline-flex h-11 items-center justify-center rounded-full text-sm font-semibold ${featured ? 'bg-brand-700 text-white hover:bg-brand-800' : 'border border-sand-300 text-ink hover:bg-sand-50'}`}>Contact us</a>
+              <a href={`/en/demo/?plan=${name}`} class={`mt-7 inline-flex h-11 items-center justify-center rounded-full text-sm font-semibold ${featured ? 'bg-brand-700 text-white hover:bg-brand-800' : 'border border-sand-300 text-ink hover:bg-sand-50'}`}>Contact us</a>
             </div>
           ))}
         </div>
@@ -385,7 +385,7 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
           <h2 class="max-w-[14em] font-display text-[2.6rem] font-normal leading-[1.03] tracking-[-0.03em] sm:text-6xl lg:text-[4.25rem]">Ready for every table to <em class="text-brand-700">serve itself?</em></h2>
           <p class="mt-6 max-w-[34em] text-lg leading-[1.6] text-sand-600">Book a quick demo and we'll show you around, or try the live demo menu right now.</p>
           <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3 pb-20 lg:pb-24">
-            <a href="/en/contact/" class={btnPrimary}>Book a demo</a>
+            <a href="/en/demo/" class={btnPrimary}>Book a demo</a>
             <a href={demoMenuUrl} target="_blank" rel="noopener" class={`${btnLink} text-ink`}>Try it yourself</a>
           </div>
         </div>

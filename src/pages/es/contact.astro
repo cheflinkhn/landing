@@ -1,85 +1,105 @@
 ---
-import { APP_NAME } from '../../config/site';
+// Contact form, handled by Netlify Forms (the `netlify` attribute and the
+// hidden `form-name` field are what Netlify's build looks for). Submissions
+// are emailed to support@cheflink.io through the form's notification in the
+// Netlify dashboard. After posting, Netlify sends the visitor back here with
+// `?enviado=1`, which shows the thank-you note in place of the form.
+import { APP_NAME, SUPPORT_EMAIL } from '../../config/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
-import { CALENDLY_URL } from '../../config/calendly';
+import Footer from '../../components/Footer.astro';
+
+const field = 'mt-2 block w-full border-0 border-b border-sand-400 bg-transparent px-0 py-2.5 text-base text-ink placeholder:text-sand-400 focus:border-ink focus:outline-none focus:ring-0';
+const label = 'block font-mono text-xs font-medium uppercase tracking-[0.14em] text-sand-600';
 ---
 
 <BaseLayout
   lang="es"
-  title={`Agenda una Demo - ${APP_NAME}`}
-  description={`Agenda una llamada por Google Meet para conocer cómo ${APP_NAME} puede ayudar a tu restaurante.`}
+  title={`Contacto - ${APP_NAME}`}
+  description={`Escríbenos y te respondemos por correo. Soporte y consultas sobre ${APP_NAME}.`}
   canonicalPath="/es/contact/"
 >
 <div class="min-h-screen bg-cream text-ink">
-  <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] overflow-hidden">
-    <div class="absolute left-1/2 top-0 h-[460px] w-[1000px] -translate-x-1/2 rounded-b-[50%] bg-gradient-to-b from-brand-100 via-brand-50 to-transparent"></div>
-  </div>
-
   <Navbar lang="es" currentPage="contact" />
 
-  <main class="relative z-10">
-    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center">
-        <span class="text-xs font-semibold uppercase tracking-wider text-brand-700">Hablemos</span>
-        <h1 class="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Agenda una demo</h1>
-        <p class="mt-4 text-lg leading-8 text-sand-600">Elige el horario que mejor te convenga y nos reunimos por Google Meet. El enlace de la reunión se te envía automáticamente al agendar.</p>
-      </div>
+  <main>
+    <section class="bg-cream" data-tone="cream">
+      <div class="mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-12 sm:px-6 lg:grid-cols-12 lg:gap-6 lg:px-8 lg:pb-28 lg:pt-16">
+        <div class="flex flex-col gap-5 lg:col-span-5 lg:pr-10">
+          <span class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-700">Contacto</span>
+          <h1 class="font-display text-[2.6rem] font-normal leading-[1.03] tracking-[-0.03em] sm:text-6xl">Escríbenos, <em class="text-brand-700">te leemos</em></h1>
+          <p class="max-w-[34em] text-lg leading-[1.6] text-sand-600">Dudas sobre {APP_NAME}, soporte para tu local o cualquier otra consulta. Respondemos por correo, normalmente el mismo día hábil.</p>
+          <dl class="mt-4 flex flex-col border-t border-ink">
+            <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-sand-300 py-4">
+              <dt class="font-mono text-xs uppercase tracking-[0.14em] text-sand-600">Correo</dt>
+              <dd class="m-0 font-mono text-sm"><a href={`mailto:${SUPPORT_EMAIL}`} class="text-ink underline decoration-sand-400 underline-offset-4 hover:decoration-ink">{SUPPORT_EMAIL}</a></dd>
+            </div>
+            <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-sand-300 py-4">
+              <dt class="font-mono text-xs uppercase tracking-[0.14em] text-sand-600">¿Quieres verlo en vivo?</dt>
+              <dd class="m-0 text-sm"><a href="/es/demo/" class="font-semibold text-ink underline decoration-[1.5px] underline-offset-4">Agenda una demo</a></dd>
+            </div>
+          </dl>
+        </div>
 
-      <div class="mx-auto mt-4 max-w-3xl">
-        <section>
-          <div id="calendly-embed" class="min-w-[280px] overflow-hidden transition-[height] duration-200" style="height:760px;">
-              <p class="p-6 text-sm text-sand-500">Cargando el calendario… Si no aparece, <a class="font-medium text-brand-700 hover:text-brand-800" href={CALENDLY_URL} target="_blank" rel="noopener">ábrelo en una pestaña nueva</a>.</p>
+        <div class="lg:col-span-7">
+          <div id="contact-sent" class="hidden border-t border-ink pt-8" role="status">
+            <p class="font-display text-[2rem] leading-[1.1] tracking-[-0.02em]">Gracias, ya lo tenemos.</p>
+            <p class="mt-3 max-w-[34em] text-base leading-relaxed text-sand-600">Te respondemos a tu correo lo antes posible. Si es urgente, escríbenos directo a <a href={`mailto:${SUPPORT_EMAIL}`} class="text-brand-700 underline underline-offset-4">{SUPPORT_EMAIL}</a>.</p>
           </div>
-        </section>
-      </div>
-    </div>
-  </main>
 
-  <footer class="relative z-10 border-t border-sand-200">
-    <div class="mx-auto max-w-6xl px-4 py-8 text-sm text-sand-500 sm:px-6 lg:px-8">
-      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p>© <span data-year></span> {APP_NAME}. Todos los derechos reservados.</p>
-        <div class="flex gap-4">
-          <a href="/es/terms/" class="transition-colors hover:text-ink">Términos</a>
-          <a href="/es/privacy/" class="transition-colors hover:text-ink">Privacidad</a>
+          <form
+            id="contact-form"
+            name="contact-es"
+            method="POST"
+            action="/es/contact/?enviado=1"
+            netlify
+            netlify-honeypot="bot-field"
+            class="flex flex-col gap-7 border-t border-ink pt-8"
+          >
+            <input type="hidden" name="form-name" value="contact-es" />
+            <p class="hidden"><label>No llenes este campo: <input name="bot-field" /></label></p>
+
+            <div class="grid gap-7 sm:grid-cols-2">
+              <div>
+                <label for="name" class={label}>Nombre</label>
+                <input id="name" name="name" type="text" autocomplete="name" required class={field} />
+              </div>
+              <div>
+                <label for="venue" class={label}>Restaurante <span class="normal-case tracking-normal text-sand-400">(opcional)</span></label>
+                <input id="venue" name="venue" type="text" autocomplete="organization" class={field} />
+              </div>
+            </div>
+            <div class="grid gap-7 sm:grid-cols-2">
+              <div>
+                <label for="email" class={label}>Correo</label>
+                <input id="email" name="email" type="email" autocomplete="email" required class={field} />
+              </div>
+              <div>
+                <label for="phone" class={label}>Teléfono <span class="normal-case tracking-normal text-sand-400">(opcional)</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" class={field} />
+              </div>
+            </div>
+            <div>
+              <label for="message" class={label}>Mensaje</label>
+              <textarea id="message" name="message" rows="6" required class={field}></textarea>
+            </div>
+            <div class="flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p class="max-w-[30em] text-xs leading-5 text-sand-600">Al enviar aceptas que {APP_NAME} te contacte sobre tu consulta. Nada más.</p>
+              <button type="submit" class="inline-flex h-[52px] items-center justify-center rounded-full bg-brand-700 px-8 text-base font-semibold text-white shadow-[0_3px_0_#7C2D12] transition-colors hover:bg-brand-800">Enviar</button>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
+  </main>
+
+  <Footer lang="es" />
 </div>
 
-<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script define:vars={{ calendlyUrl: CALENDLY_URL }}>
-  (function () {
-    const parent = document.getElementById('calendly-embed');
-    if (!parent) return;
-
-    // Carry a `?plan=` query param through to Calendly so the chosen plan is
-    // tracked with the booking (visible in your Calendly event reporting).
-    const plan = (new URLSearchParams(window.location.search).get('plan') || '').trim();
-
-    let url = calendlyUrl + (calendlyUrl.includes('?') ? '&' : '?') + 'hide_gdpr_banner=1';
-    if (plan) url += '&utm_content=' + encodeURIComponent(plan);
-
-    // Calendly reports its content height as it changes (month view, time
-    // slots, the booking form); grow the embed to match so the page scrolls,
-    // never the widget.
-    window.addEventListener('message', (e) => {
-      if (!/calendly\.com$/.test(e.origin) || !e.data || e.data.event !== 'calendly.page_height') return;
-      const h = parseInt(e.data.payload && e.data.payload.height, 10);
-      if (h > 0) parent.style.height = h + 'px';
-    });
-
-    function init() {
-      if (!window.Calendly) { window.setTimeout(init, 50); return; }
-      parent.innerHTML = '';
-      window.Calendly.initInlineWidget({ url, parentElement: parent, resize: true });
-      const frame = parent.querySelector('iframe');
-      if (frame) { frame.setAttribute('scrolling', 'no'); frame.style.height = '100%'; }
-    }
-    init();
-  })();
+<script>
+  if (new URLSearchParams(window.location.search).has('enviado')) {
+    document.getElementById('contact-form')?.classList.add('hidden');
+    document.getElementById('contact-sent')?.classList.remove('hidden');
+  }
 </script>
 </BaseLayout>

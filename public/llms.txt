@@ -6,8 +6,10 @@
 
 - [Home (English)](https://cheflink.io/en/): Product overview, features, pricing, and FAQ
 - [Home (Spanish)](https://cheflink.io/es/): Versión en español — características, precios y preguntas frecuentes
-- [Contact / Book a Demo (English)](https://cheflink.io/en/contact/): Request a demo or get in touch
-- [Contact / Reservar Demo (Spanish)](https://cheflink.io/es/contact/): Solicitar una demo o ponerse en contacto
+- [Book a Demo (English)](https://cheflink.io/en/demo/): Schedule a Google Meet demo
+- [Agendar Demo (Spanish)](https://cheflink.io/es/demo/): Agendar una demo por Google Meet
+- [Contact (English)](https://cheflink.io/en/contact/): Contact form, replies by email from support@cheflink.io
+- [Contacto (Spanish)](https://cheflink.io/es/contact/): Formulario de contacto, respuesta por correo desde support@cheflink.io
 - [Privacy Policy](https://cheflink.io/en/privacy/): How Cheflink collects and uses data
 - [Terms & Conditions](https://cheflink.io/en/terms/): Terms of service
 

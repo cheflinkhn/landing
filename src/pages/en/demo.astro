@@ -1,0 +1,72 @@
+---
+import { APP_NAME } from '../../config/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { CALENDLY_URL } from '../../config/calendly';
+---
+
+<BaseLayout
+  lang="en"
+  title={`Book a demo - ${APP_NAME}`}
+  description={`Book a Google Meet call to see how ${APP_NAME} can help your restaurant.`}
+  canonicalPath="/en/demo/"
+>
+<div class="min-h-screen bg-cream text-ink">
+  <Navbar lang="en" currentPage="demo" />
+
+  <main>
+    <section class="bg-dawn" data-tone="dawn">
+      <div class="mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 lg:px-8 lg:pt-16">
+        <div class="max-w-2xl">
+          <span class="font-mono text-xs font-medium uppercase tracking-[0.14em] text-brand-700">Talk to us</span>
+          <h1 class="mt-4 font-display text-[2.6rem] font-normal leading-[1.03] tracking-[-0.03em] sm:text-6xl">Book <em class="text-brand-700">a demo</em></h1>
+          <p class="mt-5 max-w-[34em] text-lg leading-[1.6] text-sand-600">Pick a time that works for you and we'll meet over Google Meet. The meeting link is sent to you automatically when you book.</p>
+        </div>
+
+        <div class="mx-auto mt-4 max-w-3xl">
+          <div id="calendly-embed" class="min-w-[280px] overflow-hidden transition-[height] duration-200" style="height:760px;">
+            <p class="p-6 text-sm text-sand-600">Loading the scheduler… If it doesn't appear, <a class="font-medium text-brand-700 hover:text-brand-800" href={CALENDLY_URL} target="_blank" rel="noopener">open it in a new tab</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang="en" />
+</div>
+
+<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script define:vars={{ calendlyUrl: CALENDLY_URL }}>
+  (function () {
+    const parent = document.getElementById('calendly-embed');
+    if (!parent) return;
+
+    // Carry a `?plan=` query param through to Calendly so the chosen plan is
+    // tracked with the booking (visible in your Calendly event reporting).
+    const plan = (new URLSearchParams(window.location.search).get('plan') || '').trim();
+
+    let url = calendlyUrl + (calendlyUrl.includes('?') ? '&' : '?') + 'hide_gdpr_banner=1';
+    if (plan) url += '&utm_content=' + encodeURIComponent(plan);
+
+    // Calendly reports its content height as it changes (month view, time
+    // slots, the booking form); grow the embed to match so the page scrolls,
+    // never the widget.
+    window.addEventListener('message', (e) => {
+      if (!/calendly\.com$/.test(e.origin) || !e.data || e.data.event !== 'calendly.page_height') return;
+      const h = parseInt(e.data.payload && e.data.payload.height, 10);
+      if (h > 0) parent.style.height = h + 'px';
+    });
+
+    function init() {
+      if (!window.Calendly) { window.setTimeout(init, 50); return; }
+      parent.innerHTML = '';
+      window.Calendly.initInlineWidget({ url, parentElement: parent, resize: true });
+      const frame = parent.querySelector('iframe');
+      if (frame) { frame.setAttribute('scrolling', 'no'); frame.style.height = '100%'; }
+    }
+    init();
+  })();
+</script>
+</BaseLayout>

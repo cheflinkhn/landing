@@ -2,7 +2,7 @@
 import { APP_NAME } from '../config/site';
 interface Props {
   lang: 'es' | 'en';
-  currentPage?: 'index' | 'contact' | 'privacy' | 'terms';
+  currentPage?: 'index' | 'demo' | 'contact' | 'privacy' | 'terms';
 }
 
 const { lang, currentPage = 'index' } = Astro.props;
@@ -32,12 +32,13 @@ const t = {
 
 const pageSlug: Record<string, string> = {
   index: '',
+  demo: 'demo/',
   contact: 'contact/',
   privacy: 'privacy/',
   terms: 'terms/',
 };
 
-const contactHref = `/${lang}/contact/`;
+const contactHref = `/${lang}/demo/`;
 const homePath = `/${lang}/`;
 const esHref = `/es/${pageSlug[currentPage]}`;
 const enHref = `/en/${pageSlug[currentPage]}`;
