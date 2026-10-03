@@ -26,23 +26,10 @@ import { CALENDLY_URL } from '../../config/calendly';
         <p class="mt-4 text-lg leading-8 text-sand-600">Elige el horario que mejor te convenga y nos reunimos por Google Meet. El enlace de la reunión se te envía automáticamente al agendar.</p>
       </div>
 
-      <div class="mt-12 grid gap-8 lg:grid-cols-5">
-        <aside class="lg:col-span-2">
-          <div class="rounded-2xl border border-sand-200 bg-white p-6 shadow-soft">
-            <h2 class="text-base font-semibold text-ink">Qué esperar</h2>
-            <ul class="mt-4 space-y-3 text-sm text-sand-600">
-              <li class="flex gap-3"><span class="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></span>Un recorrido por {APP_NAME} adaptado a tu restaurante</li>
-              <li class="flex gap-3"><span class="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></span>Respuestas sobre precios, configuración e implementación</li>
-              <li class="flex gap-3"><span class="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></span>Un enlace de Google Meet enviado automáticamente al agendar</li>
-            </ul>
-          </div>
-        </aside>
-
-        <section class="lg:col-span-3">
-          <div class="rounded-2xl border border-sand-200 bg-white p-3 shadow-soft sm:p-4">
-            <div id="calendly-embed" class="min-w-[280px] overflow-hidden rounded-xl" style="height:760px;">
+      <div class="mx-auto mt-4 max-w-3xl">
+        <section>
+          <div id="calendly-embed" class="min-w-[280px] overflow-hidden transition-[height] duration-200" style="height:760px;">
               <p class="p-6 text-sm text-sand-500">Cargando el calendario… Si no aparece, <a class="font-medium text-brand-700 hover:text-brand-800" href={CALENDLY_URL} target="_blank" rel="noopener">ábrelo en una pestaña nueva</a>.</p>
-            </div>
           </div>
         </section>
       </div>
@@ -76,10 +63,21 @@ import { CALENDLY_URL } from '../../config/calendly';
     let url = calendlyUrl + (calendlyUrl.includes('?') ? '&' : '?') + 'hide_gdpr_banner=1';
     if (plan) url += '&utm_content=' + encodeURIComponent(plan);
 
+    // Calendly reports its content height as it changes (month view, time
+    // slots, the booking form); grow the embed to match so the page scrolls,
+    // never the widget.
+    window.addEventListener('message', (e) => {
+      if (!/calendly\.com$/.test(e.origin) || !e.data || e.data.event !== 'calendly.page_height') return;
+      const h = parseInt(e.data.payload && e.data.payload.height, 10);
+      if (h > 0) parent.style.height = h + 'px';
+    });
+
     function init() {
       if (!window.Calendly) { window.setTimeout(init, 50); return; }
       parent.innerHTML = '';
-      window.Calendly.initInlineWidget({ url, parentElement: parent });
+      window.Calendly.initInlineWidget({ url, parentElement: parent, resize: true });
+      const frame = parent.querySelector('iframe');
+      if (frame) { frame.setAttribute('scrolling', 'no'); frame.style.height = '100%'; }
     }
     init();
   })();
