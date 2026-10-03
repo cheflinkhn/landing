@@ -9,7 +9,8 @@ interface Props {
   lines?: string[];
   rows?: Row[];
   total?: Row;
-  note?: string;
+  note?: string;      // a handwritten remark, written under the line it belongs to
+  noteLine?: number;  // index into `lines` (default: the first)
   status?: string;
   statusTone?: 'muted' | 'accent';
   stamp?: string;
@@ -23,7 +24,7 @@ interface Props {
   class?: string;
 }
 const {
-  title, meta, lines = [], rows = [], total, note, status, statusTone = 'muted',
+  title, meta, lines = [], rows = [], total, note, noteLine = 0, status, statusTone = 'muted',
   stamp, stampTone = 'accent', tilt = 0, lift = 0, clip = true, tornTop = false,
   size = 'sm', shadow = 'rgba(28,23,20,0.2)', class: className = '',
 } = Astro.props;
@@ -46,13 +47,21 @@ const stampClass = stampTone === 'ok' ? 'border-green-700 text-green-700' : 'bor
       {meta && <span class="text-sand-600">{meta}</span>}
     </div>
     <div class="border-t border-dashed border-sand-400" aria-hidden="true"></div>
-    {lines.length > 0 && <div>{lines.map((l) => <div>{l}</div>)}</div>}
+    {lines.length > 0 && (
+      <div>
+        {lines.map((l, i) => (
+          <>
+            <div>{l}</div>
+            {note && i === noteLine && <div class="-mt-0.5 mb-1 pl-5 font-hand text-[19px] leading-5 text-brand-700">{note}</div>}
+          </>
+        ))}
+      </div>
+    )}
     {rows.length > 0 && (
       <div class="flex flex-col">
         {rows.map((r) => <div class="flex justify-between gap-2"><span>{r.label}</span><span>{r.value}</span></div>)}
       </div>
     )}
-    {note && <div class="-rotate-3 font-hand text-[19px] leading-5 text-brand-700">{note}</div>}
     {(status || total) && <div class="border-t border-dashed border-sand-400" aria-hidden="true"></div>}
     {total && <div class="flex justify-between text-[14px] font-semibold"><span>{total.label}</span><span>{total.value}</span></div>}
     {status && <div class={`font-semibold uppercase tracking-[0.08em] ${statusTone === 'accent' ? 'text-brand-700' : 'text-sand-600'}`}>{status}</div>}

@@ -13,7 +13,7 @@
 
 ## Product summary
 
-Cheflink covers a full night of service:
+Cheflink covers a full service flow:
 
 1. Guests order however they like: they scan the table's QR code and the menu opens in their browser (no download, no sign-up), or a waiter takes the order. Online reservations land on the same floor plan.
 2. Orders arrive instantly on the Kitchen Display System. Kitchen staff and servers see every ticket and its status in real time; inventory is drawn down automatically.
