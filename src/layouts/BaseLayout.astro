@@ -13,7 +13,8 @@ const { lang, title, description, canonicalPath, ogImage } = Astro.props;
 const site = 'https://cheflink.io';
 const otherLang = lang === 'es' ? 'en' : 'es';
 const canonicalUrl = `${site}${canonicalPath}`;
-const ogImageUrl = ogImage ?? `${site}/assets/img/screenshots/01-kds-board.webp`;
+// Social card per language, rendered by scripts/make-og.sh (1200×630 JPEG)
+const ogImageUrl = ogImage ?? `${site}/assets/img/og-${lang}.jpg`;
 const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
 
 const organizationSchema = {
@@ -52,8 +53,8 @@ const organizationSchema = {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImageUrl} />
-  <meta property="og:image:width" content="2560" />
-  <meta property="og:image:height" content="1600" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content={ogLocale} />
   <meta property="og:site_name" content={APP_NAME} />
 

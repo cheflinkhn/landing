@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8" />
+<title>Cheflink OG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* 1200×630 social card: the hero's words over the café in service. */
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #FFF3E6; color: #1C1714; font-family: Inter, ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .brand { position: absolute; left: 64px; top: 56px; display: flex; align-items: center; gap: 14px; font-family: Fraunces, Georgia, serif; font-size: 30px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand img { width: 44px; height: 44px; border-radius: 10px; }
+  .eyebrow { position: absolute; left: 64px; top: 140px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 17px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #5C4E42; }
+  h1 { position: absolute; left: 64px; top: 176px; margin: 0; max-width: 1080px; font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: 86px; line-height: 1; letter-spacing: -0.03em; font-variation-settings: "SOFT" 40, "WONK" 0; }
+  h1 em { font-style: italic; color: #C2410C; font-variation-settings: "SOFT" 60, "WONK" 1; }
+  .scene { position: absolute; left: 0; right: 0; bottom: 0; }
+  canvas { display: block; width: 1200px; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+  <div class="brand"><img src="../../public/assets/img/logo.png" alt="" />Cheflink</div>
+  <div class="eyebrow">{{eyebrow}}</div>
+  <h1>{{headline}}</h1>
+  <div class="scene"><canvas data-pixel-scene width="400" height="80"></canvas></div>
+  <script src="../../public/assets/js/pixel-scenes.js"></script>
+</body>
+</html>
