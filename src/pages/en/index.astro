@@ -43,6 +43,7 @@ const faq = [
   [`Does ${APP_NAME} replace my POS?`, `You can run ${APP_NAME} alongside your current point-of-sale system, or connect a digital payments provider to charge guests directly from the system.`],
   ['Do I need specific hardware?', `No. Everyone on your staff can use ${APP_NAME} from any device: computers, tablets and smartphones.`],
   [`Does ${APP_NAME} provide a delivery service?`, `No. Your business runs its own physical delivery operation. ${APP_NAME} provides the technology that connects you with your customers so they can place delivery orders online.`],
+  ['Do I need an internet connection?', `Yes. ${APP_NAME} runs in the browser and keeps your floor, kitchen and back office in sync in real time, so every device needs to be online. Any regular Wi-Fi or mobile data connection works, with no special network setup.`],
 ];
 
 const faqSchema = {
@@ -60,11 +61,13 @@ const pillars = [
     ['Floor view', 'Which table is waiting for what, and for how long, at a glance.'],
     ['Online reservations', 'Guests book from your page and the floor already knows who is coming.'],
     ['Delivery orders', 'From your own menu, with the guest\'s location and courier tracking.'],
-    ['Loyalty program', 'Points and perks recorded on their own at every visit.'],
+    ['Loyalty program', 'Reward your regulars and treat special customers. Points and perks are recorded on their own at every visit, so they keep coming back.'],
   ] },
   { name: 'Kitchen', where: 'Where food gets made', items: [
     ['Kitchen Display System', 'Every ticket with its status, in real time, on any screen.'],
     ['Inventory', 'Live stock, low-level alerts, and a menu that matches what you have.'],
+    ['Recipes', 'The ingredients behind each dish, so every sale deducts stock and shows the real cost and margin of each item.'],
+    ['Modifier groups', 'Sizes, extras and choices for each dish, required or optional, each with its own price, and the kitchen sees them on the ticket.'],
     ['Waste', 'Log what is lost or thrown out, with a reason and its cost, and it comes off the stock on the spot.'],
     ['Warehouses', 'Receive supplier deliveries into a central store and supply each venue through internal stock requests.'],
   ] },

@@ -43,6 +43,7 @@ const faq = [
   [`¿${APP_NAME} reemplaza mi POS?`, `Puedes utilizar ${APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.`],
   ['¿Necesito algún equipo específico?', `No. Todo el personal de tu negocio puede usar ${APP_NAME} desde cualquier dispositivo: computadoras, tablets y celulares.`],
   [`¿${APP_NAME} ofrece servicio de delivery?`, `No. Tu negocio se encarga de la operación física del delivery. ${APP_NAME} pone la tecnología que te conecta con tus clientes para que puedan hacer pedidos a domicilio en línea.`],
+  ['¿Necesito conexión a internet?', `Sí. ${APP_NAME} funciona en el navegador y mantiene el salón, la cocina y la administración sincronizados en tiempo real, así que cada dispositivo debe estar conectado. Sirve cualquier conexión Wi-Fi o de datos móviles, sin configurar nada especial en tu red.`],
 ];
 
 const faqSchema = {
@@ -60,11 +61,13 @@ const pillars = [
     ['Vista del salón', 'Qué mesa espera qué, y desde hace cuánto, de un vistazo.'],
     ['Reservas en línea', 'Tus clientes reservan desde tu página y el salón ya sabe quién llega.'],
     ['Pedidos a domicilio', 'Desde tu propio menú, con la ubicación del cliente y seguimiento del repartidor.'],
-    ['Programa de lealtad', 'Puntos y beneficios que se registran solos en cada visita.'],
+    ['Programa de lealtad', 'Premia a tus clientes frecuentes y consiente a los especiales. Los puntos y beneficios se registran solos en cada visita, para que vuelvan.'],
   ] },
   { name: 'Cocina', where: 'Donde se produce', items: [
     ['Pantalla de cocina (KDS)', 'Cada comanda con su estado, en tiempo real, en cualquier pantalla.'],
     ['Inventario', 'Stock en tiempo real, alertas de mínimos y un menú al día con lo que hay.'],
+    ['Recetas', 'Los ingredientes de cada plato, para que cada venta descuente el stock y muestre el costo real y el margen de cada ítem.'],
+    ['Grupos de modificadores', 'Tamaños, extras y opciones de cada plato, obligatorios u opcionales, cada uno con su precio, y la cocina los ve en la comanda.'],
     ['Merma', 'Registra lo que se pierde o se tira, con motivo y costo, y sale del inventario al momento.'],
     ['Bodegas', 'Centraliza las compras en una bodega y surte a cada local con pedidos internos de inventario.'],
   ] },
