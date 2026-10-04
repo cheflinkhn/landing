@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #
 # Render the social-sharing images (og:image / twitter:image), one per language,
-# from scripts/og/og.html: the hero's headline over the café scene, 1200×630.
+# from scripts/og/og.html: the hero's headline over the street scene, 1200×630.
+# Run after changing the hero headline or regenerating src/assets/street-scene.svg.
 #
 #   scripts/make-og.sh
 #
@@ -20,16 +21,16 @@ render() {
   local lang="$1" eyebrow="$2" headline="$3"
   local html="$HERE/og/.og-$lang.html"
   python3 - "$HERE/og/og.html" "$html" "$lang" "$eyebrow" "$headline" <<'EOF'
-import sys
+import os, sys
 src, dst, lang, eyebrow, headline = sys.argv[1:6]
-s = open(src, encoding="utf-8").read().replace("{{lang}}", lang).replace("{{eyebrow}}", eyebrow).replace("{{headline}}", headline)
+scene = open(os.path.join(os.path.dirname(src), "../../src/assets/street-scene.svg"), encoding="utf-8").read()
+s = open(src, encoding="utf-8").read().replace("{{lang}}", lang).replace("{{eyebrow}}", eyebrow).replace("{{headline}}", headline).replace("{{scene}}", scene)
 open(dst, "w", encoding="utf-8").write(s)
 EOF
-  # ?scene=cafe pins the scene; the virtual-time budget lets fonts load and the
-  # scene reach a lively frame before the capture.
+  # The virtual-time budget lets the web fonts load before the capture.
   "$CHROME" --headless=new --disable-gpu --no-sandbox --hide-scrollbars \
     --window-size=1200,630 --virtual-time-budget=6000 \
-    --screenshot="$TMP/og-$lang.png" "file://$html?scene=cafe" >/dev/null 2>&1
+    --screenshot="$TMP/og-$lang.png" "file://$html" >/dev/null 2>&1
   rm -f "$html"
   python3 - "$TMP/og-$lang.png" "$ROOT/public/assets/img/og-$lang.jpg" <<'EOF'
 import sys

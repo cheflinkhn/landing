@@ -53,7 +53,7 @@ shown; where one column is blank, the value is shared.
 | `--color-link-hover` | Hyperlink hover | `#9A3412` | `#9A3412` |
 | `--color-focus` | Keyboard focus ring | `#F97216` | `#F97216` |
 | `--color-bg` | Page canvas | `#FBF8F4` (cream) | `#FFFFFF` |
-| `--color-bg-dawn` | Landing hero ground (a shade warmer than cream, behind the pixel scene) | `#FFF3E6` (dawn) | — |
+| `--color-bg-dawn` | Landing hero ground (a shade warmer than cream: the sky behind the street scene) | `#FFF3E6` (dawn) | — |
 | `--color-bg-sand` | Landing alternate section ground (how it works, FAQ) | `#F4EEE6` (sand‑100) | — |
 | `--color-bg-footer` | Landing footer ground | `#E7DDD0` (sand‑200) | — |
 | `--color-paper` | Tickets, menus, checks, placemat: "paper" objects | `#FFFDF8` | — |
@@ -144,7 +144,7 @@ contrast comes from type and rules, never from inverting a block:
 
 | Section | Ground | Tone key |
 |---|---|---|
-| Hero (with the pixel scene along its floor) | `dawn #FFF3E6` | `dawn` |
+| Hero (with the street scene along its floor) | `dawn #FFF3E6` | `dawn` |
 | Trust strip + how it works | `sand‑100 #F4EEE6` | `sand` |
 | Features (the three pillars) | `cream #FBF8F4` | `cream` |
 | The dashboard (tabs + screenshots) | `brand‑50 #FFF7ED` | `peach` |
@@ -260,34 +260,38 @@ These are the parts that are **not** stylistic preference:
 6. Landing secondary text on the light grounds is `sand‑600 #5C4E42` or darker;
    `sand‑500` is reserved for captions ≥14px on `cream`/`dawn` and `sand‑400`
    is decorative only (leaders, dashed rules).
-7. Motion on the landing (the pixel scene, the header tone transition) must
-   honor `prefers-reduced-motion`: the scene renders a single still frame and
-   smooth scrolling is disabled.
+7. Motion on the landing (the header tone transition) must honor
+   `prefers-reduced-motion`: smooth scrolling is disabled. The street scene is
+   a still drawing and needs no exception.
 
 ---
 
-## 10. Landing illustration palette (pixel scenes)
+## 10. Landing illustration palette (the street scene)
 
-`public/assets/js/pixel-scenes.js` draws the hero's pixel‑art businesses with
-its own small palette, deliberately warmer and darker than the UI tokens so the
-scene reads as a picture, not as interface. It is **not** for UI.
+`scripts/street-scene/build.mjs` generates `src/assets/street-scene.svg`: a
+hand‑drawn row of food businesses (brunch spot, café, taquería, bistro, bar,
+lounge, pizzeria, sushi bar) with their terraces, seen in a loose oblique
+projection after the illustrated towns on sites like val.town. It has its own
+small palette, chalkier than the UI tokens so it reads as a drawing, not as
+interface. It is **not** for UI.
 
 | Role | Hex |
 |---|---|
-| Outline (every object, 1px; never black) | `#3B2314` |
-| Deep shadow / screens | `#2A1E16` |
-| Woods (dark → light) | `#4A2A17` · `#7A4A2A` · `#8A5A3A` · `#A87A4C` · `#C9955A` · `#DDB078` |
-| Wall planks | `#855433` / seam `#724628` / highlight `#8E5B39` |
-| Parquet | `#CBAA74` / `#C2A069` / seam `#A88B5C` |
-| Paper / cream / white | `#FFFDF8` · `#F2E4C8` · `#FFF8EC` |
-| Chalkboard greens | `#355C33` · `#3E6B3A` · `#5B8C4A` · `#6FA35A` |
-| Accent (tent cards, tickets, bags) | `#E8762A`, brand `#C2410C` |
-| Sea (La Marea) | `#3B5F8A` · `#4F6D8F` · `#7F9CBF`; ice `#DDEBF2`; brass `#C9A24A` |
+| Ink (every line; never black) | `#3A2E25` |
+| Walls | sage `#C5D0B2` · terracotta `#E2A585` · mustard `#EACD86` · plaster `#F3E8D6` · brick `#CF8664` · dusty blue `#BCCDD8` · peach `#F2DCC4` · bone `#EFE5D3` |
+| Paper / cream / glass | `#FFFDF8` · `#F6ECDC` · `#DCE9EF` (gleam `#F2F8FA`) |
+| Woods | `#9C6A45` · `#7A4E31` · slats `#B98457` |
+| Greens (awnings, chalkboards, trees) | `#5B8C4A` · `#3E5A3A` · `#8FB573` · `#6E9A5A` |
+| Accent (awnings, signs, a parasol) | brand `#F97216`, accent `#C2410C`; indigo `#4F6D8F`; lamp `#F6D47A` |
+| Pavement / kerb / road | `#EFE5D6` (slabs `#DDCFBB`) · `#D8C8B2` · `#E7DDD0`, fading to `sand‑100` |
 
-House rules for scenes: ¾ top‑down view, flat fills with one highlight and
-one shadow, no dithering; one long plain‑fronted counter per venue; no venue
-name signs, no entrance doors, no takeaway or couriers, no pets; sparse décor;
-staff animate at ~1 Hz, never per frame.
+House rules for the street: fronts face the viewer, depth recedes up and to
+the right so every venue shows its front, right flank and roof; fills sit a
+hair off their lines, shaded faces are hatched, and one turbulence filter
+wobbles all the lines. Signs name the kind of place in words that read in both
+languages (CAFÉ, TACOS, BISTRO, BAR, LOUNGE, PIZZA, SUSHI…), never a venue.
+People are small and seated; no couriers, no pets, no vehicles. The drawing
+is still: no animation.
 
 ---
 
@@ -295,7 +299,7 @@ staff animate at ~1 Hz, never per frame.
 
 - **Landing: reworked (Oct 2026).** Tokens above describe the current site:
   light tonal sections, flat elevation, Fraunces regular + italic accent, the
-  mono/handwriting roles, `paper` objects, and the pixel scenes. The `brand`
+  mono/handwriting roles, `paper` objects, and the street scene. The `brand`
   key in `landing/tailwind.config.mjs` is the orange ramp; `cream`, `dawn`,
   `paper`, `ink` and the `sand` ramp are defined there too.
 - **Landing: contact and legal pages** still use the earlier marketing look
