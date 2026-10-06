@@ -1,0 +1,99 @@
+---
+// The hero's looping product video, poster first. The poster is a real <img>
+// (eager, high priority), so it is what the browser paints and counts as the
+// LCP. The <video> carries no source in the HTML: once the page has loaded,
+// the main thread is idle and the frame is on screen, its source is attached
+// and it fades in over the poster when it actually plays. Phones (below md)
+// don't show the hero video at all: the page hides it, the poster resolves to
+// an empty placeholder there so it isn't downloaded, and a hidden frame never
+// intersects, so no video is fetched either.
+// With reduced motion or Save-Data the video is never attached, and if the
+// browser refuses autoplay (iOS Low Power Mode) the poster simply stays.
+// Each page language gets its own render (the app UI in that language). Sources
+// come from scripts/encode-hero-video.sh; the poster is the loop's own first
+// frame, so the fade-in is invisible.
+interface Props { lang: 'es' | 'en'; alt: string }
+const { lang, alt } = Astro.props;
+const base = `/assets/video/hero-loop-${lang}`;
+// A 1×1 transparent GIF: what the poster resolves to where the video is hidden.
+const EMPTY = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const labels = lang === 'es'
+  ? { pause: 'Pausar video', play: 'Reproducir video' }
+  : { pause: 'Pause video', play: 'Play video' };
+---
+
+<div class="relative" data-hero-video data-label-pause={labels.pause} data-label-play={labels.play}>
+  <picture>
+    <source media="(max-width: 767px)" srcset={EMPTY} />
+    <img class="block h-auto w-full" src={`${base}-poster.webp`} alt={alt} width="1600" height="1200" loading="eager" fetchpriority="high" />
+  </picture>
+  <video
+    class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500"
+    data-src={`${base}-1280.mp4`}
+    width="1600" height="1200"
+    muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true"
+  ></video>
+  <button
+    type="button"
+    class="absolute bottom-2.5 right-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-ink/70 text-white opacity-80 transition hover:opacity-100 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+    aria-label={labels.pause}
+    hidden
+  >
+    <svg data-icon="pause" class="h-3.5 w-3.5" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="2.5" y="2" width="3" height="10" rx="1"/><rect x="8.5" y="2" width="3" height="10" rx="1"/></svg>
+    <svg data-icon="play" class="hidden h-3.5 w-3.5" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M4 2.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L4.9 1.7a.6.6 0 0 0-.9.5z"/></svg>
+  </button>
+</div>
+
+<script>
+  type Connection = { saveData?: boolean };
+
+  function setup(root: HTMLElement) {
+    const video = root.querySelector('video')!;
+    const button = root.querySelector('button')!;
+    const pauseIcon = button.querySelector('[data-icon="pause"]')!;
+    const playIcon = button.querySelector('[data-icon="play"]')!;
+    let pausedByUser = false;
+
+    const sync = () => {
+      const paused = video.paused;
+      button.setAttribute('aria-label', (paused ? root.dataset.labelPlay : root.dataset.labelPause) ?? '');
+      pauseIcon.classList.toggle('hidden', paused);
+      playIcon.classList.toggle('hidden', !paused);
+    };
+    // A refused play() (autoplay blocked) just leaves the poster in place.
+    const play = () => video.play().catch(() => {});
+
+    video.addEventListener('playing', () => {
+      video.classList.remove('opacity-0');
+      button.hidden = false;
+    }, { once: true });
+    video.addEventListener('play', sync);
+    video.addEventListener('pause', sync);
+
+    button.addEventListener('click', () => {
+      pausedByUser = !video.paused;
+      if (pausedByUser) video.pause(); else play();
+    });
+
+    // The source is only attached once the frame is on screen (never, where
+    // the page hides it), and the loop pauses while it is off screen so it
+    // doesn't spend battery on nobody.
+    video.muted = true;
+    new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) { if (video.src) video.pause(); return; }
+      if (!video.src) video.src = video.dataset.src!;
+      if (!pausedByUser) play();
+    }).observe(root);
+  }
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = (navigator as Navigator & { connection?: Connection }).connection?.saveData === true;
+
+  if (!reducedMotion && !saveData) {
+    const idle = (cb: () => void) =>
+      'requestIdleCallback' in window ? requestIdleCallback(cb, { timeout: 2000 }) : setTimeout(cb, 200);
+    const start = () => idle(() => document.querySelectorAll<HTMLElement>('[data-hero-video]').forEach(setup));
+    if (document.readyState === 'complete') start();
+    else addEventListener('load', start, { once: true });
+  }
+</script>

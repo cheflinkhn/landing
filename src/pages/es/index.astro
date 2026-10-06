@@ -8,6 +8,7 @@ import StreetScene from '../../components/StreetScene.astro';
 import TableTent from '../../components/TableTent.astro';
 import AppFrame from '../../components/AppFrame.astro';
 import PhoneFrame from '../../components/PhoneFrame.astro';
+import HeroVideo from '../../components/HeroVideo.astro';
 
 const softwareSchema = {
   '@context': 'https://schema.org',
@@ -112,7 +113,7 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
     <Navbar lang="es" currentPage="index" />
 
     <main>
-      <!-- HERO: copy, the kitchen board as the cook sees it, and the night's tickets on the rail -->
+      <!-- HERO: copy, and the back office running a service as a looping video -->
       <section id="hero" class="relative bg-dawn" data-tone="dawn">
         <div class="mx-auto grid max-w-7xl gap-12 px-4 pb-4 pt-10 sm:px-6 lg:grid-cols-12 lg:items-start lg:gap-6 lg:px-8 lg:pt-14">
           <div class="flex flex-col items-start lg:col-span-6">
@@ -133,20 +134,13 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
             </div>
           </div>
 
-          <div class="relative lg:col-span-6">
-            <div class="relative mx-auto max-w-[590px] pb-8 pl-6 pt-8 sm:pl-10 lg:ml-auto lg:mr-0 lg:pt-10">
-              <div class="absolute -top-1 right-4 hidden -rotate-3 items-start gap-1.5 font-hand text-[21px] leading-none text-sand-700 lg:flex" aria-hidden="true">
-                así lo ve la cocina
-                <svg class="mt-2 h-[50px] w-[46px]" viewBox="0 0 46 50" fill="none"><path d="M3 4c14 1 27 9 31 38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M25 33l9 10 7-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="relative hidden md:block lg:col-span-6">
+            <div class="relative mx-auto max-w-[590px] lg:ml-auto lg:mr-0 lg:mt-10">
+              <img src="/assets/img/hero/chef.svg" alt="" width="150" height="112" loading="lazy" class="pointer-events-none absolute -top-[98px] right-[20%] z-10 hidden lg:block" />
+              <div class="isolate overflow-hidden rounded-2xl border border-ink/10 shadow-[0_30px_50px_-28px_rgba(28,23,20,0.45)]">
+                <HeroVideo lang="es" alt="El backoffice de Cheflink durante un servicio: los pedidos de una mesa, el cobro de la cuenta, el inventario y las ventas" />
               </div>
-              <AppFrame variant="tablet">
-                <img src="/assets/img/screenshots/11-kds-board-tablet.webp" alt="Kitchen Display System de Cheflink" width="2048" height="1536" loading="eager" />
-              </AppFrame>
-              <div class="absolute bottom-0 left-0 w-[104px] sm:w-[128px] lg:-left-3">
-                <PhoneFrame>
-                  <img src="/assets/img/screenshots/06-consumer-menu.webp" alt="Menú del cliente en Cheflink" width="1170" height="2532" loading="eager" />
-                </PhoneFrame>
-              </div>
+              <img src="/assets/img/hero/manager.svg" alt="" width="125" height="188" loading="lazy" class="pointer-events-none absolute -left-[75px] -top-[60px] z-10 hidden lg:block" />
             </div>
           </div>
         </div>

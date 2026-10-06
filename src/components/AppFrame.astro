@@ -6,7 +6,7 @@ interface Props { variant?: 'tablet' | 'window'; class?: string; tilt?: number }
 const { variant = 'tablet', class: className = '', tilt = 0 } = Astro.props;
 const frame = variant === 'tablet'
   ? 'rounded-[26px] border-[10px] border-ink bg-ink shadow-[0_30px_50px_-28px_rgba(28,23,20,0.45)]'
-  : 'rounded-[10px] border border-ink bg-white shadow-[0_30px_50px_-34px_rgba(28,23,20,0.4)]';
+  : 'rounded-[10px] border border-ink/10 bg-white shadow-[0_30px_50px_-34px_rgba(28,23,20,0.4)]';
 const inner = variant === 'window' ? 'aspect-[16/10] [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top' : '[&>img]:block [&>img]:w-full';
 ---
 
