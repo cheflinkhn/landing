@@ -6,8 +6,6 @@ export default defineConfig({
   site: 'https://cheflink.io',
   integrations: [
     tailwind(),
-    sitemap({
-      filter: (page) => page !== 'https://cheflink.io/',
-    }),
+    sitemap(),
   ],
 });

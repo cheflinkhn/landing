@@ -5,15 +5,21 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Redirect / to /en/ for English browsers, /es/ for everyone else.
-# Netlify evaluates these top-to-bottom; first match wins.
-[[redirects]]
-  from = "/"
-  to = "/en/"
-  status = 302
-  conditions = {Language = ["en"]}
-
+# Redirect / to /es/ for Spanish browsers, /en/ for everyone else (including
+# link-preview crawlers like WhatsApp's, which send no language), on the server,
+# so anything that doesn't run JavaScript still lands on a page with its
+# description and preview image. There is no page at /. Netlify evaluates these
+# top-to-bottom; first match wins. `force` makes them apply even if a file is
+# ever built at /, which would otherwise shadow them.
 [[redirects]]
   from = "/"
   to = "/es/"
   status = 302
+  force = true
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  force = true
