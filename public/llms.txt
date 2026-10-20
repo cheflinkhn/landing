@@ -21,7 +21,7 @@ Cheflink covers a full service flow:
 2. Orders arrive instantly on the Kitchen Display System. Kitchen staff and servers see every ticket and its status in real time; inventory is drawn down automatically.
 3. Orders are grouped into table tabs. Staff apply discounts and service charges, take payment from the phone or at the register, issue a tax-compliant invoice, and sales reports and closures are ready without re-typing anything.
 
-**Key features:** Floor: QR or waiter ordering, table tabs and digital payments, online reservations, delivery orders from the venue's own menu, loyalty program. Kitchen: Kitchen Display System (KDS), floor view, inventory with low-stock alerts, waste (merma) records with reason and cost, warehouses that receive supplier deliveries and supply venues through internal stock requests. Back office: invoicing, closures and sales reports, staff roles and permissions, multiple venues per account, localized currency and tax configuration.
+**Key features:** Floor: QR or waiter ordering, table tabs and digital payments, online reservations, delivery orders from the venue's own menu, loyalty program. Kitchen: Kitchen Display System (KDS), floor view, inventory with low-stock alerts, waste (merma) records with reason and cost, warehouses that receive supplier deliveries, kitchen requisitions (the kitchen requests ingredients from a warehouse, a manager approves and dispatches, and stock moves when the kitchen confirms receipt). Back office: invoicing, closures and sales reports, staff roles and permissions, multiple venues per account, localized currency and tax configuration.
 
 ## Pricing
 
