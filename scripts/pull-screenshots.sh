@@ -37,7 +37,7 @@ LANGUAGES=(en es)
 FILES=(
   01-kds-board.webp
   02-kds-floor.webp
-  03-sales-kpis.webp
+  03-performance-kpis.webp
   04-backoffice-menu.webp
   05-backoffice-inventory.webp
   06-consumer-menu.webp
@@ -51,6 +51,8 @@ FILES=(
   14-z-report.webp
   15-staff.webp
   16-reports.webp
+  17-performance-revenue.webp
+  18-performance-top-sellers.webp
 )
 
 if [ "${1:-}" = "--generate" ]; then

@@ -82,7 +82,9 @@ const pillars = [
 ];
 
 const panelTabs = [
-  { id: 'sales', label: 'Sales' },
+  { id: 'kpis', label: 'KPIs' },
+  { id: 'revenue', label: 'Revenue' },
+  { id: 'topsellers', label: 'Top sellers' },
   { id: 'menu', label: 'Menu management' },
   { id: 'kitchen', label: 'Kitchen (KDS)' },
   { id: 'floor', label: 'Floor view' },
@@ -276,7 +278,9 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
             </div>
 
             <div class="relative mt-8">
-              <div id="panel-sales" role="tabpanel" aria-labelledby="tab-sales" hidden={defaultTab !== 'sales'}><AppFrame variant="window"><img src={`${shots}/03-sales-kpis.webp`} alt="Sales statistics in Cheflink" width="2560" height="3280" loading="lazy" /></AppFrame></div>
+              <div id="panel-kpis" role="tabpanel" aria-labelledby="tab-kpis" hidden={defaultTab !== 'kpis'}><AppFrame variant="window" crop={false}><img src={`${shots}/03-performance-kpis.webp`} alt="Performance page in Cheflink: period, filters and the KPI row" width="1856" height="1636" loading="lazy" /></AppFrame></div>
+              <div id="panel-revenue" role="tabpanel" aria-labelledby="tab-revenue" hidden={defaultTab !== 'revenue'}><AppFrame variant="window" crop={false}><img src={`${shots}/17-performance-revenue.webp`} alt="Revenue trend over the period in Cheflink" width="1856" height="782" loading="lazy" /></AppFrame></div>
+              <div id="panel-topsellers" role="tabpanel" aria-labelledby="tab-topsellers" hidden={defaultTab !== 'topsellers'}><AppFrame variant="window" crop={false}><img src={`${shots}/18-performance-top-sellers.webp`} alt="Top-selling items ranked by revenue beside peak hours in Cheflink" width="1856" height="950" loading="lazy" /></AppFrame></div>
               <div id="panel-menu" role="tabpanel" aria-labelledby="tab-menu" hidden={defaultTab !== 'menu'}><AppFrame variant="window"><img src={`${shots}/04-backoffice-menu.webp`} alt="Menu management in Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
               <div id="panel-kitchen" role="tabpanel" aria-labelledby="tab-kitchen" hidden={defaultTab !== 'kitchen'}><AppFrame variant="window"><img src={`${shots}/01-kds-board.webp`} alt="Cheflink Kitchen Display System" width="2560" height="1600" loading="eager" /></AppFrame></div>
               <div id="panel-floor" role="tabpanel" aria-labelledby="tab-floor" hidden={defaultTab !== 'floor'}><AppFrame variant="window"><img src={`${shots}/13-kds-tables.webp`} alt="Floor view in Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
