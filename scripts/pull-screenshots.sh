@@ -47,6 +47,10 @@ FILES=(
   10-table-reservation.webp
   11-kds-board-tablet.webp
   12-consumer-delivery.webp
+  13-kds-tables.webp
+  14-z-report.webp
+  15-staff.webp
+  16-reports.webp
 )
 
 if [ "${1:-}" = "--generate" ]; then
