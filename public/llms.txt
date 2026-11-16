@@ -21,15 +21,15 @@ Cheflink covers a full service flow:
 2. Orders arrive instantly on the Kitchen Display System. Kitchen staff and servers see every ticket and its status in real time; inventory is drawn down automatically.
 3. Orders are grouped into table tabs. Staff apply discounts and service charges, take payment from the phone or at the register, issue a tax-compliant invoice, and sales reports and closures are ready without re-typing anything.
 
-**Key features:** Floor: QR or waiter ordering, table tabs and digital payments, online reservations, delivery orders from the venue's own menu. Kitchen: Kitchen Display System (KDS), floor view, inventory with low-stock alerts, waste (merma) records with reason and cost, warehouses that receive supplier deliveries, kitchen requisitions (the kitchen requests ingredients from a warehouse, a manager approves and dispatches, and stock moves when the kitchen confirms receipt). Back office: invoicing, closures and sales reports, staff roles and permissions, multiple venues per account, a built-in CRM (one customer database fed by loyalty, reservations and online orders with each guest's visits and spend; loyalty program with points recorded at every visit; guest reviews after paying; email campaigns to customer segments, such as lapsed regulars, with offers redeemed on their tab), localized currency and tax configuration.
+**Key features:** Floor: QR or waiter ordering, table tabs and digital payments, online reservations, delivery orders from the venue's own menu. Kitchen: Kitchen Display System (KDS), automatic kitchen chit printing (chits print by themselves on the venue's network receipt printer when an order is sent; cancelled items print a cancellation slip), floor view, inventory with low-stock alerts, waste (merma) records with reason and cost, warehouses that receive supplier deliveries, kitchen requisitions (the kitchen requests ingredients from a warehouse, a manager approves and dispatches, and stock moves when the kitchen confirms receipt). Back office: invoicing, closures and sales reports, staff roles and permissions, multiple venues per account, a built-in CRM (one customer database fed by loyalty, reservations and online orders with each guest's visits and spend; loyalty program with points recorded at every visit; guest reviews after paying; email campaigns to customer segments, such as lapsed regulars, with offers redeemed on their tab), localized currency and tax configuration.
 
 ## Pricing
 
-| Plan | Price | Best for |
-|------|-------|----------|
-| Starter | $0/month | Trying out Cheflink (1 venue, 1 table, 5 orders/day) |
-| Premium | $99/month | Small and medium restaurants (1 venue, unlimited tables and orders) |
-| Diamond | Custom | Large operations (unlimited venues, digital payments, loyalty programs) |
+Cheflink is sold as one base subscription plus optional add-on modules, billed monthly. There are no tiered plans.
+
+- **Base:** everything a restaurant needs to run service, take payment, invoice and close the day: floor view and table tabs, orders taken by staff, Kitchen Display System with printed chits, payments, invoicing, closures and reports, with unlimited users, tables and menu items.
+- **Add-on modules:** QR ordering; online ordering and delivery; reservations; inventory (stock, recipes, waste and warehouses); CRM (customer database, loyalty, campaigns and guest reviews).
+- **Additional venues:** run under the same account for an extra cost per venue.
 
 ## Company
 

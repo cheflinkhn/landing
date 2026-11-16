@@ -18,31 +18,16 @@ const softwareSchema = {
   operatingSystem: 'Web',
   description: 'Restaurant operating system: QR or waiter ordering, real-time kitchen display, table tabs, invoicing, inventory and reports in a single dashboard.',
   url: 'https://cheflink.io/en/',
-  offers: [
-    {
-      '@type': 'Offer',
-      name: 'Starter',
-      price: '0',
-      priceCurrency: 'USD',
-      description: '1 venue with 1 table, 1 user, 10 menu items, 5 orders per day',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Premium',
-      price: '99',
-      priceCurrency: 'USD',
-      description: '1 venue with unlimited tables, unlimited users, unlimited orders, KDS, invoicing, sales dashboard',
-    },
-  ],
 };
 
 const faq = [
   ['Do guests have to download an app?', `No. They scan the table's QR code and ${APP_NAME} opens in the browser. From there they can browse the menu, place orders, and everything is linked to that table's tab.`],
   ['Do guests always have to order by scanning the QR code?', `No. Your servers can take and enter orders themselves in ${APP_NAME}, as they always have. Every tab and order, whether it came from the QR or from a server, follows the same flow: it reaches the kitchen, lands on the table's tab, and is charged the same way.`],
-  [`Can I use ${APP_NAME} across several locations?`, 'Yes. On the Diamond plan you can run unlimited venues with unlimited tables.'],
+  [`Can I use ${APP_NAME} across several locations?`, 'Yes. You can run all your locations under one account, and each additional venue is added to your subscription for an extra cost.'],
   ['Can each venue have a different menu?', 'Yes. You keep one main catalog with all your dishes, and each venue builds its own menu from it: it picks what it offers, with its own prices and availability, without re-entering anything.'],
   [`Does ${APP_NAME} replace my POS?`, `You can run ${APP_NAME} alongside your current point-of-sale system, or connect a digital payments provider to charge guests directly from the system.`],
   ['Do I need specific hardware?', `No. Everyone on your staff can use ${APP_NAME} from any device: computers, tablets and smartphones.`],
+  ['Can orders print in the kitchen automatically?', `Yes. If your kitchen works from paper, chits print by themselves on the kitchen printer the moment an order is sent, whether it came from the QR or from a server, with no one tapping print. It works with a receipt printer connected to your venue's network. You can also print chits by hand from the browser, on any printer.`],
   [`Does ${APP_NAME} provide a delivery service?`, `No. Your business runs its own physical delivery operation. ${APP_NAME} provides the technology that connects you with your customers so they can place delivery orders online.`],
   ['Do I need an internet connection?', `Yes. ${APP_NAME} runs in the browser and keeps your floor, kitchen and back office in sync in real time, so every device needs to be online. Any regular Wi-Fi or mobile data connection works, with no special network setup.`],
 ];
@@ -65,6 +50,7 @@ const pillars = [
   ] },
   { name: 'Kitchen', where: 'Where food gets made', items: [
     ['Kitchen Display System', 'Every ticket with its status, in real time, on any screen.'],
+    ['Automatic kitchen printing', 'For kitchens that work from paper: chits print by themselves on the kitchen printer the moment an order is sent, from the QR or a server, and a cancelled dish prints its own slip.'],
     ['Inventory', 'Live stock, low-level alerts, and a menu that matches what you have.'],
     ['Recipes', 'The ingredients behind each dish, so every sale deducts stock and shows the real cost and margin of each item.'],
     ['Modifier groups', 'Sizes, extras and choices for each dish, required or optional, each with its own price, and the kitchen sees them on the ticket.'],
@@ -349,24 +335,23 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
         <div class="mx-auto max-w-2xl text-center">
           <span class={`${eyebrow} text-brand-700`}>Pricing</span>
           <h2 class={`mt-4 ${h2}`}>Pricing that grows with you</h2>
-          <p class="mt-4 text-lg leading-8 text-sand-600">Start free and move to any other plan when you want {APP_NAME} on every table and location.</p>
+          <p class="mt-4 text-lg leading-8 text-sand-600">One base subscription runs your restaurant. Add modules when you need them, and more venues as you grow.</p>
         </div>
         <div class="mt-12 grid items-start gap-6 md:grid-cols-3">
-          {[
-            ['Starter', 'Ideal for trying it out.', '$0', ['1 venue with 1 table', '1 user', '10 menu items', '5 orders per day', 'Kitchen Display System (KDS)'], false],
-            ['Premium', 'Ideal for small and medium venues.', '$99', ['1 venue with unlimited tables', 'Unlimited users', 'Unlimited menu items', 'Unlimited orders', 'Kitchen Display System (KDS)', 'Invoicing', 'Closures', 'Sales dashboard', 'Reports', 'Priority support'], true],
-            ['Diamond', 'Ideal for large operations.', '', ['Unlimited venues with unlimited tables', 'Digital payments', 'Online orders', 'Loyalty programs', 'Inventory management', 'Full onboarding'], false],
-          ].map(([name, tagline, price, items, featured]) => (
-            <div class={`flex flex-col justify-between border bg-paper p-7 ${featured ? 'border-ink' : 'border-sand-300'}`}>
-              <div>
-                <h3 class="font-display text-2xl">{name}</h3>
-                <p class="mt-1 text-sm text-sand-600">{tagline}</p>
-                {price && <div class="mt-5 flex items-baseline gap-1"><span class="font-display text-4xl">{price}</span><span class="text-sm text-sand-500">/ month</span></div>}
-                <ul class="mt-6 space-y-2 text-sm text-sand-700">{(items as string[]).map((item) => <li class="border-t border-dotted border-sand-300 pt-2">{item}</li>)}</ul>
-              </div>
-              <a href={`/en/demo/?plan=${name}`} class={`mt-7 inline-flex h-11 items-center justify-center rounded-full text-sm font-semibold ${featured ? 'bg-brand-700 text-white hover:bg-brand-800' : 'border border-sand-300 text-ink hover:bg-sand-50'}`}>Contact us</a>
+          <div class="flex flex-col justify-between border border-ink bg-paper p-7">
+            <div>
+              <h3 class="font-display text-2xl">Base</h3>
+              <p class="mt-1 text-sm text-sand-600">Everything a restaurant needs to run service, take payment, invoice and close the day.</p>
+              <ul class="mt-6 space-y-2 text-sm text-sand-700">{['Floor view and table tabs', 'Orders taken by your staff', 'Kitchen Display System with printed chits', 'Payments, taxes, service charge and tips', 'Invoicing', 'Closures, sales dashboard and reports', 'Unlimited users, tables and menu items'].map((item) => <li class="border-t border-dotted border-sand-300 pt-2">{item}</li>)}</ul>
             </div>
-          ))}
+            <a href="/en/demo/" class="mt-7 inline-flex h-11 items-center justify-center rounded-full bg-brand-700 text-sm font-semibold text-white hover:bg-brand-800">Contact us</a>
+          </div>
+          <div class="border border-sand-300 bg-paper p-7 md:col-span-2">
+            <h3 class="font-display text-2xl">Add-on modules</h3>
+            <p class="mt-1 text-sm text-sand-600">Each one is a whole area of the product. Add only the ones you use.</p>
+            <ul class="mt-6 grid gap-x-8 text-sm sm:grid-cols-2">{[['QR ordering', 'Guests order from their phone at the table.'], ['Online ordering and delivery', 'Takeaway and delivery from a link of your own.'], ['Reservations', 'Guests book a table online.'], ['Inventory', 'Stock, recipes, costing, purchasing and waste, with warehouses included.'], ['CRM', 'Your customer database, loyalty program, campaigns and guest reviews.']].map(([name, tagline]) => <li class="border-t border-dotted border-sand-300 py-3"><span class="font-semibold text-ink">{name}</span><span class="block text-sand-600">{tagline}</span></li>)}</ul>
+            <p class="mt-6 border-t border-dotted border-sand-300 pt-3 text-sm text-sand-700">Additional venues run under the same account for an extra cost.</p>
+          </div>
         </div>
       </section>
 

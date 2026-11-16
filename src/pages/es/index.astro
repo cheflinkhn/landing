@@ -18,31 +18,16 @@ const softwareSchema = {
   operatingSystem: 'Web',
   description: 'Sistema operativo para restaurantes: pedidos por QR o del mesero, cocina en tiempo real, cuentas por mesa, facturación, inventario y reportes en un solo panel.',
   url: 'https://cheflink.io/es/',
-  offers: [
-    {
-      '@type': 'Offer',
-      name: 'Starter',
-      price: '0',
-      priceCurrency: 'USD',
-      description: '1 local con 1 mesa, 1 usuario, 10 items de menú, 5 pedidos al día',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Premium',
-      price: '99',
-      priceCurrency: 'USD',
-      description: '1 local con mesas ilimitadas, usuarios ilimitados, pedidos ilimitados, KDS, facturación, dashboard de ventas',
-    },
-  ],
 };
 
 const faq = [
   ['¿El cliente tiene que descargar una app?', `No. Solo escanea el código QR de la mesa y ${APP_NAME} se abre en el navegador. Ahí se puede ver el menú, hacer pedidos y vincular todo a la cuenta de esa mesa.`],
   ['¿Los clientes siempre tienen que pedir escaneando el QR?', `No. Tus meseros pueden tomar y registrar los pedidos ellos mismos en ${APP_NAME}, como siempre. Todas las cuentas y los pedidos, vengan del QR o del mesero, siguen el mismo flujo: llegan a cocina, se suman a la cuenta de la mesa y se cobran igual.`],
-  [`¿Puedo usar ${APP_NAME} en varias sucursales?`, 'Sí. Con el plan Diamond puedes usarlo en locales ilimitados con mesas ilimitadas.'],
+  [`¿Puedo usar ${APP_NAME} en varias sucursales?`, 'Sí. Puedes manejar todos tus locales en una sola cuenta, y cada sucursal adicional se agrega a tu suscripción por un costo extra.'],
   ['¿Cada sucursal puede tener un menú distinto?', 'Sí. Mantienes un catálogo principal con todos tus platos y cada local arma su propio menú a partir de él: elige qué ofrece, con sus precios y disponibilidad, sin volver a cargar nada.'],
   [`¿${APP_NAME} reemplaza mi POS?`, `Puedes utilizar ${APP_NAME} junto con tu sistema de punto de venta actual, o integrándolo con un proveedor de pagos digitales para cobrar a tus clientes directamente desde el sistema.`],
   ['¿Necesito algún equipo específico?', `No. Todo el personal de tu negocio puede usar ${APP_NAME} desde cualquier dispositivo: computadoras, tablets y celulares.`],
+  ['¿Los pedidos se pueden imprimir solos en la cocina?', `Sí. Si tu cocina trabaja con papel, las comandas se imprimen solas en la impresora de cocina en cuanto se envía un pedido, venga del QR o del mesero, sin que nadie toque imprimir. Funciona con una impresora de tickets conectada a la red de tu local. También puedes imprimir las comandas a mano desde el navegador, en cualquier impresora.`],
   [`¿${APP_NAME} ofrece servicio de delivery?`, `No. Tu negocio se encarga de la operación física del delivery. ${APP_NAME} pone la tecnología que te conecta con tus clientes para que puedan hacer pedidos a domicilio en línea.`],
   ['¿Necesito conexión a internet?', `Sí. ${APP_NAME} funciona en el navegador y mantiene el salón, la cocina y la administración sincronizados en tiempo real, así que cada dispositivo debe estar conectado. Sirve cualquier conexión Wi-Fi o de datos móviles, sin configurar nada especial en tu red.`],
 ];
@@ -65,6 +50,7 @@ const pillars = [
   ] },
   { name: 'Cocina', where: 'Donde se produce', items: [
     ['Pantalla de cocina (KDS)', 'Cada comanda con su estado, en tiempo real, en cualquier pantalla.'],
+    ['Impresión automática de cocina', 'Para cocinas que trabajan con papel: las comandas se imprimen solas en la impresora de cocina en cuanto se envía un pedido, por QR o del mesero, y un plato cancelado imprime su propio aviso.'],
     ['Inventario', 'Stock en tiempo real, alertas de mínimos y un menú al día con lo que hay.'],
     ['Recetas', 'Los ingredientes de cada plato, para que cada venta descuente el stock y muestre el costo real y el margen de cada ítem.'],
     ['Grupos de modificadores', 'Tamaños, extras y opciones de cada plato, obligatorios u opcionales, cada uno con su precio, y la cocina los ve en la comanda.'],
@@ -349,24 +335,23 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
         <div class="mx-auto max-w-2xl text-center">
           <span class={`${eyebrow} text-brand-700`}>Precios</span>
           <h2 class={`mt-4 ${h2}`}>Precios que crecen contigo</h2>
-          <p class="mt-4 text-lg leading-8 text-sand-600">Empieza gratis y migra a cualquier otro plan cuando quieras usar {APP_NAME} en todas tus mesas y sucursales.</p>
+          <p class="mt-4 text-lg leading-8 text-sand-600">Una suscripción base para operar tu restaurante. Agrega módulos cuando los necesites, y más sucursales a medida que creces.</p>
         </div>
         <div class="mt-12 grid items-start gap-6 md:grid-cols-3">
-          {[
-            ['Starter', 'Ideal para probar.', '$0', ['1 local con 1 mesa', '1 usuario', '10 items de menú', '5 pedidos al día', 'Kitchen Display System (KDS)'], false],
-            ['Premium', 'Ideal para negocios pequeños y medianos.', '$99', ['1 local con mesas ilimitadas', 'Usuarios ilimitados', 'Items de menú ilimitados', 'Pedidos ilimitados', 'Kitchen Display System (KDS)', 'Facturación', 'Cierres', 'Dashboard de ventas', 'Reportes', 'Soporte prioritario'], true],
-            ['Diamond', 'Ideal para negocios grandes.', '', ['Locales ilimitados con mesas ilimitadas', 'Cobros Digitales', 'Pedidos online', 'Programas de Fidelidad', 'Manejo de Inventario', 'Onboarding completo'], false],
-          ].map(([name, tagline, price, items, featured]) => (
-            <div class={`flex flex-col justify-between border bg-paper p-7 ${featured ? 'border-ink' : 'border-sand-300'}`}>
-              <div>
-                <h3 class="font-display text-2xl">{name}</h3>
-                <p class="mt-1 text-sm text-sand-600">{tagline}</p>
-                {price && <div class="mt-5 flex items-baseline gap-1"><span class="font-display text-4xl">{price}</span><span class="text-sm text-sand-500">/ mes</span></div>}
-                <ul class="mt-6 space-y-2 text-sm text-sand-700">{(items as string[]).map((item) => <li class="border-t border-dotted border-sand-300 pt-2">{item}</li>)}</ul>
-              </div>
-              <a href={`/es/demo/?plan=${name}`} class={`mt-7 inline-flex h-11 items-center justify-center rounded-full text-sm font-semibold ${featured ? 'bg-brand-700 text-white hover:bg-brand-800' : 'border border-sand-300 text-ink hover:bg-sand-50'}`}>Contáctanos</a>
+          <div class="flex flex-col justify-between border border-ink bg-paper p-7">
+            <div>
+              <h3 class="font-display text-2xl">Base</h3>
+              <p class="mt-1 text-sm text-sand-600">Todo lo que un restaurante necesita para dar servicio, cobrar, facturar y cerrar el día.</p>
+              <ul class="mt-6 space-y-2 text-sm text-sand-700">{['Vista del salón y cuentas por mesa', 'Pedidos tomados por tu equipo', 'Pantalla de cocina (KDS) con comandas impresas', 'Pagos, impuestos, cargo por servicio y propinas', 'Facturación', 'Cierres, dashboard de ventas y reportes', 'Usuarios, mesas e ítems de menú ilimitados'].map((item) => <li class="border-t border-dotted border-sand-300 pt-2">{item}</li>)}</ul>
             </div>
-          ))}
+            <a href="/es/demo/" class="mt-7 inline-flex h-11 items-center justify-center rounded-full bg-brand-700 text-sm font-semibold text-white hover:bg-brand-800">Contáctanos</a>
+          </div>
+          <div class="border border-sand-300 bg-paper p-7 md:col-span-2">
+            <h3 class="font-display text-2xl">Módulos adicionales</h3>
+            <p class="mt-1 text-sm text-sand-600">Cada uno es un área completa del producto. Agrega solo los que uses.</p>
+            <ul class="mt-6 grid gap-x-8 text-sm sm:grid-cols-2">{[['Pedidos por QR', 'Tus clientes piden desde su teléfono en la mesa.'], ['Pedidos en línea y a domicilio', 'Para llevar y a domicilio desde tu propio enlace.'], ['Reservas', 'Tus clientes reservan una mesa en línea.'], ['Inventario', 'Stock, recetas, costeo, compras y merma, con bodegas incluidas.'], ['CRM', 'Tu base de clientes, programa de lealtad, campañas y reseñas.']].map(([name, tagline]) => <li class="border-t border-dotted border-sand-300 py-3"><span class="font-semibold text-ink">{name}</span><span class="block text-sand-600">{tagline}</span></li>)}</ul>
+            <p class="mt-6 border-t border-dotted border-sand-300 pt-3 text-sm text-sand-700">Las sucursales adicionales funcionan en la misma cuenta por un costo extra.</p>
+          </div>
         </div>
       </section>
 
