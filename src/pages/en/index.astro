@@ -75,7 +75,7 @@ const panelTabs = [
   { id: 'kitchen', label: 'Kitchen (KDS)' },
   { id: 'floor', label: 'Floor view' },
   { id: 'inventory', label: 'Inventory' },
-  { id: 'zreport', label: 'Z report' },
+  { id: 'zreport', label: 'Z Reports' },
   { id: 'staff', label: 'Staff' },
   { id: 'reports', label: 'Reports' },
 ];
@@ -249,18 +249,23 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
           </div>
 
           <div class="mt-9 lg:max-w-[980px]" data-tabs>
-            <div class="no-scrollbar -mx-4 flex gap-8 overflow-x-auto border-b border-sand-300 px-4 text-[15px] font-medium sm:mx-0 sm:px-0" role="tablist" aria-label="Dashboard views">
-              {panelTabs.map((tab) => (
-                <button
-                  type="button"
-                  role="tab"
-                  id={`tab-${tab.id}`}
-                  aria-selected={tab.id === defaultTab ? 'true' : 'false'}
-                  aria-controls={`panel-${tab.id}`}
-                  tabindex={tab.id === defaultTab ? 0 : -1}
-                  class="-mb-px inline-flex h-12 shrink-0 items-center whitespace-nowrap border-b-2 border-transparent text-sand-600 transition-colors hover:text-ink aria-selected:border-brand-700 aria-selected:font-semibold aria-selected:text-ink"
-                >{tab.label}</button>
-              ))}
+            <div class="relative -mx-4 sm:mx-0">
+              <div class="no-scrollbar flex gap-8 overflow-x-auto scroll-smooth border-b border-sand-300 px-4 text-[15px] font-medium motion-reduce:scroll-auto sm:px-0" role="tablist" aria-label="Dashboard views">
+                {panelTabs.map((tab) => (
+                  <button
+                    type="button"
+                    role="tab"
+                    id={`tab-${tab.id}`}
+                    aria-selected={tab.id === defaultTab ? 'true' : 'false'}
+                    aria-controls={`panel-${tab.id}`}
+                    tabindex={tab.id === defaultTab ? 0 : -1}
+                    class="-mb-px inline-flex h-12 shrink-0 items-center whitespace-nowrap border-b-2 border-transparent text-sand-600 transition-colors hover:text-ink aria-selected:border-brand-700 aria-selected:font-semibold aria-selected:text-ink"
+                  >{tab.label}</button>
+                ))}
+              </div>
+              {/* Scroll arrows: landing.js shows each one only while tabs are hidden on that side. */}
+              <button type="button" data-tabs-prev hidden tabindex="-1" aria-hidden="true" class="absolute bottom-px left-0 top-0 flex w-16 items-center justify-start bg-gradient-to-r from-brand-50 from-45% to-transparent px-2 text-sand-700 hover:text-ink sm:px-0 [&[hidden]]:hidden"><svg class="h-5 w-5" viewBox="0 0 20 20" fill="none"><path d="M12.5 4.5L7 10l5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" data-tabs-next hidden tabindex="-1" aria-hidden="true" class="absolute bottom-px right-0 top-0 flex w-16 items-center justify-end bg-gradient-to-l from-brand-50 from-45% to-transparent px-2 text-sand-700 hover:text-ink sm:px-0 [&[hidden]]:hidden"><svg class="h-5 w-5" viewBox="0 0 20 20" fill="none"><path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
 
             <div class="relative mt-8">
