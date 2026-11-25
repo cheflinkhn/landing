@@ -53,6 +53,7 @@ FILES=(
   16-reports.webp
   17-performance-revenue.webp
   18-performance-top-sellers.webp
+  19-reservations.webp
 )
 
 if [ "${1:-}" = "--generate" ]; then

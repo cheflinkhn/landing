@@ -74,6 +74,7 @@ const panelTabs = [
   { id: 'menu', label: 'Menu management' },
   { id: 'kitchen', label: 'Kitchen (KDS)' },
   { id: 'floor', label: 'Floor view' },
+  { id: 'reservations', label: 'Reservations' },
   { id: 'inventory', label: 'Inventory' },
   { id: 'zreport', label: 'Z Reports' },
   { id: 'staff', label: 'Staff' },
@@ -275,6 +276,7 @@ const btnLink = 'inline-flex min-h-[44px] items-center font-semibold underline d
               <div id="panel-menu" role="tabpanel" aria-labelledby="tab-menu" hidden={defaultTab !== 'menu'}><AppFrame variant="window"><img src={`${shots}/04-backoffice-menu.webp`} alt="Menu management in Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
               <div id="panel-kitchen" role="tabpanel" aria-labelledby="tab-kitchen" hidden={defaultTab !== 'kitchen'}><AppFrame variant="window"><img src={`${shots}/01-kds-board.webp`} alt="Cheflink Kitchen Display System" width="2560" height="1600" loading="eager" /></AppFrame></div>
               <div id="panel-floor" role="tabpanel" aria-labelledby="tab-floor" hidden={defaultTab !== 'floor'}><AppFrame variant="window"><img src={`${shots}/13-kds-tables.webp`} alt="Floor view in Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
+              <div id="panel-reservations" role="tabpanel" aria-labelledby="tab-reservations" hidden={defaultTab !== 'reservations'}><AppFrame variant="window"><img src={`${shots}/19-reservations.webp`} alt="Today's reservations in Cheflink, each with its time, party size, table and status" width="2560" height="2288" loading="lazy" /></AppFrame></div>
               <div id="panel-inventory" role="tabpanel" aria-labelledby="tab-inventory" hidden={defaultTab !== 'inventory'}><AppFrame variant="window"><img src={`${shots}/05-backoffice-inventory.webp`} alt="Inventory management in Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
               <div id="panel-zreport" role="tabpanel" aria-labelledby="tab-zreport" hidden={defaultTab !== 'zreport'}><AppFrame variant="window"><img src={`${shots}/14-z-report.webp`} alt="Z report closing a day of service in Cheflink" width="2560" height="3370" loading="lazy" /></AppFrame></div>
               <div id="panel-staff" role="tabpanel" aria-labelledby="tab-staff" hidden={defaultTab !== 'staff'}><AppFrame variant="window"><img src={`${shots}/15-staff.webp`} alt="Staff members and their roles in Cheflink" width="2560" height="1600" loading="lazy" /></AppFrame></div>
